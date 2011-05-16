@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Phone number:</b>
+  <%= @subscriber.phone_number %>
+</p>
+
+<p>
+  <b>Subscribed at:</b>
+  <%= @subscriber.subscribed_at %>
+</p>
+
+<p>
+  <b>Offset:</b>
+  <%= @subscriber.offset %>
+</p>
+
+<p>
+  <b>Received messages:</b>
+  <%= @subscriber.received_messages %>
+</p>
+
+
+<%= link_to 'Edit', edit_subscriber_path(@subscriber) %> |
+<%= link_to 'Back', subscribers_path %>

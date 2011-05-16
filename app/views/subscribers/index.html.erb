@@ -1,0 +1,29 @@
+<h1>Listing subscribers</h1>
+
+<table>
+  <tr>
+    <th>Phone number</th>
+    <th>Subscribed at</th>
+    <th>Offset</th>
+    <th>Received messages</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @subscribers.each do |subscriber| %>
+  <tr>
+    <td><%= subscriber.phone_number %></td>
+    <td><%= subscriber.subscribed_at %></td>
+    <td><%= subscriber.offset %></td>
+    <td><%= subscriber.received_messages %></td>
+    <td><%= link_to 'Show', subscriber %></td>
+    <td><%= link_to 'Edit', edit_subscriber_path(subscriber) %></td>
+    <td><%= link_to 'Destroy', subscriber, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Subscriber', new_subscriber_path %>

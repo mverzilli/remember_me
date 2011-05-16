@@ -1,0 +1,23 @@
+development:
+  url: http://nuntium.instedd.org
+  account: channaly
+  application: md0
+  password: "dev c0der"
+  incoming_username: foo
+  incoming_password: foo
+
+production:
+  url: http://nuntium.instedd.org
+  account: channaly
+  application: md0
+  password: "dev c0der"
+  incoming_username: foo
+  incoming_password: foo
+
+test:
+  url: http://nuntium.instedd.org
+  account: channaly
+  application: md0
+  password: "dev c0der"
+  incoming_username: foo
+  incoming_password: foo
