@@ -11,6 +11,7 @@ gem 'mysql2', '< 0.3'
 gem 'devise'
 gem 'delayed_job'
 gem 'nuntium_api', '>=0.10', :require => 'nuntium'
+gem "jquery-rails"
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -3,10 +3,18 @@ RememberMe::Application.routes.draw do
 
   resources :subscribers
 
-  resources :messages
+  resources :schedules do
+    resources :messages
+  end
+  
+  resources :random_schedules, :controller => "schedules" do
+    resources :messages
+  end
 
-  resources :schedules
-
+  resources :fixed_schedules, :controller => "schedules" do
+    resources :messages
+  end
+  
   root :to => 'schedules#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.

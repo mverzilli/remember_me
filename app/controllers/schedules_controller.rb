@@ -40,13 +40,15 @@ class SchedulesController < AuthenticatedController
   # POST /schedules
   # POST /schedules.xml
   def create
+    params[:schedule][:user] = current_user
     @schedule = params[:schedule][:type].constantize.new(params[:schedule])
-
+    
     respond_to do |format|
-      if @schedule.save
+      if @schedule.save  
         format.html { redirect_to(schedule_url(@schedule), :notice => 'Schedule was successfully created.') }
         format.xml  { render :xml => @schedule, :status => :created, :location => @schedule }
       else
+        p @schedule.errors
         format.html { render :action => "new" }
         format.xml  { render :xml => @schedule.errors, :status => :unprocessable_entity }
       end
@@ -59,7 +61,7 @@ class SchedulesController < AuthenticatedController
     @schedule = Schedule.find(params[:id])
 
     respond_to do |format|
-      if @schedule.update_attributes(params[:schedule])
+      if @schedule.update_attributes(params[@schedule.class.name.underscore])
         format.html { redirect_to(schedule_url(@schedule), :notice => 'Schedule was successfully updated.') }
         format.xml  { head :ok }
       else

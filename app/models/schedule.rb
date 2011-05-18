@@ -7,6 +7,8 @@ class Schedule < ActiveRecord::Base
   has_many :messages
   has_many :subscribers
   
+  accepts_nested_attributes_for :messages, :allow_destroy => true
+  
   def generate_reminders options
     recipient = options[:for]    
     messages = self.reminders
@@ -15,30 +17,8 @@ class Schedule < ActiveRecord::Base
       self.enqueue_reminder message, index, recipient
     end
   end
-end
-
-class RandomSchedule < Schedule
-  protected 
   
-  def reminders
-    res = self.messages.all
-    res.shuffle!
-  end
-  
-  def enqueue_reminder message, index, recipient
-    Delayed::Job.enqueue ReminderJob.new(message.text, recipient.phone_number), :run_at => index.send(self.timescale.to_sym).from_now
-  end
-end
-
-class FixedSchedule < Schedule
-  protected
-  
-  def reminders
-    res = self.messages.all
-    res
-  end
-  
-  def enqueue_reminder message, index, recipient
-    Delayed::Job.enqueue ReminderJob.new(message.text, recipient.phone_number), :run_at => message.offset.send(self.timescale.to_sym).from_now
+  def self.time_scales
+    ['hours', 'days', 'weeks', 'months', 'years']
   end
 end

@@ -18,14 +18,6 @@ class MessagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create message" do
-    assert_difference('Message.count') do
-      post :create, :message => @message.attributes
-    end
-
-    assert_redirected_to message_path(assigns(:message))
-  end
-
   test "should show message" do
     get :show, :id => @message.to_param
     assert_response :success

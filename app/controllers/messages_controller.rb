@@ -72,6 +72,8 @@ class MessagesController < AuthenticatedController
   # DELETE /messages/1
   # DELETE /messages/1.xml
   def destroy
+    p "Called messages controller destroy"
+    
     @message = Message.find(params[:id])
     @message.destroy
 

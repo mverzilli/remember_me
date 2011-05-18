@@ -20,8 +20,17 @@ class SchedulesControllerTest < ActionController::TestCase
 
   test "should create schedule" do
     assert_difference('Schedule.count') do
-      @schedule[:keyword] << "1"
-      post :create, :schedule => @schedule.attributes
+      assert_difference('Message.count') do
+        schedule = {
+          :keyword => "new",
+          :timescale => "weeks",
+          :type => "RandomSchedule",
+          :welcome_message => "foo",
+          :messages_attributes => {"0" => {"text" => "foomsg", "offset" => "2"}}
+        }
+
+        post :create, :schedule => schedule
+      end
     end
 
     assert_redirected_to schedule_path(assigns(:schedule))
