@@ -48,23 +48,11 @@
 	</thead>
 	<tbody>
 	  <%= f.fields_for :messages do |message_form| %>
-	  <tr class="fields">
-	    <td>
-			<%= message_form.object.offset %>
-		</td>	
-		<td>
-			<%= message_form.object.text %>
-		</td>
-		<td>
-	      <% unless message_form.object.new_record? %>
-			<%= link_to_remove_fields "remove", message_form %>
-	      <% end %>
-		</td>	
-	  </tr>
+	  	<%= render "message_fields", :f => message_form %>
 	  <% end %>
+      <%= render "new_message_fields", :f => f %>	  
 	</tbody>
   </table>
-
   <div class="actions">
     <%= f.submit %>
   </div>

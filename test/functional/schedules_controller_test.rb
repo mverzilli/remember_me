@@ -50,6 +50,28 @@ class SchedulesControllerTest < ActionController::TestCase
     put :update, :id => @schedule.to_param, :schedule => @schedule.attributes
     assert_redirected_to schedule_path(assigns(:schedule))
   end
+  
+  test "should destroy some messages on schedule update" do
+    randweeks = schedules(:randweeks)
+    msg1 = messages(:msg1)
+    msg2 = messages(:msg2)
+
+    assert_difference('Message.count', -2) do
+      schedule = {
+        :id => randweeks.id,
+        :keyword => randweeks.keyword,
+        :timescale => randweeks.timescale,
+        :type => randweeks.type,
+        :welcome_message => randweeks.welcome_message,
+        :messages_attributes => {"0" => {:id => msg1.id, :text => msg1.text, :offset => msg1.offset, "_destroy" => "1"}, 
+                                  "1" => {:id => msg2.id, :text => msg2.text, :offset => msg2.offset, "_destroy" => "1"}}
+      }      
+
+      put :update, :id => randweeks.id, :random_schedule => schedule
+    end
+
+    assert_redirected_to schedule_path(assigns(:schedule))
+  end
 
   test "should destroy schedule" do
     assert_difference('Schedule.count', -1) do

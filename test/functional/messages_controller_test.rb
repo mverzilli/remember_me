@@ -13,11 +13,6 @@ class MessagesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:messages)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   test "should show message" do
     get :show, :id => @message.to_param
     assert_response :success
@@ -31,13 +26,5 @@ class MessagesControllerTest < ActionController::TestCase
   test "should update message" do
     put :update, :id => @message.to_param, :message => @message.attributes
     assert_redirected_to message_path(assigns(:message))
-  end
-
-  test "should destroy message" do
-    assert_difference('Message.count', -1) do
-      delete :destroy, :id => @message.to_param
-    end
-
-    assert_redirected_to messages_path
   end
 end
