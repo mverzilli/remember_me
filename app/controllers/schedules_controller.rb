@@ -2,7 +2,7 @@ class SchedulesController < AuthenticatedController
   # GET /schedules
   # GET /schedules.xml
   def index
-    @schedules = Schedule.all
+    @schedules = Schedule.where(:user_id => current_user.id).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -57,9 +57,12 @@ class SchedulesController < AuthenticatedController
 
   # PUT /schedules/1
   # PUT /schedules/1.xml
-  def update
+  def update    
     @schedule = Schedule.find(params[:id])
-
+    
+    #Type needs to be manually set because it's protected, thus update_attributes doesn't affect it
+    @schedule.type = params[@schedule.class.name.underscore][:type]
+    
     respond_to do |format|
       if @schedule.update_attributes(params[@schedule.class.name.underscore])
         format.html { redirect_to(schedule_url(@schedule), :notice => 'Schedule was successfully updated.') }

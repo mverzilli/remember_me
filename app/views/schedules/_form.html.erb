@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :timescale, "Time scale is:" %><br />
-	<%= select :schedule, :timescale, Schedule.time_scales %>
+	<%= select @schedule.class.name.underscore, :timescale, Schedule.time_scales %>
   </div>
 
   <h2>Choose whether you want to:</h2>

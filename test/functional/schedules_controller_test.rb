@@ -29,7 +29,7 @@ class SchedulesControllerTest < ActionController::TestCase
           :messages_attributes => {"0" => {"text" => "foomsg", "offset" => "2"}}
         }
 
-        post :create, :schedule => schedule
+        post :create, :schedule => schedule        
       end
     end
 
@@ -46,8 +46,18 @@ class SchedulesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should fail to change schedule type if there are messages with blank offset" do
+    attributes = @schedule.attributes
+    attributes[:type] = "FixedSchedule"
+    
+    put :update, :id => @schedule.id, @schedule.class.name.underscore.to_sym => attributes
+  
+    assert_template :edit
+    assert !assigns(:schedule).errors[:messages].blank?
+  end
+  
   test "should update schedule" do
-    put :update, :id => @schedule.to_param, :schedule => @schedule.attributes
+    put :update, :id => @schedule.to_param, @schedule.class.name.underscore.to_sym => @schedule.attributes
     assert_redirected_to schedule_path(assigns(:schedule))
   end
   

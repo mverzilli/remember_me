@@ -6,6 +6,7 @@ one:
   type: RandomSchedule
   user_id: 1
   welcome_message: foo
+  id: 3
 
 two:
   keyword: MyString
