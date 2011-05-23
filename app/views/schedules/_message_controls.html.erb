@@ -1,5 +1,5 @@
 <tr class="fields">
   <td class="offsetColumn"><%= number_field_tag :editOffset, "offsetValuePlaceHolder" %></td>
   <td class="textColumn"><%= text_area_tag :editText, "textValuePlaceHolder" %></td>
-  <td><input type="button" value="Ok" onclick="confirmChange(this);"/> or <a href="#" onclick="cancelChange(this); return false;">cancel</a></td>
+  <td><input type="button" value="Ok" onclick="confirmChange(this); showUnsavedChangesAlert();"/> or <a href="#" onclick="cancelChange(this); return false;">cancel</a></td>
 </tr>

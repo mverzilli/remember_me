@@ -17,24 +17,24 @@
 
   <div class="field">
     <%= f.label :keyword, "Users will register with keyword:" %><br />
-    <%= f.text_field :keyword %>
+    <%= f.text_field :keyword, :class => "causesPendingSaveNoticeOnChange" %>
   </div>
   <div class="field">
     <%= f.label :welcome_message, "Then, they'll receive this welcome message:" %><br />
-    <%= f.text_field :welcome_message %>
+    <%= f.text_area :welcome_message, :rows => 3, :class => "causesPendingSaveNoticeOnChange" %>
   </div>
   <div class="field">
     <%= f.label :timescale, "Time scale is:" %><br />
-	<%= select @schedule.class.name.underscore, :timescale, Schedule.time_scales %>
+	<%= select @schedule.class.name.underscore, :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange" %>
   </div>
 
   <h2>Choose whether you want to:</h2>
   <div class="field">
-	<%= f.radio_button :type, "FixedSchedule", :id => "fixed_schedule_option" %>
+	<%= f.radio_button :type, "FixedSchedule", :id => "fixed_schedule_option", :class => "causesPendingSaveNoticeOnChange" %>
 	<%= f.label :type, "Set up a timeline for your messages..." %>
   </div>
   <div class="field">
-	<%= f.radio_button :type, "RandomSchedule", :id => "random_schedule_option" %>
+	<%= f.radio_button :type, "RandomSchedule", :id => "random_schedule_option", :class => "causesPendingSaveNoticeOnChange" %>
 	<%= f.label :type, "...or send them randomly once #{@schedule.timescale.one_to_s}" %>
   </div>
 
@@ -58,6 +58,6 @@
 	</tbody>
   </table>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Schedule" %> <%= link_to 'or go back to your schedules', schedules_path %>
   </div>
 <% end %>

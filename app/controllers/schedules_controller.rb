@@ -24,7 +24,7 @@ class SchedulesController < AuthenticatedController
   # GET /schedules/new
   # GET /schedules/new.xml
   def new
-    @schedule = Schedule.new
+    @schedule = Schedule.new :timescale => "hours"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,7 +46,7 @@ class SchedulesController < AuthenticatedController
     
     respond_to do |format|
       if @schedule.save  
-        format.html { redirect_to(schedule_url(@schedule), :notice => 'Schedule was successfully created.') }
+        format.html { redirect_to(edit_schedule_url(@schedule), :notice => 'Schedule was successfully created.') }
         format.xml  { render :xml => @schedule, :status => :created, :location => @schedule }
       else
         format.html { render :action => "new" }
@@ -65,7 +65,7 @@ class SchedulesController < AuthenticatedController
     
     respond_to do |format|
       if @schedule.update_attributes(params[@schedule.class.name.underscore])
-        format.html { redirect_to(schedule_url(@schedule), :notice => 'Schedule was successfully updated.') }
+        format.html { redirect_to(edit_schedule_url(@schedule), :notice => 'Schedule was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -1,3 +1,7 @@
+function showUnsavedChangesAlert(){
+	$('.alert').text("There are unsaved changes in your schedule!")
+}
+
 function toggleOffsetColumn(){
 	if ($('#fixed_schedule_option').is(':checked'))
 		$('.offsetColumn').show();
@@ -14,9 +18,21 @@ $(function() {
 		toggleOffsetColumn();
 	});
 	
-	$('#fixed_schedule_timescale, #random_schedule_timescale, #random_schedule_timescale').change(function(){
+	var timescale = $('#fixed_schedule_timescale, #random_schedule_timescale, #schedule_timescale');
+	
+	timescale.change(function(){
 		updateTimescaleLabels($(this).val());
 	});
+	
+	$('.causesPendingSaveNoticeOnChange').change(function(){
+		showUnsavedChangesAlert();
+	});
+
+	$('.causesPendingSaveNoticeOnClick').click(function(){
+		showUnsavedChangesAlert();
+	});
+	
+	toggleOffsetColumn();
 });
 
 function updateTimescaleLabels(new_value){
@@ -66,6 +82,9 @@ function edit_fields(link, content) {
   content = replace(content, "textValuePlaceHolder", getHiddenTextValue(link));
 
   getRow(link).after(content);
+
+  //Hide offset control if user is editing a random schedule
+  toggleOffsetColumn();
 }
 
 function confirmChange(buttonOk) {
