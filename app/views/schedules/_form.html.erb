@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'schedules' %>
+<% end %>
+
 <%= form_for(@schedule) do |f| %>
   <% if @schedule.errors.any? %>
     <div id="error_explanation">
@@ -26,19 +30,19 @@
 
   <h2>Choose whether you want to:</h2>
   <div class="field">
-	<%= f.radio_button :type, "FixedSchedule" %>
-	<%= f.label :fixed_schedule, "Set up a timeline for your messages..." %>
+	<%= f.radio_button :type, "FixedSchedule", :id => "fixed_schedule_option" %>
+	<%= f.label :type, "Set up a timeline for your messages..." %>
   </div>
   <div class="field">
-	<%= f.radio_button :type, "RandomSchedule" %>
-	<%= f.label :random_schedule, "...or send them randomly" %>
+	<%= f.radio_button :type, "RandomSchedule", :id => "random_schedule_option" %>
+	<%= f.label :type, "...or send them randomly" %>
   </div>
 
   <h2>Write your schedule's messages:</h2>
   <table>
 	<thead>
 	  <tr>
-	    <th>
+	    <th class="offsetColumn">
 		  Offset
 	    </th>
 	    <th>

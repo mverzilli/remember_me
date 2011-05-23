@@ -1,15 +1,13 @@
 <tr class="fields">
-    <td class="offset">
+    <td class="offsetColumn">
 		<%= f.hidden_field :offset, :class => "offset" %>
 		<%= f.object.offset %>
 	</td>	
-	<td class="text">
+	<td class="textColumn">
 		<%= f.hidden_field :text, :class => "text" %>		
 		<%= f.object.text %>
 	</td>
 	<td>
-      <% unless f.object.new_record? %>
-		<%= link_to_remove_fields "remove", f %>
-      <% end %>
+		<%= link_to_edit_fields "edit", f, :messages, f.object %> | <%= link_to_remove_fields "remove", f %>
 	</td>	
 </tr>
