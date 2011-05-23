@@ -35,15 +35,15 @@
   </div>
   <div class="field">
 	<%= f.radio_button :type, "RandomSchedule", :id => "random_schedule_option" %>
-	<%= f.label :type, "...or send them randomly" %>
+	<%= f.label :type, "...or send them randomly once #{@schedule.timescale.one_to_s}" %>
   </div>
 
   <h2>Write your schedule's messages:</h2>
   <table>
 	<thead>
 	  <tr>
-	    <th class="offsetColumn">
-		  Offset
+	    <th class="offsetColumn header">
+		  <%= @schedule.timescale.singularize.capitalize %>
 	    </th>
 	    <th>
 		  Text

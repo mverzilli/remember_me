@@ -8,6 +8,7 @@
   <%= yield(:head) %>
 </head>
 <body>
+	<div id="logout"><%= link_to "Log Out", destroy_user_session_path %></div>
 	<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 

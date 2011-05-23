@@ -13,7 +13,46 @@ $(function() {
 	$('#random_schedule_option').change(function(){
 		toggleOffsetColumn();
 	});
+	
+	$('#fixed_schedule_timescale, #random_schedule_timescale, #random_schedule_timescale').change(function(){
+		updateTimescaleLabels($(this).val());
+	});
 });
+
+function updateTimescaleLabels(new_value){
+	$('#random_schedule_option').next().text("...or send them randomly once " + timescaleToOneString(new_value));
+	$('.offsetColumn.header').text(capitalizedSingular(new_value));
+}
+
+function capitalizedSingular(timescale) {
+	return caseTimescale(timescale, "Hour", "Day", "Week", "Month", "Year", "");
+}
+
+function timescaleToOneString(timescale) {
+	return caseTimescale(timescale, "an hour", "a day", "a week", "a month", "a year", "");
+}
+
+function caseTimescale(value, hour, day, week, month, year, defaultCase){
+	switch (value){
+		case "hours":
+		case "hour":
+  			return hour;
+		case "days":
+		case "day":
+  			return day;
+		case "weeks":
+		case "week":
+			return week;
+		case "months":
+		case "month":
+  			return month;
+		case "years":
+		case "year":
+  			return year;
+		default:
+  			return defaultCase;
+	}
+}
 
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").attr("value", '1');

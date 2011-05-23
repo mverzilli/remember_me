@@ -11,4 +11,21 @@ class String
       false
     end
   end
+  
+  def one_to_s
+    case self
+    when "hours", "hour"
+      "an hour"
+    when "days", "day"
+      "a day"
+    when "weeks", "week"
+      "a week"
+    when "months", "month"
+      "a month"
+    when "years", "year"
+      "a year"
+    else
+      nil
+    end
+  end
 end
