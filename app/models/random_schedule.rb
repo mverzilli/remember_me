@@ -1,4 +1,8 @@
 class RandomSchedule < Schedule
+  def sort_messages
+    messages.sort_by!( &:created_at)
+  end
+  
   protected 
   
   def reminders

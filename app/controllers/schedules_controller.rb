@@ -35,6 +35,7 @@ class SchedulesController < AuthenticatedController
   # GET /schedules/1/edit
   def edit
     @schedule = Schedule.find(params[:id])
+    @schedule.sort_messages
   end
 
   # POST /schedules
@@ -48,7 +49,6 @@ class SchedulesController < AuthenticatedController
         format.html { redirect_to(schedule_url(@schedule), :notice => 'Schedule was successfully created.') }
         format.xml  { render :xml => @schedule, :status => :created, :location => @schedule }
       else
-        p @schedule.errors
         format.html { render :action => "new" }
         format.xml  { render :xml => @schedule.errors, :status => :unprocessable_entity }
       end

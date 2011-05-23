@@ -1,4 +1,8 @@
 class FixedSchedule < Schedule
+  def sort_messages
+    messages.sort_by!(&:offset)
+  end
+  
   protected
   
   def reminders

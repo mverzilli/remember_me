@@ -88,6 +88,9 @@ function add_fields(link, association, content) {
   var offset = $('#offset').val();
   var text = $('#text').val();
 
+  $('#offset').val('');
+  $('#text').val('');
+
   var offsetCell = getNewOffsetCell(link);
   var textCell = getNewTextCell(link);  
 
