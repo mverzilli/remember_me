@@ -8,10 +8,10 @@ class Subscriber < ActiveRecord::Base
     keyword, offset = params[:body].split
     schedule = Schedule.find_by_keyword keyword
     
-    return reply(Subscriber.no_schedule_message(keyword), :to => params[:from]) unless schedule
-    return reply(Subscriber.invalid_offset_message(params[:body], offset), :to => params[:from]) unless offset.nil? || offset.looks_as_an_int?
+    return reply(no_schedule_message(keyword), :to => params[:from]) unless schedule
+    return reply(invalid_offset_message(params[:body], offset), :to => params[:from]) unless offset.nil? || offset.looks_as_an_int?
     
-    new_subscriber = Subscriber.create! :phone_number => params[:from], 
+    new_subscriber = create! :phone_number => params[:from], 
                                         :offset => offset ? offset : 0, 
                                         :schedule => schedule,
                                         :subscribed_at => DateTime.current.utc

@@ -4,13 +4,12 @@ class String
   end
   
   def looks_as_an_int?
-    begin 
-      Integer(self) 
-      true
-    rescue
-      false
-    end
+    Integer(self) 
+    true
+  rescue
+    false
   end
+
   
   def one_to_s
     case self
