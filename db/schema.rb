@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110803200525) do
+ActiveRecord::Schema.define(:version => 20110803210750) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20110803200525) do
     t.string   "welcome_message"
     t.string   "type"
     t.string   "title"
+    t.boolean  "paused"
   end
 
   add_index "schedules", ["user_id"], :name => "fk_schedules_users"
