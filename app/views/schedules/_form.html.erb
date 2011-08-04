@@ -30,7 +30,11 @@
   </div>
   <div class="field">
     <%= f.label :timescale, "Time scale is:" %><br />
-	<%= select @schedule.class.name.underscore, :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange" %>
+	<%= f.select :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange" %>
+  </div>
+  <div class="field">
+    <%= f.check_box :paused? %>
+    <%= f.label :paused?, "Pause schedule?" %>
   </div>
 
   <h2>Choose whether you want to:</h2>

@@ -4,6 +4,10 @@ class Subscriber < ActiveRecord::Base
   validates_presence_of :phone_number, :subscribed_at, :offset, :schedule_id
   validates_numericality_of :offset, :only_integer => true  
   
+  def paused?
+    @paused
+  end
+  
   def self.subscribe params
     keyword, offset = params[:body].split
     schedule = Schedule.find_by_keyword keyword
