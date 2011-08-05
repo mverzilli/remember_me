@@ -8,6 +8,8 @@ RememberMe::Application.routes.draw do
   resources :random_schedules, :controller => "schedules", :except => :show
 
   resources :fixed_schedules, :controller => "schedules", :except => :show
+
+  match :receive_at, :controller => "nuntium", :action => :receive_at
   
   root :to => 'schedules#index'
   # The priority is based upon order of creation:

@@ -55,6 +55,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.12)
     mysql2 (0.2.7)
     nuntium_api (0.10)
       httparty
@@ -95,6 +96,7 @@ DEPENDENCIES
   delayed_job
   devise
   jquery-rails
+  mocha
   mysql2 (< 0.3)
   nuntium_api (>= 0.10)
   rails (= 3.0.7)

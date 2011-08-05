@@ -12,6 +12,7 @@ gem 'devise'
 gem 'delayed_job'
 gem 'nuntium_api', '>=0.10', :require => 'nuntium'
 gem "jquery-rails"
+gem 'mocha'
 
 # Use unicorn as the web server
 # gem 'unicorn'

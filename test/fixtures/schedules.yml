@@ -26,3 +26,4 @@ randweeks:
   type: RandomSchedule
   user_id: 1
   welcome_message: welcome
+  paused: true

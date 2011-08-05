@@ -11,6 +11,8 @@ class Schedule < ActiveRecord::Base
   validates_associated :messages
   before_validation :initialize_messages
   
+  before_destroy :notify_deletion_to_subscribers
+
   def generate_reminders options
     recipient = options[:for]    
     messages = self.reminders
@@ -29,4 +31,15 @@ class Schedule < ActiveRecord::Base
   def initialize_messages
     messages.each { |m| m.schedule = self }
   end  
+
+  def notify_deletion_to_subscribers
+  
+    subscribers.each do |subscriber|
+      ReminderJob.new(
+        "The schedule #{self.keyword} has been deleted, you will no longer receive messages from this schedule.",
+        subscriber.phone_number,
+        self.id).perform
+    end
+
+  end
 end

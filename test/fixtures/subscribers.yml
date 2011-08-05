@@ -14,3 +14,10 @@ two:
   received_messages: MyString
   schedule_id: 2
   
+three:
+  phone_number: MyString2
+  subscribed_at: <%= DateTime.now.utc %>
+  offset: 0
+  received_messages: MyString
+  schedule_id: 2
+  
