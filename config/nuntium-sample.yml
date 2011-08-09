@@ -1,0 +1,7 @@
+development:
+    url: http://nuntium.instedd.org
+    account:
+    application:
+    password:
+    incoming_username: remindem
+    incoming_password: remindem
