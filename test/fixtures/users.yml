@@ -6,4 +6,4 @@
 #
 user1:
     email: user1@users.com
-    
+    encrypted_password: secret 

@@ -1,3 +1,4 @@
 *.log
 config/nuntium.yml
 .bundle/
+tmp/

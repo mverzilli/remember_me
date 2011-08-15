@@ -11,6 +11,8 @@ RememberMe::Application.routes.draw do
 
   match :receive_at, :controller => "nuntium", :action => :receive_at
   
+  resource :channel
+  
   root :to => 'schedules#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.

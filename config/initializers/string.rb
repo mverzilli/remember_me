@@ -9,7 +9,6 @@ class String
   rescue
     false
   end
-
   
   def one_to_s
     case self
@@ -26,5 +25,9 @@ class String
     else
       nil
     end
+  end
+  
+  def to_channel_name
+    self.gsub(/@/, '_at_').gsub(/\./, '_dot_')
   end
 end
