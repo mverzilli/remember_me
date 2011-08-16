@@ -10,7 +10,7 @@ gem 'rails', '3.0.7'
 gem 'mysql2', '< 0.3'
 gem 'devise'
 gem 'delayed_job'
-gem 'nuntium_api', '>=0.10', :require => 'nuntium'
+gem 'nuntium_api', '>=0.12', :require => 'nuntium'
 gem "jquery-rails"
 gem 'mocha'
 

@@ -53,5 +53,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal @delete_channel_p1, 'old-channel'
   end
   
-  # "register stores at_rules and restrictions of channel with user id"
+  test "register stores at_rules and restrictions of channel with user id" do
+    @user1 = users(:user1)
+
+    @create_channel_returns = { :name => 'the-channel-name', :address => 'sms://87425052'  }    
+    @user1.register_channel '1245'
+
+    assert_equal @user1.email.to_channel_name, @create_channel_p1[:name]
+    assert_equal [{'matchings' => [], 'actions' => [{'property' => 'x-remindem-user', 'value' => @user1.id}], 'stop' => false}], @create_channel_p1[:at_rules]
+    assert_equal [{'property' => 'x-remindem-user', 'value' => @user1.id}], @create_channel_p1[:restrictions]
+  end
 end

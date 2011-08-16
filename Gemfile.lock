@@ -57,7 +57,7 @@ GEM
     mime-types (1.16)
     mocha (0.9.12)
     mysql2 (0.2.7)
-    nuntium_api (0.10)
+    nuntium_api (0.12)
       httparty
       json
     orm_adapter (0.0.5)
@@ -98,5 +98,5 @@ DEPENDENCIES
   jquery-rails
   mocha
   mysql2 (< 0.3)
-  nuntium_api (>= 0.10)
+  nuntium_api (>= 0.12)
   rails (= 3.0.7)

@@ -16,14 +16,33 @@ class User < ActiveRecord::Base
     
     @nuntium.delete_channel self.channel.name unless self.channel.nil?
     
+    channel_password = generate_channel_password
+    
     channel_info = @nuntium.create_channel({ 
       :name => self.email.to_channel_name, 
       :ticket_code => code, 
-      :ticket_message => "This phone will be used for reminders written by #{self.email}"
+      :ticket_message => "This phone will be used for reminders written by #{self.email}",
+      :at_rules => [{
+        'matchings' => [], 
+        'actions' => [{ 'property' => 'x-remindem-user', 'value' => self.email }], 
+        'stop' => false}],
+      :restrictions => [{ 'name' => 'x-remindem-user', 'value' => self.email }],
+      :kind => 'qst_server',
+      :protocol => 'sms',
+      :direction => 'bidirectional',
+      :configuration => { :password => channel_password },
+      :enabled => true
     })
     
+    puts "register_channel #{channel_info.inspect}"
     channel = self.build_channel :name => channel_info[:name], :address => channel_info[:address]
     channel.save!
     
+  end
+  
+private
+
+  def generate_channel_password
+    'secret'
   end
 end
