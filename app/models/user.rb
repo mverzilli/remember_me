@@ -20,8 +20,6 @@ class User < ActiveRecord::Base
       old_channel.destroy 
     end
     
-    channel_password = generate_channel_password
-    
     channel_info = @nuntium.create_channel({ 
       :name => self.email.to_channel_name, 
       :ticket_code => code, 
@@ -34,7 +32,7 @@ class User < ActiveRecord::Base
       :kind => 'qst_server',
       :protocol => 'sms',
       :direction => 'bidirectional',
-      :configuration => { :password => channel_password },
+      :configuration => { :password => SecureRandom.base64(6) },
       :enabled => true
     })
     
@@ -42,9 +40,4 @@ class User < ActiveRecord::Base
     channel.save!
   end
   
-private
-
-  def generate_channel_password
-    'secret'
-  end
 end

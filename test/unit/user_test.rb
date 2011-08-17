@@ -22,6 +22,7 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal @user1.email.to_channel_name, @create_channel_p1[:name]
     assert_equal '1245', @create_channel_p1[:ticket_code]
+    assert_not_nil @create_channel_p1[:configuration][:password]
     assert_equal "This phone will be used for reminders written by #{@user1.email}", @create_channel_p1[:ticket_message]
   end
 
