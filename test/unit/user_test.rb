@@ -40,7 +40,8 @@ class UserTest < ActiveSupport::TestCase
 
   test "register first deletes current channel in nuntium" do
     @user1 = users(:user1)
-    @user1.build_channel :name => 'old-channel'
+    @user1.create_channel :name => 'old-channel'
+    assert_equal 1, Channel.all.count
     
     @create_channel_returns = { :name => 'the-channel-name', :address => 'sms://87425052'  }
     @user1.register_channel '1245'
@@ -60,7 +61,7 @@ class UserTest < ActiveSupport::TestCase
     @user1.register_channel '1245'
 
     assert_equal @user1.email.to_channel_name, @create_channel_p1[:name]
-    assert_equal [{'matchings' => [], 'actions' => [{'property' => 'x-remindem-user', 'value' => @user1.id}], 'stop' => false}], @create_channel_p1[:at_rules]
-    assert_equal [{'property' => 'x-remindem-user', 'value' => @user1.id}], @create_channel_p1[:restrictions]
+    assert_equal [{'matchings' => [], 'actions' => [{'property' => 'x-remindem-user', 'value' => @user1.email}], 'stop' => false}], @create_channel_p1[:at_rules]
+    assert_equal [{'name' => 'x-remindem-user', 'value' => @user1.email}], @create_channel_p1[:restrictions]
   end
 end

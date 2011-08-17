@@ -14,7 +14,11 @@ class User < ActiveRecord::Base
   def register_channel(code)
     @nuntium = Nuntium.new_from_config
     
-    @nuntium.delete_channel self.channel.name unless self.channel.nil?
+    old_channel = Channel.find_by_user_id(self.id)
+    unless old_channel.nil?
+      @nuntium.delete_channel old_channel.name
+      old_channel.destroy 
+    end
     
     channel_password = generate_channel_password
     
@@ -34,10 +38,8 @@ class User < ActiveRecord::Base
       :enabled => true
     })
     
-    puts "register_channel #{channel_info.inspect}"
     channel = self.build_channel :name => channel_info[:name], :address => channel_info[:address]
     channel.save!
-    
   end
   
 private
