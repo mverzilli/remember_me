@@ -26,6 +26,16 @@ class Schedule < ActiveRecord::Base
     ['hours', 'days', 'weeks', 'months', 'years']
   end
   
+  def build_message(to, body)
+    self.user.build_message(to, body)
+  end
+
+  def send_message(to, body)
+    nuntium = Nuntium.new_from_config()
+    message = self.build_message(to, body)
+    nuntium.send_ao message
+  end
+  
   private
   
   def initialize_messages
@@ -35,10 +45,8 @@ class Schedule < ActiveRecord::Base
   def notify_deletion_to_subscribers
   
     subscribers.each do |subscriber|
-      ReminderJob.new(
-        "The schedule #{self.keyword} has been deleted, you will no longer receive messages from this schedule.",
-        subscriber.phone_number,
-        self.id).perform
+      self.send_message(subscriber.phone_number,
+        "The schedule #{self.keyword} has been deleted, you will no longer receive messages from this schedule.")
     end
 
   end

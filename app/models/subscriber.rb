@@ -17,8 +17,8 @@ class Subscriber < ActiveRecord::Base
                                         :subscribed_at => DateTime.current.utc
     
     schedule.generate_reminders :for => new_subscriber
-                                       
-    [{:from => "rememberme".with_protocol, :to => params[:from], :body => schedule.welcome_message}]
+    
+    [schedule.build_message(params[:from], schedule.welcome_message)]
   end
   
   def self.no_schedule_message keyword
@@ -32,6 +32,6 @@ class Subscriber < ActiveRecord::Base
   private 
   
   def self.reply msg, options
-    [{:from => "rememberme".with_protocol, :body => msg, :to => options[:to]}]
+    [{:from => "remindem".with_protocol, :body => msg, :to => options[:to]}]
   end
 end

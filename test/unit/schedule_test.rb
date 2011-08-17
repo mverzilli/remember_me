@@ -15,7 +15,7 @@ class ScheduleTest < ActiveSupport::TestCase
   end
   
   test "validate uniqueness of keyword" do
-    schedule1 =  RandomSchedule.create! :keyword => "schedule", :timescale => "weeks", :user_id => 1, :welcome_message => "foo"
+    schedule1 = RandomSchedule.create! :keyword => "schedule", :timescale => "weeks", :user_id => 1, :welcome_message => "foo"
     schedule2 = Schedule.new :keyword => "schedule"    
     schedule2.save
     
@@ -24,11 +24,12 @@ class ScheduleTest < ActiveSupport::TestCase
   end
   
   test "generate random reminders" do
-    subscriber = subscribers(:one)
-    randweeks = schedules(:randweeks)
+    randweeks = randweeks_make
+    subscriber = Subscriber.make :schedule => randweeks
+    
     randweeks.generate_reminders :for => subscriber
 
-    messages = (1..5).map { |i| messages("msg#{i}") }
+    messages = randweeks.messages
     sent_at = (1..5).map { |i| subscriber.subscribed_at + i.send(randweeks.timescale.to_sym) }
     
     assert_equal 5, Delayed::Job.count
@@ -42,11 +43,12 @@ class ScheduleTest < ActiveSupport::TestCase
   end
 
   test "generate fixed reminders" do
-    subscriber = subscribers(:two)
-    pregnant = schedules(:pregnant)
+    pregnant = pregnant_make
+    subscriber = Subscriber.make :schedule => pregnant
+
     pregnant.generate_reminders :for => subscriber
 
-    messages = (1..5).map { |i| messages("pregnant#{i}") }
+    messages = pregnant.messages
 
     assert_equal 5, Delayed::Job.count
     
@@ -67,9 +69,10 @@ class ScheduleTest < ActiveSupport::TestCase
     Nuntium.expects(:new_from_config).returns(self).twice
     @messages_sent = []
 
-    first_subscriber = subscribers(:three)
-    second_subscriber = subscribers(:two)
-    pregnant = schedules(:pregnant)
+    pregnant = FixedSchedule.make :keyword => 'pregnant'
+    first_subscriber = Subscriber.make :schedule => pregnant
+    second_subscriber = Subscriber.make :schedule => pregnant
+
     pregnant.destroy
 
     message_body = "The schedule pregnant has been deleted, you will no longer receive messages from this schedule."
