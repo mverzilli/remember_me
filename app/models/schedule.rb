@@ -12,7 +12,9 @@ class Schedule < ActiveRecord::Base
   before_validation :initialize_messages
   
   before_destroy :notify_deletion_to_subscribers
-
+  
+  attr_accessor_with_default :notifySubscribers, false
+  
   def generate_reminders options
     recipient = options[:for]    
     messages = self.reminders
@@ -33,13 +35,14 @@ class Schedule < ActiveRecord::Base
   end  
 
   def notify_deletion_to_subscribers
-  
-    subscribers.each do |subscriber|
-      ReminderJob.new(
-        "The schedule #{self.keyword} has been deleted, you will no longer receive messages from this schedule.",
-        subscriber.phone_number,
-        self.id).perform
+    if notifySubscribers
+      subscribers.each do |subscriber|
+        #ask the user if he or she wants to notify subscribers of deletion
+        ReminderJob.new(
+          "The schedule #{self.keyword} has been deleted, you will no longer receive messages from this schedule.",
+          subscriber.phone_number,
+          self.id).perform
+        end
     end
-
   end
 end

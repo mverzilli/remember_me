@@ -3,4 +3,16 @@ class Message < ActiveRecord::Base
   
   validates_presence_of :schedule
   validates_presence_of :offset, :if => lambda { !marked_for_destruction? && schedule.type == "FixedSchedule" }, :message => "is required for schedules with a fixed timeline"
+
+  before_destroy :removeMessageIdFromQueue
+  before_update :updateMessageIdFromQueue
+  
+  def removeMessageIdFromQueue
+    
+  end
+  
+  def updateMessageIdFromQueue
+    
+  end
+  
 end

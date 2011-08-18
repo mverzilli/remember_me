@@ -9,6 +9,15 @@ function toggleOffsetColumn(){
 		$('.offsetColumn').hide();
 }
 
+// The action.
+$('a').click(function() {
+  alert('click');
+  return false;
+});
+ 
+// The most simple use.
+$('a').confirm();
+
 $(function() {
 	$('#fixed_schedule_option').change(function(){
 		toggleOffsetColumn();
@@ -38,6 +47,17 @@ $(function() {
 function updateTimescaleLabels(new_value){
 	$('#random_schedule_option').next().text("...or send them randomly once " + timescaleToOneString(new_value));
 	$('.offsetColumn.header').text(capitalizedSingular(new_value));
+}
+
+function notifySubscribersConfirm() {
+	var answer = confirm('Notify all subscribers of schedule deletion? \n\nClick "Cancel" to delete this schedule without sending a notification.');
+	if (answer) {
+		//send a message to the controller
+		$.post("test.php");
+	}
+	else {
+		alert("nananananana")
+	}
 }
 
 function capitalizedSingular(timescale) {

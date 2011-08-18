@@ -12,7 +12,7 @@
   <tr>
     <td><%= schedule.keyword %></td>
     <td><%= schedule.timescale %></td>
-    <td><%= link_to 'edit', edit_schedule_path(schedule) %> | <%= link_to 'delete', schedule_path(schedule), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'edit', edit_schedule_path(schedule) %> | <div id="confirmation" style="display:none">Send deletion notification to subscribers? <%= link_to 'yes', schedule_path(schedule), :confirm => 'This will delete the schedule "' + '@schedule' + '" and notify all subscribers of its deletion.', :notify => "true", :method => :delete %>/<%= link_to 'no', schedule_path(schedule), :confirm => 'This will delete the schedule "' + '@schedule' + '".', :method => :delete %></div><a href=# onclick="$(this).hide(); $('#confirmation').show();">delete</a></td>
   </tr>
 <% end %>
 </table>

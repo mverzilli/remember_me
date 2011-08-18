@@ -13,6 +13,7 @@ gem 'delayed_job'
 gem 'nuntium_api', '>=0.12'
 gem "jquery-rails"
 gem 'mocha'
+gem 'ParseTree'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -35,4 +36,5 @@ gem 'mocha'
 # and rake tasks are available in development mode:
 # group :development, :test do
 #   gem 'webrat'
+gem 'rake', '0.8.7'
 # end

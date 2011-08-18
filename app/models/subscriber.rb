@@ -2,8 +2,8 @@ class Subscriber < ActiveRecord::Base
   belongs_to :schedule
   
   validates_presence_of :phone_number, :subscribed_at, :offset, :schedule_id
-  validates_numericality_of :offset, :only_integer => true  
-  
+  validates_numericality_of :offset, :only_integer => true 
+    
   def self.subscribe params
     keyword, offset = params[:body].split
     schedule = Schedule.find_by_keyword keyword
