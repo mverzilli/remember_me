@@ -4,7 +4,7 @@ class SchedulesControllerTest < ActionController::TestCase
   setup do
     sign_in users(:user1) 
     
-    @schedule = schedules(:one)
+    @schedule = one_make
   end
 
   test "should get index" do
@@ -33,12 +33,7 @@ class SchedulesControllerTest < ActionController::TestCase
       end
     end
 
-    assert_redirected_to schedule_path(assigns(:schedule))
-  end
-
-  test "should show schedule" do
-    get :show, :id => @schedule.to_param
-    assert_response :success
+    assert_redirected_to edit_schedule_path(assigns(:schedule))
   end
 
   test "should get edit" do
@@ -58,13 +53,13 @@ class SchedulesControllerTest < ActionController::TestCase
   
   test "should update schedule" do
     put :update, :id => @schedule.to_param, @schedule.class.name.underscore.to_sym => @schedule.attributes
-    assert_redirected_to schedule_path(assigns(:schedule))
+    assert_redirected_to edit_schedule_path(assigns(:schedule))
   end
   
   test "should destroy some messages on schedule update" do
-    randweeks = schedules(:randweeks)
-    msg1 = messages(:msg1)
-    msg2 = messages(:msg2)
+    randweeks = randweeks_make
+    msg1 = randweeks.messages.first
+    msg2 = randweeks.messages.second
 
     assert_difference('Message.count', -2) do
       schedule = {
@@ -80,7 +75,7 @@ class SchedulesControllerTest < ActionController::TestCase
       put :update, :id => randweeks.id, :random_schedule => schedule
     end
 
-    assert_redirected_to schedule_path(assigns(:schedule))
+    assert_redirected_to edit_schedule_path(assigns(:schedule))
   end
 
   test "should destroy schedule" do
