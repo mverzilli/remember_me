@@ -6,7 +6,10 @@ class Subscriber < ActiveRecord::Base
   
   def self.subscribe params
     keyword, offset = params[:body].split
-    schedule = Schedule.find_by_keyword keyword
+    user = User.find_by_email params[:'x-remindem-user']
+    return reply(self.invalid_author(keyword), :to => params[:from]) unless user
+    
+    schedule = user.schedules.find_by_keyword keyword
     
     return reply(self.no_schedule_message(keyword), :to => params[:from]) unless schedule
     return reply(self.invalid_offset_message(params[:body], offset), :to => params[:from]) unless offset.nil? || offset.looks_as_an_int?
@@ -27,6 +30,10 @@ class Subscriber < ActiveRecord::Base
   
   def self.invalid_offset_message body, offset
     "Sorry, we couldn't understand your message. You sent #{body}, but we expected #{offset} to be a number."
+  end
+  
+  def self.invalid_author keyword
+    "Sorry, there was a problem finding #{keyword} owner."
   end
     
   private 
