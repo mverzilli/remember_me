@@ -3,8 +3,8 @@ require 'test_helper'
 class SubscribersControllerTest < ActionController::TestCase
   setup do
     sign_in users(:user1) 
-    
-    @subscriber = subscribers(:one)
+
+    @subscriber = randweeks_make.subscribers.first
   end
 
   test "should get index" do

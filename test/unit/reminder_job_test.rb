@@ -16,11 +16,11 @@ class ReminderJobTest < ActiveSupport::TestCase
   end
 
   test "message is sent on perform" do
-    stub_schedule = mock(:paused? => false)
+    schedule = FixedSchedule.make
     message_body = "hello world!"
     message_to = "sms://1234"
     
-    job = ReminderJob.new(message_body, message_to, 2)
+    job = ReminderJob.new(message_body, message_to, schedule.id)
     job.perform
 
     assert_equal 1, @messages_sent.size
@@ -32,11 +32,11 @@ class ReminderJobTest < ActiveSupport::TestCase
   end
   
   test "messages are not sent when schedule is paused" do
-    stub_schedule = mock(:paused? => true)
+    schedule = FixedSchedule.make :paused => true
     message_body = "hello world!"
     message_to = "sms://1234"
     
-    job = ReminderJob.new(message_body, message_to, 1)
+    job = ReminderJob.new(message_body, message_to, schedule.id)
     job.perform
 
     assert_equal 0, @messages_sent.size

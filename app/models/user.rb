@@ -40,4 +40,7 @@ class User < ActiveRecord::Base
     channel.save!
   end
   
+  def build_message(to, body)
+    { :from => "remindem".with_protocol, :to => to, :body => body, :'x-remindem-user' => self.email }
+  end
 end

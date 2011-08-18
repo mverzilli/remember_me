@@ -2,7 +2,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'mocha'
-
+require File.expand_path('../blueprints', __FILE__)
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
@@ -11,6 +11,42 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
   include Mocha::API
+  
+  def pregnant_make
+    schedule = FixedSchedule.make :keyword => 'pregnant', :timescale => 'weeks'
+    schedule.messages.create! :text => 'pregnant1', :offset => 3
+    schedule.messages.create! :text => 'pregnant2', :offset => 11
+    schedule.messages.create! :text => 'pregnant3', :offset => 17
+    schedule.messages.create! :text => 'pregnant4', :offset => 23
+    schedule.messages.create! :text => 'pregnant5', :offset => 36
+    
+    #Subscriber.make :schedule => schedule, :phone_number => 'sms://4000', :offset => 0
+    #Subscriber.make :schedule => schedule, :phone_number => 'sms://4001', :offset => 1
+    
+    return schedule
+  end
+  
+  def randweeks_make
+    schedule = RandomSchedule.make :keyword => 'randweeks', :timescale => 'weeks', :welcome_message => 'welcome', :paused => true
+    schedule.messages.create! :text => 'msg1'
+    schedule.messages.create! :text => 'msg2'
+    schedule.messages.create! :text => 'msg3'
+    schedule.messages.create! :text => 'msg4'
+    schedule.messages.create! :text => 'msg5'
+
+    Subscriber.make :schedule => schedule, :phone_number => 'sms://5000', :offset => 0
+    
+    return schedule
+  end
+  
+  def one_make
+    schedule = RandomSchedule.make :keyword => 'one', :timescale => 'weeks', :welcome_message => 'foo'
+    schedule.messages.create! :text => 'MyString'
+    schedule.messages.create! :text => 'MyString'
+    schedule.messages.create! :text => 'MyString'
+    
+    return schedule
+  end
 end
 
 class ActionController::TestCase
