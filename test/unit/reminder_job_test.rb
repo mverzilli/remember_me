@@ -17,21 +17,18 @@ class ReminderJobTest < ActiveSupport::TestCase
 
   test "message is sent on perform" do
     message_to = "sms://1234"
-    schedule = FixedSchedule.new
-    schedule.id = 1
-    schedule.user = User.find(1)
-    newMessage = Message.new
-    newMessage.id = 2
     
-    job = ReminderJob.new(message_to, schedule.id, newMessage.id)
+    schedule = pregnant_make
+    message = schedule.messages.first
+    
+    job = ReminderJob.new(message_to, schedule.id, message.id)
     job.perform
 
     assert_equal 1, @messages_sent.size
-    message = @messages_sent[0]
-    body = Message.find(newMessage.id).text
-    assert_equal body, message[:body]
-    assert_equal message_to, message[:to]
-    assert_equal "sms://remindem", message[:from]
+    message_sent = @messages_sent[0]
+    assert_equal message.text, message_sent[:body]
+    assert_equal message_to, message_sent[:to]
+    assert_equal "sms://remindem", message_sent[:from]
   end
   
   test "messages are not sent when schedule is paused" do
