@@ -6,6 +6,7 @@ Sham.email { Faker::Internet.email }
 Sham.password { ActiveSupport::SecureRandom.base64(6) }
 Sham.keyword { Faker::Internet.user_name }
 Sham.phone_number { rand(36**8).to_s.with_protocol }
+Sham.body { "Message" + rand(265**1).to_s }
 
 User.blueprint do
   email
@@ -31,3 +32,12 @@ Subscriber.blueprint do
   subscribed_at { DateTime.now.utc }
   offset { 0 }
 end
+
+#Message.blueprint do
+ # text { Faker::Lorem.sentence }
+  #offset { 0 }
+  #schedule_id { 1 }
+  #created_at { DateTime.now.utc }
+  #updated_at { DateTime.now.utc }
+#end
+  

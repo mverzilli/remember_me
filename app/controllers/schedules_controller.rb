@@ -77,12 +77,10 @@ class SchedulesController < AuthenticatedController
   # DELETE /schedules/1
   # DELETE /schedules/1.xml
   def destroy
-    render(:text => params)
-    #this doesn't work yet
-    if params[:notify]
+    @schedule = Schedule.find(params[:id])
+    if params[:notify] == "true"
       @schedule.notifySubscribers = true
     end
-    @schedule = Schedule.find(params[:id])
     @schedule.destroy
 
    respond_to do |format|

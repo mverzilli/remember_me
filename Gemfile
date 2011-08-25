@@ -39,5 +39,4 @@ gem 'machinist'
 # and rake tasks are available in development mode:
 # group :development, :test do
 #   gem 'webrat'
-gem 'rake', '0.8.7'
 # end
