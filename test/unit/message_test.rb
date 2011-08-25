@@ -40,7 +40,7 @@ class MessageTest < ActiveSupport::TestCase
     pregnant = pregnant_make
     
     aSubscriber = pregnant.subscribers.find_by_offset(0)
-    bSubscriber = pregnant.subscribers.find_by_offset(1)
+    bSubscriber = pregnant.subscribers.find_by_offset(2)
     pregnant.generate_reminders :for => aSubscriber
     pregnant.generate_reminders :for => bSubscriber
     
@@ -60,22 +60,21 @@ class MessageTest < ActiveSupport::TestCase
     pregnant = pregnant_make
     
     aSubscriber = pregnant.subscribers.find_by_offset(0)
-    bSubscriber = pregnant.subscribers.find_by_offset(1)
+    bSubscriber = pregnant.subscribers.find_by_offset(2)
     pregnant.generate_reminders :for => aSubscriber
     pregnant.generate_reminders :for => bSubscriber
     
     #grab a message
-    firstMessageID = pregnant.messages.find(:first).id
-    message = pregnant.messages.find(firstMessageID)
+    message = pregnant.messages.first
     
-    assert_equal 2, Delayed::Job.where("message_id = '#{firstMessageID}'").size
+    assert_equal 2, Delayed::Job.find_all_by_message_id(message.id).size
     
     #schedule it for the past
-    message.offset = -2
+    message.offset = 1
     message.save!
     
     #verify that any messages are removed from the queue since they should no longer be sent
-    assert_equal 0, Delayed::Job.where("message_id = '#{firstMessageID}'").size
+    assert_equal 1, Delayed::Job.find_all_by_message_id(message.id).size
   end
   
   test "messages updated to be sent in the future are rescheduled" do
@@ -83,24 +82,38 @@ class MessageTest < ActiveSupport::TestCase
     pregnant = pregnant_make
     
     aSubscriber = pregnant.subscribers.find_by_offset(0)
-    bSubscriber = pregnant.subscribers.find_by_offset(1)
+    bSubscriber = pregnant.subscribers.find_by_offset(2)
     pregnant.generate_reminders :for => aSubscriber
     pregnant.generate_reminders :for => bSubscriber
     
     #grab a message
-    firstMessageID = pregnant.messages.find(:first).id
-    message = pregnant.messages.find(firstMessageID)
+    message = pregnant.messages.first
     
-    assert_equal 2, Delayed::Job.where("message_id = '#{firstMessageID}'").size
+    assert_equal 2, Delayed::Job.find_all_by_message_id(message.id).size
     
     #schedule it for the future
     message.offset = 28
     message.save!
     
     #verify that the messages remain in the queue
-    assert_equal 2, Delayed::Job.where("message_id = '#{firstMessageID}'").size
+    assert_equal 2, Delayed::Job.find_all_by_message_id(message.id).size
     
     #verify that the run_at fields have been updated to reflect the new offset
-    assert_in_delta message.offset.send(pregnant.timescale.to_sym).from_now, Delayed::Job.where("message_id = '#{firstMessageID}'").find(:first).run_at, 200
+    assert_in_delta aSubscriber.reference_time + 28.weeks, Delayed::Job.find_by_message_id_and_subscriber_id(message.id, aSubscriber.id).run_at, 5
+    assert_in_delta bSubscriber.reference_time + 28.weeks, Delayed::Job.find_by_message_id_and_subscriber_id(message.id, bSubscriber.id).run_at, 5
+  end
+  
+  test "add a message to a schedule adds delayed job" do
+    #setup
+    pregnant = pregnant_make
+    aSubscriber = pregnant.subscribers.find_by_offset(0)
+    bSubscriber = pregnant.subscribers.find_by_offset(2)
+    
+    #add a message
+    message = pregnant.messages.create! :text => 'pregnant5', :offset => 1
+    
+    assert_equal 1, Delayed::Job.find_all_by_message_id(message.id).size #there should be two DJ for the two subscribers
+    
+    assert_in_delta aSubscriber.reference_time + 1.weeks, Delayed::Job.find_by_message_id_and_subscriber_id(message.id, aSubscriber.id).run_at, 5
   end
 end

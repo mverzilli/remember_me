@@ -32,12 +32,3 @@ Subscriber.blueprint do
   subscribed_at { DateTime.now.utc }
   offset { 0 }
 end
-
-#Message.blueprint do
- # text { Faker::Lorem.sentence }
-  #offset { 0 }
-  #schedule_id { 1 }
-  #created_at { DateTime.now.utc }
-  #updated_at { DateTime.now.utc }
-#end
-  

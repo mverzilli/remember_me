@@ -2,7 +2,7 @@ class Subscriber < ActiveRecord::Base
   belongs_to :schedule
   
   validates_presence_of :phone_number, :subscribed_at, :offset, :schedule_id
-  validates_numericality_of :offset, :only_integer => true 
+  validates_numericality_of :offset, :only_integer => true
     
   def self.subscribe params
     keyword, offset = params[:body].split
@@ -24,6 +24,10 @@ class Subscriber < ActiveRecord::Base
     [schedule.build_message(params[:from], schedule.welcome_message)]
   end
   
+  def reference_time
+      self.subscribed_at - self.offset.send(self.schedule.timescale.to_sym)
+  end
+    
   def self.no_schedule_message keyword
     "Sorry, there's no reminder program named #{keyword} :(."
   end
