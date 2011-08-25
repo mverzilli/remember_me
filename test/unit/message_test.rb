@@ -41,8 +41,6 @@ class MessageTest < ActiveSupport::TestCase
     
     aSubscriber = pregnant.subscribers.find_by_offset(0)
     bSubscriber = pregnant.subscribers.find_by_offset(1)
-    puts aSubscriber.phone_number
-    puts bSubscriber.attributes
     pregnant.generate_reminders :for => aSubscriber
     pregnant.generate_reminders :for => bSubscriber
     
