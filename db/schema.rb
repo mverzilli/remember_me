@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20110823190602) do
     t.string   "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "schedule_id",   :default => 0
     t.integer  "message_id",    :default => 0
     t.integer  "subscriber_id", :default => 0
   end
