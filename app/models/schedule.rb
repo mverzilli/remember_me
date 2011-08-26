@@ -12,9 +12,11 @@ class Schedule < ActiveRecord::Base
   before_validation :initialize_messages
   
   before_destroy :notify_deletion_to_subscribers
-
+  
+  attr_accessor_with_default :notifySubscribers, true
+  
   def generate_reminders options
-    recipient = options[:for]    
+    recipient = options[:for]
     messages = self.reminders
     
     messages.each_with_index do |message, index|
@@ -27,6 +29,7 @@ class Schedule < ActiveRecord::Base
   end
   
   def build_message(to, body)
+    self.user = User.find(1)
     self.user.build_message(to, body)
   end
 
@@ -43,11 +46,11 @@ class Schedule < ActiveRecord::Base
   end  
 
   def notify_deletion_to_subscribers
-  
-    subscribers.each do |subscriber|
-      self.send_message(subscriber.phone_number,
-        "The schedule #{self.keyword} has been deleted, you will no longer receive messages from this schedule.")
+    if notifySubscribers
+      subscribers.each do |subscriber|
+        self.send_message(subscriber.phone_number,
+          "The schedule #{self.keyword} has been deleted, you will no longer receive messages from this schedule.")
+      end
     end
-
   end
 end

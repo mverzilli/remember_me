@@ -78,11 +78,14 @@ class SchedulesController < AuthenticatedController
   # DELETE /schedules/1.xml
   def destroy
     @schedule = Schedule.find(params[:id])
+    if params[:notify] == "true"
+      @schedule.notifySubscribers = true
+    end
     @schedule.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(schedules_url) }
-      format.xml  { head :ok }
-    end
+   respond_to do |format|
+     format.html { redirect_to(schedules_url) }
+     format.xml  { head :ok }
+   end
   end
 end

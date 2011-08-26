@@ -5,20 +5,34 @@
     <th span = "2">My reminders</th>
   </tr>
 
-  <% @schedules.each do |schedule| %>
+  <% @schedules.each.with_index do |schedule,index| %>
     <tr>
       <td><%= link_to schedule.title, edit_schedule_path(schedule) %></td>
-      <td><%= button_to '',
-                schedule_path(schedule),
-                :confirm => 'Are you sure?',
-                :method => :delete,
-                :type => 'button',
-                :class => 'icon cremove' %></td>
+      <td>
+        <div id=<%= "confirmation#{index}" %> style="display:none; color:red">
+          Send deletion notification to subscribers?
+          <%=
+            link_to 'yes',
+            schedule_path(schedule, :notify => "true"),
+            :confirm => 'This will delete the schedule "' + schedule.keyword + '" and notify all subscribers of its deletion.',
+            :method => :delete
+          %>
+          /
+          <%=
+            link_to 'no',
+            schedule_path(schedule),
+            :confirm => 'This will delete the schedule "' + schedule.keyword + '".',
+            :method => :delete
+          %>
+        </div>
+        <input class = "icon cremove" onclick="$(this).hide(); $(<%="'#confirmation#{index}'"%>).show();">
+      </td>
     </tr>
   <% end %>
 
   <tr>
-    <td>New Schedule</td>
+    <td><%= link_to 'New Schedule',
+                new_schedule_path%></td>
     <td><%= button_to '',
                 new_schedule_path,
                 :type => 'button',

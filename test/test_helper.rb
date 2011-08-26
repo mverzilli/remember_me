@@ -20,8 +20,8 @@ class ActiveSupport::TestCase
     schedule.messages.create! :text => 'pregnant4', :offset => 23
     schedule.messages.create! :text => 'pregnant5', :offset => 36
     
-    #Subscriber.make :schedule => schedule, :phone_number => 'sms://4000', :offset => 0
-    #Subscriber.make :schedule => schedule, :phone_number => 'sms://4001', :offset => 1
+    Subscriber.make :schedule => schedule, :phone_number => 'sms://4000', :offset => 0
+    Subscriber.make :schedule => schedule, :phone_number => 'sms://4001', :offset => 2
     
     return schedule
   end

@@ -14,6 +14,7 @@ gem 'nuntium_api', '>=0.12'
 gem "jquery-rails"
 
 gem 'mocha'
+gem 'ParseTree'
 gem 'ffaker'
 gem 'machinist'
 

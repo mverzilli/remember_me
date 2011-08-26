@@ -37,7 +37,7 @@ class ScheduleTest < ActiveSupport::TestCase
     Delayed::Job.all.each do |job|
       reminder_job = YAML.load(job.handler)
       
-      assert_equal 1, messages.select {|msg| msg.text == reminder_job.text}.length
+      assert_equal 1, messages.select {|msg| msg.text == Message.find(reminder_job.message_id).text}.length
       assert_equal 1, (0..4).select {|i| (job.run_at.to_f - (subscriber.subscribed_at + i.weeks).to_f).abs <= 1.minute.to_f }.length
     end
   end
@@ -55,7 +55,7 @@ class ScheduleTest < ActiveSupport::TestCase
     Delayed::Job.order(:run_at).each_with_index do |job, index|
       reminder_job = YAML.load(job.handler)
       
-      assert_equal messages[index].text, reminder_job.text
+      assert_equal messages[index].text, Message.find(reminder_job.message_id).text
       assert job.run_at.to_f - (subscriber.subscribed_at + messages[index].offset.weeks).to_f.abs <= 1.minute.to_f
     end
   end
@@ -72,7 +72,8 @@ class ScheduleTest < ActiveSupport::TestCase
     pregnant = FixedSchedule.make :keyword => 'pregnant'
     first_subscriber = Subscriber.make :schedule => pregnant
     second_subscriber = Subscriber.make :schedule => pregnant
-
+    
+    #by default, unless otherwise changed by the UI, all users are notified of sched. deletion
     pregnant.destroy
 
     message_body = "The schedule pregnant has been deleted, you will no longer receive messages from this schedule."
@@ -89,6 +90,28 @@ class ScheduleTest < ActiveSupport::TestCase
     assert_equal message_body, second_message[:body]
     assert_equal second_subscriber.phone_number, second_message[:to]
     assert_equal "sms://remindem", second_message[:from]
+
+    Nuntium.unstub(:find)
+
+  end
+  
+  test "users are NOT notified when schedule is destroyed" do
+
+    Nuntium.expects(:new_from_config).returns(self).twice
+    @messages_sent = []
+
+    pregnant = FixedSchedule.make :keyword => 'pregnant'
+    first_subscriber = Subscriber.make :schedule => pregnant
+    second_subscriber = Subscriber.make :schedule => pregnant
+
+    #the following line simulates a UI-originated preference to NOT send messages to subscribers
+    pregnant.notifySubscribers = false
+    
+    pregnant.destroy
+
+    message_body = "The schedule pregnant has been deleted, you will no longer receive messages from this schedule."
+
+    assert_equal 0, @messages_sent.size
 
     Nuntium.unstub(:find)
 
