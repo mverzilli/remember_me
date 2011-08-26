@@ -15,58 +15,80 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title, "Schedule name:" %><br />
+  <p class="Title">
+    <%= f.label :title, "Title" %><br />
     <%= f.text_field :title, :class => "causesPendingSaveNoticeOnChange" %>
-  </div>
+  </p>
   
-  <div class="field">
-    <%= f.label :keyword, "Users will register with keyword:" %><br />
+  <p class="Title">
+    <%= f.label :keyword, "Keyword" %>
+    <p>Users will register with this keyword</p>
     <%= f.text_field :keyword, :class => "causesPendingSaveNoticeOnChange" %>
-  </div>
-  <div class="field">
-    <%= f.label :welcome_message, "Then, they'll receive this welcome message:" %><br />
-    <%= f.text_area :welcome_message, :rows => 3, :class => "causesPendingSaveNoticeOnChange" %>
-  </div>
-  <div class="field">
-    <%= f.label :timescale, "Time scale is:" %><br />
-	<%= f.select :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange" %>
-  </div>
-  <div class="field">
-    <%= f.check_box :paused? %>
-    <%= f.label :paused?, "Pause schedule?" %>
+  </p>
+
+  <p class="Title">
+  <%= f.label :welcome_message, "Welcome message" %>
+    <div class="w50">
+      <%= f.text_area :welcome_message, :rows => 3, :class => "causesPendingSaveNoticeOnChange Txarea WajBar", :placeholder => 'Write your welcome message here' , :maxlength => 140 %>
+    </div>
+  </p>
+  
+  <p class = "Title" >Every</p>
+  <div class="pulldown w30">
+    <%= f.select :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange styled" %>
   </div>
 
-  <h2>Choose whether you want to:</h2>
+  <p class= "Title" >Mode</p>
+  <p>
+    <div class="field">
+      <%= f.radio_button :type,
+        "FixedSchedule",
+        :id => "fixed_schedule_option",
+        :class => "causesPendingSaveNoticeOnChange styled"
+      %>
+      <%= f.label :type, "Timeline" %>
+    </div>
+    <div class="field">
+      <%= f.radio_button :type,
+        "RandomSchedule",
+        :id => "random_schedule_option",
+        :class => "causesPendingSaveNoticeOnChange styled"
+      %>
+      <%= f.label :type, "Random once #{@schedule.timescale.one_to_s}" %>
+    </div>
+  </p>
+
+  <p>
+    <%= "This Reminder is #{
+      if @schedule.paused?
+        'paused and won\'t send messages'
+      else
+        'active and will be sending messages to registered users with the scheduled configured below'
+      end
+    }." %>
+  </p>
+
   <div class="field">
-	<%= f.radio_button :type, "FixedSchedule", :id => "fixed_schedule_option", :class => "causesPendingSaveNoticeOnChange" %>
-	<%= f.label :type, "Set up a timeline for your messages..." %>
-  </div>
-  <div class="field">
-	<%= f.radio_button :type, "RandomSchedule", :id => "random_schedule_option", :class => "causesPendingSaveNoticeOnChange" %>
-	<%= f.label :type, "...or send them randomly once #{@schedule.timescale.one_to_s}" %>
+    <%= f.check_box :paused?, :type =>"checkbox", :class => "styled"%>
+    <%= f.label :paused?, "Pause this reminder" %>
   </div>
 
-  <h2>Write your schedule's messages:</h2>
-  <table>
-	<thead>
-	  <tr>
-	    <th class="offsetColumn header">
-		  <%= @schedule.timescale.singularize.capitalize %>
-	    </th>
-	    <th>
-		  Text
-        </th>
-	  </tr>
-	</thead>
-	<tbody>
-	  <%= f.fields_for :messages do |message_form| %>
-	  	<%= render "message_fields", :f => message_form %>
-	  <% end %>
-      <%= render "new_message_fields", :f => f %>	  
-	</tbody>
-  </table>
+  <hr />
+
+  <p class = "Title">Messages</p>
+  <p>Write your schedule's messages</p>
+  <ul>
+    <% @schedule.messages.each.with_index do |message,index| %>
+      <%= f.fields_for :messages, message do |message_form| %>
+        <%= render "message_fields", :f => message_form, :index => index%>
+	   <% end %>
+    <% end %>
+   <li class="fields">
+    <%= link_to_add_fields "add message", f, :messages, :class => "causesPendingSaveNoticeOnClick" %>
+  </li>
+	</ul>
   <div class="actions">
-    <%= f.submit "Save Schedule" %> <%= link_to 'or go back to your schedules', schedules_path %>
+    <%= styled_submit "Save"%>
+    <%= styled_button_to 'Cancel', :onclick => "window.location='#{schedules_path}';" %>
   </div>
 <% end %>

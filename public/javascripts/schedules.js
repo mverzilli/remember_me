@@ -2,41 +2,42 @@ function showUnsavedChangesAlert(){
 	$('.alert').text("There are unsaved changes in your schedule!")
 }
 
-function toggleOffsetColumn(){
+function toggleOffset(){
 	if ($('#fixed_schedule_option').is(':checked'))
-		$('.offsetColumn').show();
+		$('.offset').show();
 	else
-		$('.offsetColumn').hide();
+		$('.offset').hide();
 }
 
 $(function() {
-	$('#fixed_schedule_option').change(function(){
-		toggleOffsetColumn();
-	});
+    $('#fixed_schedule_option').change(function(){
+        toggleOffset();
+    });
 	
-	$('#random_schedule_option').change(function(){
-		toggleOffsetColumn();
-	});
+    $('#random_schedule_option').change(function(){
+        toggleOffset();
+    });
 	
-	var timescale = $('#fixed_schedule_timescale, #random_schedule_timescale, #schedule_timescale');
+    var timescale = $('#fixed_schedule_timescale, #random_schedule_timescale, #schedule_timescale');
 	
-	timescale.change(function(){
-		updateTimescaleLabels($(this).val());
-	});
-	
-	$('.causesPendingSaveNoticeOnChange').change(function(){
-		showUnsavedChangesAlert();
-	});
+    timescale.change(function(){
+        updateTimescaleLabels($(this).val());
+    });
 
-	$('.causesPendingSaveNoticeOnClick').click(function(){
-		showUnsavedChangesAlert();
-	});
-	
-	toggleOffsetColumn();
+    $('.causesPendingSaveNoticeOnChange').change(function(){
+        showUnsavedChangesAlert();
+    });
+
+    $('.causesPendingSaveNoticeOnClick').click(function(){
+        showUnsavedChangesAlert();
+    });
+
+    $('.WajBar').wajbar();
+    toggleOffset();
 });
 
 function updateTimescaleLabels(new_value){
-	$('#random_schedule_option').next().text("...or send them randomly once " + timescaleToOneString(new_value));
+	$('#random_schedule_option').next().text("Random once " + timescaleToOneString(new_value));
 	$('.offsetColumn.header').text(capitalizedSingular(new_value));
 }
 
@@ -83,8 +84,9 @@ function edit_fields(link, content) {
 
   getRow(link).after(content);
 
+  $(".WajBar").wajbar();
   //Hide offset control if user is editing a random schedule
-  toggleOffsetColumn();
+  toggleOffset();
 }
 
 function confirmChange(buttonOk) {
@@ -110,17 +112,7 @@ function confirmChange(buttonOk) {
 	hiddenRow.show();
 	currentRow.remove();
 	
-	toggleOffsetColumn();	
-}
-
-function cancelChange(linkCancel) {
-	var currentRow = getRow(linkCancel);
-	var hiddenRow = $(currentRow).prev();
-
-	hiddenRow.show();
-	currentRow.remove();
-	
-	toggleOffsetColumn();
+	toggleOffset();	
 }
 
 function removePlainText(jqueryObj) {
@@ -141,7 +133,7 @@ function add_fields(link, association, content) {
 
   //Add the new instance to the list
   $(link).closest(".fields").before(newRowContent);
-
+/*
   //Get the values of the fields of the new object 
   var offset = $('#offset').val();
   var text = $('#text').val();
@@ -160,8 +152,9 @@ function add_fields(link, association, content) {
   offsetCell.append(offset);
 
   textCell.append(text);
-
-  toggleOffsetColumn();
+*/
+  $(".WajBar").wajbar();
+  toggleOffset();
 }
 
 function getHiddenOffsetValue(link){
@@ -178,17 +171,17 @@ function getRow(link){
 }
 
 function getNewTextCell(link){
-  return getRow(link).prev().children('.textColumn');
+  return getRow(link).prev().children('.text');
 }
 
 function getNewOffsetCell(link){
-  return getRow(link).prev().children('.offsetColumn');
+  return getRow(link).prev().children('.offset');
 }
 
 function getOffsetCell(link) {
-  return getRow(link).children('.offsetColumn');	
+  return getRow(link).children('.offset');	
 }
 
 function getTextCell(link) {
-  return getRow(link).children('.textColumn');		
+  return getRow(link).children('.text');		
 }

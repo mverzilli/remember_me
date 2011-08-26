@@ -1,24 +1,31 @@
-<h1>Your schedules</h1>
+<p class="Title">Reminders</p>
 
-<table>
+<table class="GralTable TwoColumn CleanTable">
   <tr>
-    <th>Keyword</th>
-    <th>Time Scale</th>
-    <th></th>
-    <th></th>
+    <th span = "2">My reminders</th>
   </tr>
 
-<% @schedules.each do |schedule| %>
+  <% @schedules.each do |schedule| %>
+    <tr>
+      <td><%= link_to schedule.title, edit_schedule_path(schedule) %></td>
+      <td><%= button_to '',
+                schedule_path(schedule),
+                :confirm => 'Are you sure?',
+                :method => :delete,
+                :type => 'button',
+                :class => 'icon cremove' %></td>
+    </tr>
+  <% end %>
+
   <tr>
-    <td><%= schedule.keyword %></td>
-    <td><%= schedule.timescale %></td>
-    <td><%= link_to 'edit', edit_schedule_path(schedule) %> | <%= link_to 'delete', schedule_path(schedule), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>New Schedule</td>
+    <td><%= button_to '',
+                new_schedule_path,
+                :type => 'button',
+                :class => 'icon cadd' %></td>
   </tr>
-<% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Schedule', new_schedule_path %>
 
 <%= render :partial => 'shared/user_channel' %>
