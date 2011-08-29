@@ -16,37 +16,43 @@ class ReminderJobTest < ActiveSupport::TestCase
   end
 
   test "message is sent on perform" do
-    message_to = "sms://1234"
+    #setup
+    pregnant = pregnant_make
+    subscriber = pregnant.subscribers.find_by_offset(0)
+    message = pregnant.messages.first
     
-    schedule = pregnant_make
-    message = schedule.messages.first
-    
-    job = ReminderJob.new(message_to, schedule.id, message.id)
+    job = ReminderJob.new(subscriber.id, pregnant.id, message.id)
     job.perform
 
     assert_equal 1, @messages_sent.size
     message_sent = @messages_sent[0]
     assert_equal message.text, message_sent[:body]
-    assert_equal message_to, message_sent[:to]
+    assert_equal subscriber.phone_number, message_sent[:to]
     assert_equal "sms://remindem", message_sent[:from]
   end
   
   test "messages are not sent when schedule is paused" do
-    schedule = FixedSchedule.make :paused => true
-    message_body = "hello world!"
-    message_to = "sms://1234"
+    #setup
+    pregnant = pregnant_make
+    pregnant.paused = true
+    pregnant.save!
+    subscriber = pregnant.subscribers.find_by_offset(0)
+    message = pregnant.messages.first
     
-    job = ReminderJob.new(message_body, message_to, schedule.id)
+    job = ReminderJob.new(subscriber.id, pregnant.id, message.id)
     job.perform
 
     assert_equal 0, @messages_sent.size
   end
   
   test "messages are not sent when schedule is deleted" do
-    message_body = "hello world!"
-    message_to = "sms://1234"
+    #setup
+    pregnant = pregnant_make
+    subscriber = pregnant.subscribers.find_by_offset(0)
+    message = pregnant.messages.first
+    pregnant.destroy
     
-    job = ReminderJob.new(message_body, message_to, 5)
+    job = ReminderJob.new(subscriber.id, pregnant.id, message.id)
     job.perform
 
     assert_equal 0, @messages_sent.size

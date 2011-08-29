@@ -76,7 +76,7 @@ class ScheduleTest < ActiveSupport::TestCase
     #by default, unless otherwise changed by the UI, all users are notified of sched. deletion
     pregnant.destroy
 
-    message_body = "The schedule pregnant has been deleted, you will no longer receive messages from this schedule."
+    message_body = "The schedule pregnant has been deleted. You will no longer receive messages from this schedule."
 
     assert_equal 2, @messages_sent.size
 
@@ -108,8 +108,6 @@ class ScheduleTest < ActiveSupport::TestCase
     pregnant.notifySubscribers = false
     
     pregnant.destroy
-
-    message_body = "The schedule pregnant has been deleted, you will no longer receive messages from this schedule."
 
     assert_equal 0, @messages_sent.size
 

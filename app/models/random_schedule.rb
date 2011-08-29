@@ -11,6 +11,7 @@ class RandomSchedule < Schedule
   end
   
   def enqueue_reminder message, index, recipient
-    Delayed::Job.enqueue ReminderJob.new(recipient.phone_number, self.id, message.id), :message_id => message.id, :subscriber_id => recipient.id, :run_at => index.send(self.timescale.to_sym).from_now
+    #this doesn't actually send once a day...
+    Delayed::Job.enqueue ReminderJob.new(recipient.id, self.id, message.id), :message_id => message.id, :subscriber_id => recipient.id, :run_at => index.send(self.timescale.to_sym).from_now
   end
 end

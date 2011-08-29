@@ -49,7 +49,7 @@ class Schedule < ActiveRecord::Base
     if notifySubscribers
       subscribers.each do |subscriber|
         self.send_message(subscriber.phone_number,
-          "The schedule #{self.keyword} has been deleted, you will no longer receive messages from this schedule.")
+          "The schedule #{self.keyword} has been deleted. You will no longer receive messages from this schedule.")
       end
     end
   end

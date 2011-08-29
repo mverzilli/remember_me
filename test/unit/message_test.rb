@@ -19,7 +19,6 @@ class MessageTest < ActiveSupport::TestCase
     #setup
     pregnant = pregnant_make
     
-    
     #edit message text
     aSubscriber = pregnant.subscribers.find(:first)
     pregnant.generate_reminders :for => aSubscriber
