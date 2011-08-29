@@ -1,0 +1,54 @@
+$negro: #111;
+
+.footer {
+
+  color: $negro;
+  
+  a {
+    color: #f00;
+  }
+  
+}
+
+.sdfsdf { color: white; }
+
+@import "tablita";
+
+/* ejemplo de como reusar css */
+
+@mixin important {
+  color: red;
+  background-color: orange;
+}
+
+div.imp {
+  @include important;
+}
+
+.sdfs a {
+  @include important;  
+}
+
+/* ejemplo de bottons con hover */
+
+@mixin con-hover($altura) {
+  background-position: 0px 0px;
+  
+  &:hover {
+    background-position: 0px -$altura;
+  }
+  
+  &:active {
+    background-position: 0px -2*$altura;
+  }
+}
+
+button {
+  @include con-hover(90px);
+}
+
+.buttonChiquito {
+  @include con-hover(40px);
+}
+
+

@@ -1,5 +1,20 @@
-<tr class="fields">
-  <td class="offsetColumn"><%= number_field_tag :editOffset, "offsetValuePlaceHolder" %></td>
-  <td class="textColumn"><%= text_area_tag :editText, "textValuePlaceHolder" %></td>
-  <td><input type="button" value="Ok" onclick="confirmChange(this); showUnsavedChangesAlert();"/> or <a href="#" onclick="cancelChange(this); return false;">cancel</a></td>
-</tr>
+<li class ="fields">
+  <div class="offset">
+    <div class="nstep">
+      <%= tag :input, :class => "TextField w06", :name => "random_schedule[messages_attributes][#{f.options[:index]}][offset]" ,:id => "nodes#{f.options[:index]}", :size => "2", :type => "text", :value => f.object.offset%>
+      <input type="button" value="" onClick=<%= "this.form.nodes#{f.options[:index]}.value--"%> readonly="readonly" class="kdown">
+      <input type="button" value="" onClick=<%= "this.form.nodes#{f.options[:index]}.value++"%> class="kup">
+    </div>
+    <%= @schedule.timescale %>
+    </div>
+  <div class="text">
+    <div class="w50">
+      <%= content_tag :textarea, f.object.text, :rows => 5, :class => "Txarea WajBar", :placeholder => 'Add message here',
+      :name => "random_schedule[messages_attributes][#{f.options[:index]}][text]" , :maxlength => 140 %>
+    </div>
+  </div>
+  <span float = "right">
+    <%= tag :input, :type => "hidden", :name => "random_schedule[messages_attributes][#{f.options[:index]}][_destroy]" %>
+    <%= link_to_function("remove", "remove_fields(this)", :class => "causesPendingSaveNoticeOnClick") %>
+  </span>
+</li>

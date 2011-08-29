@@ -1,13 +1,19 @@
-<tr class="fields">
-    <td class="offsetColumn">
-		<%= f.hidden_field :offset, :class => "offset" %>
-		<%= f.object.offset %>
-	</td>	
-	<td class="textColumn">
-		<%= f.hidden_field :text, :class => "text" %>		
-		<%= f.object.text %>
-	</td>
-	<td>
-		<%= link_to_edit_fields "edit", f, :messages, f.object %> | <%= link_to_remove_fields "remove", f, :class => "causesPendingSaveNoticeOnClick" %>
-	</td>		
-</tr>
+<<<<<<< HEAD
+<li class ="fields">
+  <div class= "offset">
+    <%= f.hidden_field :offset, :class => "offset" %>
+    <%= f.object.offset %>
+    <%= @schedule.timescale %>
+  </div>
+  <div class = "text">
+    <%= f.hidden_field :text, :class => "text" %>
+    <%= f.object.text %>
+  </div>
+  <p>
+    <%= button_to_edit_fields  f, :messages, f.object, :index => index %>
+    <%= link_to_edit_fields "Edit", f, :messages, f.object, :index => index %>
+  </p>
+  <span float = "right">
+    <%= link_to_remove_fields "remove", f, :class => "causesPendingSaveNoticeOnClick" %>
+  </span>
+</li>
