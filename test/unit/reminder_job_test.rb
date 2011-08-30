@@ -50,7 +50,7 @@ class ReminderJobTest < ActiveSupport::TestCase
     pregnant = pregnant_make
     subscriber = pregnant.subscribers.find_by_offset(0)
     message = pregnant.messages.first
-    pregnant.destroy
+    pregnant.delete
     
     job = ReminderJob.new(subscriber.id, pregnant.id, message.id)
     job.perform

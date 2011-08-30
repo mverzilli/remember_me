@@ -9,7 +9,7 @@
     <tr>
       <td><%= link_to schedule.title, edit_schedule_path(schedule) %></td>
       <td>
-        <div id="<%= "confirmation#{index}"%>" style="display:none; color:red">
+        <div class ="confirmation", id="<%= "confirmation#{index}" %>" style="display:none; color:red">
           Send deletion notification to subscribers?
           <%=
             link_to 'yes',
@@ -25,7 +25,7 @@
             :method => :delete
           %>
         </div>
-        <input class = "icon cremove" onclick="$(this).hide(); $(<%="'#confirmation#{index}'"%>).show();">
+        <input class = "icon cremove" onclick="$(this).hide(); $('.confirmation', $(this).closest('td')).show();">
       </td>
     </tr>
   <% end %>
