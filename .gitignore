@@ -2,3 +2,4 @@
 config/nuntium.yml
 .bundle/
 tmp/
+.DS_Store

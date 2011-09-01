@@ -88,7 +88,7 @@
   </li>
 	</ul>
   <div class="actions">
-    <%= styled_submit "Save"%>
-    <%= styled_button_to 'Cancel', :onclick => "window.location='#{schedules_path}';" %>
+    <button type="submit" class="orange">Save</button>
+    <%= link_button_to 'Cancel', schedules_path %>
   </div>
 <% end %>

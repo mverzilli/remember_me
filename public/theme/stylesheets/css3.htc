@@ -1,0 +1,729 @@
+Based on the border-radius.htc originally by Remiz Rahnas -  http://www.htmlremix.com - Published date: 2008/09/24
+
+Changes by Nick Fetchak:
+- IE8 standards mode compatibility
+- VML elements now positioned behind original box rather than inside of it - should be less prone to breakage
+Published date : 2009/11/18
+
+
+Changes by Tom Butler (http://r.je : tom@r.je )
+
+- Now allows the <body> element to have border-radius applied
+- Added dwestp...@filesmania.de's fix for (partial) background-position support
+- Fixed issue where adding a border to a div with a background image would incorrectly position the background image (by the size of the border)
+- Fixed issue where background fill would be black in nested elements that had border-radius applied
+- Fixed issue on 3 levels of nesting by changing to ondocumentready instead of oncontentready
+- Separated out code into smaller functions in an attempt to make further CSS3 effect additions easier. Use createUnderlay() to create the base VML element underneath the target for any effect to be applied to.
+- Added support for box-shadow 
+- Added a better, more easily forward compatible window_resize function
+- Added atg2dg's implementation of border-top-right-radius from http://code.google.com/p/curved-corner/issues/detail?id=22
+- Added element.redraw() function to elements which can be called by javascript to allow dynamic resizing of the element.
+- Added hover support (not for IE6, also slower than I'd like)
+- Will now automatically redraw the element when it changes (e.g. is resized in javascript. Will be slow if the change affects document flow. I don't suggest doing this in a timeout).
+- Fixed a z-index issue where effects would be hidden on elements with relative/absolute positioned parents that were overlapping static elements
+- Added basic linear gradient support, can't read existing -moz-gradient or -webkit-gradient as they are part of the background property and IE ignores them. Usage: -css3-background: linear-gradient(90deg,blue,red); Currently only supports this format.
+- Did a lot of code restructuring to make it more extensible, still needs a bit of tidying up though.
+- Made it so you to initialise it you just add    html {behavior:url('css3.htc');}  to the top of your stylesheet.
+
+Published date: 2010/09/28
+
+Updates
+11/10/2010
+Complete reststructure of the code now easier to work with in future
+
+17/11/2010 
+Heavily improved IE6 support for border-radius
+
+This is still a work in progress, I'm slowly tidying up the code and adding features.
+
+<public:attach event="ondocumentready" onevent="oncontentready('v08vnSVo78t4JfjH')" />
+<script type="text/javascript">
+//If a CSS rule contains one of these, it will get picked up and this HTC file automatically applied. Makes for much cleaner CSS. 
+window.css3_applyTo = new Array('-moz-border-radius', 'border-radius', '-webkit-border-radius', 'box-shadow', '-webkit-box-shadow', '-moz-box-shadow', '-css3-background', 'text-shadow',
+'-moz-border-radius-topright', '-webkit-border-top-right-radius', 'border-top-right-radius', '-khtml-border-top-right-radius',
+'-moz-border-radius-bottomright', '-webkit-border-bottom-right-radius', 'border-bottom-right-radius', '-khtml-border-bottom-right-radius', 
+'-moz-border-radius-bottomleft', '-webkit-border-bottom-left-radius', 'border-bottom-left-radius', '-khtml-border-bottom-left-radius',
+'-moz-border-radius-topleft', '-webkit-border-top-left-radius', 'border-top-left-radius', '-khtml-border-top-left-radius'
+ );
+
+function findPos(obj) {
+	var curleft = curtop = 0;
+
+	if (obj.offsetParent) {
+		do {
+			curleft += obj.offsetLeft;
+			curtop += obj.offsetTop;
+		} while (obj = obj.offsetParent);
+	}
+
+	return {'x': curleft,'y': curtop};
+}
+
+
+var CSS3_Effect = function(element) {
+	this.element = element;
+	
+	this.remove = function() {
+		this.vml.parentNode.removeChild(this.vml);	
+	}
+		
+	this.isPositioned = function() {
+		var el = this.element;
+		do {
+			if (!el.tagName) continue;
+			if (el.currentStyle.position == 'absolute' || el.currentStyle.position == 'relative') return el;
+		}
+		while (el = el.parentNode);
+		
+		return false;
+	}		
+	
+	
+
+	
+	var i = 0;
+	var limit = 100;
+		
+	if (this.element.tagName == 'BODY') {
+		var el = this.element.parentElement;	
+		var measure = window.document.createElement('div');
+		measure.style.position = 'absolute';
+			
+		if (this.element.firstChild) element.insertBefore(measure, this.element.firstChild);
+		else this.element.appendChild(measure);
+
+		measure.style.width = '1px';
+		measure.style.height = '1px';
+		
+		//in IE7 (and possibly 6, this.offsetLeft is set)
+		var left_add = measure.offsetLeft + this.offsetLeft;
+		var top_add = measure.offsetTop + this.offsetTop;
+		
+		window.document.body.removeChild(measure);
+		
+		//now remove any padding
+		try {
+			left_add -= parseInt(this.currentStyle.paddingLeft.split('px')[0]);
+			top_add -= parseInt(this.currentStyle.paddingTop.split('px')[0]);
+		}	catch (e) { }
+	}
+	else {
+		var el = this.element; 
+		var left_add = 0;
+		var top_add = 0;
+		while ((typeof(el) != 'unknown') && (el.currentStyle.position != 'relative')  && (el.currentStyle.position != 'absolute') && (el.tagName != 'BODY')) {
+			el = el.parentElement;
+			i++;
+			if (i >= limit)  return(false); 
+		}
+	}
+	
+	
+
+	
+	var strokeColor = this.element.currentStyle.borderColor;
+	var strokeWeight = parseInt(element.currentStyle.borderWidth);
+	this.strokeWeight = strokeWeight;
+	var el_zindex = parseInt(el.currentStyle.zIndex);
+	var el_pos = findPos(el);
+	if (isNaN(el_zindex)) { el_zindex = 0; }	
+
+	this.pos = findPos(element);
+	if (isNaN(strokeWeight)) strokeWeight = 0;
+	this.pos.y = top_add + this.pos.y + (0.5 * strokeWeight) - el_pos.y;
+	this.pos.x = left_add + this.pos.x + (0.5 * strokeWeight) - el_pos.x;
+	
+	var corners = getarcs(element); 
+
+	if (this.radiusFactor) {
+		if (corners.topRight > 0)  corners.topRight = Math.ceil(corners.topRight * this.radiusFactor[0]);
+		if (corners.bottomRight > 0) corners.bottomRight = Math.ceil(corners.bottomRight * this.radiusFactor[1]);
+		if (corners.topLeft > 0) corners.topLeft = Math.ceil(corners.topLeft * this.radiusFactor[2]);
+		if (corners.bottomLeft > 0) corners.bottomLeft = Math.ceil(corners.bottomLeft * this.radiusFactor[3]);
+	}
+	
+	var rect_size = {
+		'width': this.element.offsetWidth - strokeWeight,
+		'height': this.element.offsetHeight - strokeWeight
+	};	
+	
+	var rect = document.createElement('v:shape');	
+	rect.coordorigin = '0 0';
+    rect.coordsize = rect_size.width + ' ' + rect_size.height;
+    var topRightPoint = (rect_size.width - corners.topRight);
+    if (topRightPoint < 0)  topRightPoint = corners.topLeft;
+    topRightPoint += ',0';
+
+    var rightTopPoint = rect_size.width+','+corners.topRight;
+    var rightBottomPoint = (rect_size.height - corners.bottomRight);
+
+    if (isNaN(rightBottomPoint) || rightBottomPoint < 0)  rightBottomPoint = corners.topRight;
+    
+    rightBottomPoint = rect_size.width+','+rightBottomPoint;
+    var bottomRightPoint = (rect_size.width - corners.bottomRight)+','+rect_size.height;
+    var bottomLeftPoint = corners.bottomLeft+','+rect_size.height;
+    var leftBottomPoint = '0,'+(rect_size.height - corners.bottomLeft);
+    var leftTopPoint = '0,'+corners.topLeft;
+    var topLeftPoint = corners.topLeft+',0';
+
+    var rightTopArc = '';
+    if (corners.topRight != 0) {
+        rightTopArc = 'c '+(rect_size.width-Math.ceil(corners.topRight/2))+',0 '+
+            rect_size.width+','+(Math.ceil(corners.topRight/2))+' '+
+            rightTopPoint+' ';
+    }
+    
+    
+    var rightBottomArc = '';
+    if (corners.bottomRight != 0) {
+        rightBottomArc = 'c '+(rect_size.width)+','+(rect_size.height - Math.ceil(corners.bottomRight/2))+' '+
+            (rect_size.width - Math.ceil(corners.bottomRight/2))+','+(rect_size.height)+' '+
+            bottomRightPoint+' ';
+    }
+    var leftBottomArc = '';
+    if (corners.bottomLeft != 0) {
+        leftBottomArc = 'c '+(Math.ceil(corners.bottomLeft/2))+','+rect_size.height+' '+
+            '0,'+(rect_size.height - Math.ceil(corners.bottomLeft/2))+' '+
+            leftBottomPoint+' ';
+    }
+    var topLeftArc = '';
+    if (corners.topLeft != 0) {
+        topLeftArc = 'c '+
+            '0,'+(Math.ceil(corners.topLeft/2))+' '+
+            (Math.ceil(corners.topLeft/2))+',0 '+
+            topLeftPoint+' ';
+    }
+
+    rect.path = 'm '+topLeftPoint+                          // start point
+        'l '+topRightPoint+' '+                             // top line
+        rightTopArc+                                        // top right arc
+        'l '+ rightBottomPoint+' '+                         // right line
+        rightBottomArc+                                     // bottom right arc
+        'l '+bottomLeftPoint+' '+                           // bottom line
+        leftBottomArc+                                      // bottom left arc
+        'l '+leftTopPoint+' '+                              // left line
+        topLeftArc+                                         // top left arc
+        ' x e';
+
+
+	rect.style.display = 'block';
+	rect.style.position = 'absolute';
+	 
+	if (isNaN(this.pos.y)) this.pos.y = 0;
+	if (isNaN(this.pos.x)) this.pos.x = 0;
+	rect.style.top = this.pos.y +'px';
+	rect.style.left = this.pos.x +'px';
+	rect.style.width = rect_size.width +'px';
+	rect.style.height = rect_size.height +'px';
+	rect.style.antialias = true;
+	var container =  this.isPositioned();
+	if (container) {
+		rect.style.zIndex = el_zindex ;
+		container.style.zIndex = el_zindex + 1;
+	}
+	else rect.style.zIndex = -1;
+
+
+
+	
+	window.document.body.appendChild(rect);
+	
+	this.vml = rect;
+}
+
+
+var CSS3_Loader = function() {
+	var self = this;
+	this.elements = new Array();
+	this.behavior = null;
+	
+	//Propagate behavior into css rules	
+	for (var i = 0; i < window.document.styleSheets.length; i++) {
+		var sheet = window.document.styleSheets[i];
+		for (var j = 0; j < sheet.rules.length; j++) {
+			var rule = sheet.rules[j];			
+			var extend = false;
+			
+			if (!this.behavior && rule.style.behavior) {
+				this.behavior = rule.style.behavior;
+				window.document.body.style.behavior = this.behavior;
+			}
+			
+			for (var k = 0; k < window.css3_applyTo.length; k++) {
+				if (rule.style[window.css3_applyTo[k]]) {
+				 	extend = true;
+				 	break;
+				}
+			}
+			
+			if (extend) rule.style['behavior'] = this.behavior;
+		}
+	}
+	
+	
+	//Prepare the document.
+	if (!document.namespaces.v) { document.namespaces.add("v", "urn:schemas-microsoft-com:vml"); }
+	try {
+		var css = window.document.createStyleSheet();
+		css.addRule("v\\:roundrect", "behavior: url(#default#VML)");
+		css.addRule("v\\:fill", "behavior: url(#default#VML)");
+		css.addRule("v\\:shape", "behavior: url(#default#VML)");
+	} catch (e) {}
+	
+	
+	
+
+	//FULL redraw
+	this.redraw = function() {
+		//Don't redraw if it's already drawing. This speeds up window resizing by dragging
+		if (this.redrawing) return false;
+		this.redrawing = true;
+		for (var i = 0; i < this.elements.length; i++) {
+			this.elements[i].redraw(true);
+		}
+		this.redrawing = false;
+	}
+	
+	this.applyEffects = function(element) {	
+		element.effects = new Array();
+		element.effects.push(new BoxShadow(element));
+		element.effects.push(new BorderRadius(element));
+		element.effects.push(new TextShadow(element));
+		
+		var pos = findPos(element);
+		element.processedOn = {
+			x: pos.x,
+			y: pos.y,
+			height: element.offsetHeight,
+			width: element.offsetWidth
+		};
+
+	}
+	 
+	this.addElement = function(element) {
+		this.redrawing = true;
+		this.elements.push(element);
+		//And get them redrawn
+		element.effects = new Array();
+		
+		element.originals = {
+			backgroundColor: element.currentStyle.backgroundColor,
+			backgroundImage: element.currentStyle.backgroundImage,
+			backgroundRepeat: element.currentStyle.backgroundRepeat,
+			backgroundPositionX: element.currentStyle.backgroundPositionX,
+			backgroundPositionY: element.currentStyle.backgroundPositionY,
+			borderColor: element.currentStyle.borderColor,
+			borderWidth: element.currentStyle.borderWidth,
+			paddingTop: element.currentStyle.paddingTop,
+			paddingLeft: element.currentStyle.paddingLeft
+		};
+
+
+	    element.hasChanged = function() {
+	    	//compare current size/position to the values recorded when the effects were drawn
+	    	if (this.effects.length > 0) {
+	    		var pos = findPos(this);
+	    		if (!this.processedOn || ! this.processedOn.x) return false;
+	    		return !(
+	    				 this.processedOn.x == pos.x &&
+	    				 this.processedOn.y == pos.y &&
+	    				 this.processedOn.height == this.offsetHeight &&
+	    				 this.processedOn.width == this.offsetWidth
+	    				 );
+	    		
+	    	}
+	    	else return false;
+	    }
+	    
+	    element.reset = function() {
+	   	 	if (this.originals.paddingTop) this.style.paddingTop = '';
+			if (this.originals.paddingLeft) this.style.paddingLeft = '';
+			if (this.originals.backgroundColor) this.style.backgroundColor = this.originals.backgroundColor;
+			
+			if (this.originals.backgroundImage != '' && this.originals.backgroundImage != '') {
+				 try {
+					 this.style.backgroundImage = this.originals.backgroundImage;
+					 this.style.backgroundRepeat = this.originals.backgroundRepeat;
+				} catch(e) {}
+			}
+			
+			try {
+				if (this.originals.borderWidth) this.style.borderWidth = parseInt(this.originals.borderWidth) + 'px';
+				if (this.originals.borderColor) this.style.borderColor = this.originals.borderColor;
+				if (parseInt(this.originals.borderWidth) > 0 && this.originals.borderColor) this.style.borderStyle = 'solid';
+			}
+			catch (e) {}
+			
+			//remove all the attached effects
+			for (var i = 0; i < this.effects.length; i++)	this.effects[i].remove();
+			this.processedOn = null; 		
+			this.effects = new Array();
+		}
+	    
+	    
+	    var self = this;
+		element.redraw = function(override) {
+			//if (!this.processedOn) return;
+			if (!this.hasChanged() && !override) return;
+			this.reset();			
+			//self.applyEffects(this);
+			this.effects.push(new BorderRadius(this));
+		}; 
+		
+		var self = this;
+		var hover = function() {
+			if (self.redrawing) return;
+			//IE needs time to apply the CSS :hover filter, it seems to do it after onmouseover
+			setTimeout(function() {
+				if (element.hasChanged()) {
+					if (element.hasLayout) element.redraw();
+					else self.redraw();
+				}
+			}, 1);
+		};
+		
+		element.isPositioned = function() {
+			var el = this;
+			do {
+				if (!el.tagName) continue;
+				if (el.currentStyle.position == 'absolute' || el.currentStyle.position == 'relative') return el;
+			}
+			while (el = el.parentNode);
+			
+			return false;
+		}
+		
+		
+		this.applyEffects(element);
+		element.attachEvent('onpropertychange', hover);
+		element.attachEvent('onmouseover', hover);
+		element.attachEvent('onmouseout', hover);
+		this.redrawing = false;
+	}
+	
+	window.lastHeight = 0;
+	window.attachEvent('onresize', function() {
+		if (window.document.documentElement.clientHeight != window.lastHeight) {
+			window.lastHeight = window.document.documentElement.clientHeight;
+			self.redraw();			
+		}		
+	});
+}
+
+function oncontentready(classID) {
+	if (!window.css3Loader) window.css3Loader = new CSS3_Loader();
+	else window.css3Loader.addElement(this);
+}
+
+TextShadowTextNode.prototype = CSS3_Effect.prototype;
+function TextShadowTextNode(element, override, parentEffect) {
+	CSS3_Effect.call(this, element);
+	
+	this.vml.filled = false;
+	this.vml.stroked = false
+	
+	var clone = element.cloneNode(true);
+	
+	for (var s in element.currentStyle) {
+		if (s.indexOf('text') !== -1 || s.indexOf('font') !== -1 || s == 'color') {
+			this.vml.style[s] = element.currentStyle[s];
+		}
+	}
+	
+	this.vml.appendChild(clone);
+	clone.style.filter = '';
+
+	var shadows = override.split(',');
+	
+	//Apply the first shadow
+	var parts = shadows[0].replace(/^\s+|\s+$/g,'').split(' ');
+	var blur = parseInt(parts[2]);
+	
+	this.vml.style.marginLeft = parseInt(parts[0]) - blur + 'px';
+	this.vml.style.marginTop = parseInt(parts[1]) - blur + 'px';
+	this.vml.style.color = parts[3];
+	this.vml.style.background = 'transparent';
+	this.vml.filled = false;
+	
+	this.vml.style.filter = 'progid:DXImageTransform.Microsoft.MotionBlur(Strength=' + blur + ', Direction=0, Add=\'false\')' +
+	 ' progid:DXImageTransform.Microsoft.MotionBlur(Strength=' + blur + ', Direction=90, Add=\'true\')' +
+	 ' progid:DXImageTransform.Microsoft.MotionBlur(Strength=' + blur + ', Direction=180, Add=\'false\')' +
+	 ' progid:DXImageTransform.Microsoft.MotionBlur(Strength=' + blur + ', Direction=270, Add=\'false\')';
+	//Deal with aditional shadows.
+	if (shadows.length > 1) {
+		for (var i = 1; i < shadows.length; i++) {
+			var effect = new TextShadowTextNode(element, shadows[i]);
+			parentEffect.element.effects.push(effect);			
+		}
+	}
+
+}	
+
+TextShadow.prototype = CSS3_Effect.prototype;
+function TextShadow(element, override) {	
+	if (element.currentStyle['text-shadow']) CSS3_Effect.call(this, element);
+	else {
+		this.remove = function () {}
+		return;
+	}
+	
+	this.vml.filled = false;
+	this.vml.stroked = false
+
+	function getTextNodes(element) {
+		var children = new Array();
+		for (var i = 0; i < element.childNodes.length; i++) {
+			if (element.childNodes[i].nodeType == 3) children.push(element.childNodes[i]);
+			else var c2 = getTextNodes(element.childNodes[i]);
+			if (c2)	for (var j = 0; j < c2.length; j++) children.push(c2[j]);
+		}
+		return children;
+	}
+	
+	var textNodes = getTextNodes(element);
+	var elements = new Array();
+	
+	for (var i = 0; i < textNodes.length; i++) {
+		var span = window.document.createElement('span');
+		textNodes[i].parentNode.insertBefore(span, textNodes[i])
+		//span.appendChild(window.document.createTextNode('aaa'));
+		span.appendChild(textNodes[i]);
+		span.style.background = 'transparent';
+		elements.push(span);
+	}
+	
+	for (var i = 0; i < elements.length; i++) element.effects.push(new TextShadowTextNode(elements[i], element.currentStyle['text-shadow'], this));	
+	this.vml.style.filter = '';	
+}
+
+//Used with border radius so it can have both a background image and a background color. Not possible in VML? How stupid is that
+SolidBackground.prototype = CSS3_Effect.prototype;
+function SolidBackground(element) {
+	CSS3_Effect.call(this, element);
+	var fill = document.createElement('v:fill');
+	fill.color = element.originals.backgroundColor;
+	fill.type = 'solid';
+	this.vml.appendChild(fill);	
+}
+
+
+BorderRadius.prototype = CSS3_Effect.prototype;
+function BorderRadius(element) {
+	CSS3_Effect.call(this, element);
+	var fillColor = this.element.currentStyle.backgroundColor;
+	var fillSrc = this.element.currentStyle.backgroundImage.replace(/^url\("(.+)"\)$/, '$1');
+	
+	var strokeColor = this.element.currentStyle.borderColor;	
+	var strokeWeight = this.strokeWeight;
+
+	var stroked = 'true';
+	if (isNaN(strokeWeight)) {
+		strokeWeight = 0;
+		strokeColor = fillColor;
+		stroked = 'false';
+	}
+
+	var rect = this.vml;
+	this.element.style.background = 'transparent';
+	this.element.style.borderColor = 'transparent';
+	
+	
+
+	rect.strokecolor = strokeColor;
+	//rect.strokecolor = 'red';
+	rect.strokeWeight = strokeWeight +'px';
+	rect.stroked = stroked;
+
+
+	var fill = document.createElement('v:fill');	
+	fill.color = fillColor;
+	fill.src = fillSrc;
+
+	if (element.currentStyle['-css3-background']) {	
+		if (element.currentStyle['-css3-background'].toString().indexOf('linear-gradient') !== -1) {
+			var parts = element.currentStyle['-css3-background'].toString().split('linear-gradient(')[1].split(',');
+			fill.type = 'gradient';
+			var angle = parseInt(parts[0]);
+			fill.color = parts[2];
+			fill.color2 = parts[1];
+			fill.angle = angle+90;			
+		}
+		else if (element.currentStyle['-css3-background'].toString().indexOf('rgba') !== -1) {
+			var parts = element.currentStyle['-css3-background'].toString().split('rgba(')[1].split(',');
+			fill.type = 'solid';
+			fill.color = 'rgb(' + parts[0] + ',' + parts[1] +',' + parts[2] +')';
+			fill.opacity = parts[3];			
+		}	
+	}
+	else {	
+		var dimensions = getImageDimensions(fill.src);
+		var x = element.originals.backgroundPositionX;
+		var y = element.originals.backgroundPositionY;
+		
+		var totalWidth = parseInt(rect.style.width);
+		var totalHeight = parseInt(rect.style.height);
+		
+		if (x.toLowerCase() == 'left') 	var offsetX = '0';
+		else if (x.toLowerCase() == 'right') var offsetX = totalWidth - dimensions.width;
+		else if (x.toLowerCase() == 'center') var offsetX = (totalWidth / 2) - (dimensions.width / 2);   
+		else offsetX = parseInt(x); 
+		
+		if (y.toLowerCase() == 'top') 	var offsetY = '0';
+		else if (y.toLowerCase() == 'bottom') var offsetY = totalHeight - dimensions.height;
+		else if (y.toLowerCase() == 'center') var offsetY = (totalHeight / 2) - (dimensions.height / 2);   
+		else offsetY = parseInt(y); 
+			
+				
+		
+		
+		//May need some tweaking! Please report any bugs
+		//May have slightly off positioning if the background is being stretched
+		//element.style['background-size'] = '100px 100px';
+		if (element.currentStyle['background-size']) {
+			var parts = element.currentStyle['background-size'].split(' ');
+			var sizeH = parseInt(parts[1]) / totalHeight;
+			var sizeW = parseInt(parts[0]) / totalWidth;
+			fill.origin = '0,0';
+			fill.aspect = 'ignore';
+			offsetX -= ((totalWidth / 2) - (parseInt(parts[0])/2));
+			offsetY -= ((totalHeight / 2) - (parseInt(parts[1])/2));
+		}
+		else {
+			var sizeH = (dimensions.height) / (parseInt(rect.style.height));
+			var sizeW = (dimensions.width)/ (parseInt(rect.style.width));
+			fill.origin = '1,0';			
+		}
+		fill.size = sizeW + ',' + sizeH;
+		
+		
+		var posX = (offsetX + (strokeWeight*1.5)) / totalWidth;
+		var posY = (offsetY + (strokeWeight/2.5)) / totalHeight;	
+		fill.position = posX + ',' + posY;
+		if (this.element.originals.backgroundRepeat == 'no-repeat') {
+			fill.type = 'frame';
+			if (!element.style['background-size']) fill.aspect = 'atmost';
+			
+			//add another fill for background color:
+			var bg = new SolidBackground(element);
+			bg.vml.style.zIndex = this.vml.style.zIndex -1;
+			element.effects.push(bg);
+		}
+		else fill.type = 'tile';
+	}
+	
+	
+	isIE6 = /msie|MSIE 6/.test(navigator.userAgent);
+	// IE6 doesn't support transparent borders, use padding to offset original element
+	if (isIE6 && (strokeWeight > 0)) {
+		this.element.style.border = '0';
+		this.element.style.paddingTop = parseInt(this.element.currentStyle.paddingTop || 0) + strokeWeight;
+		this.element.style.paddingLeft = parseInt(this.element.currentStyle.paddingLeft || 0) + strokeWeight;
+		//this.element.style.paddingBottom = parseInt(this.element.currentStyle.paddingBottom || 0) + strokeWeight;
+		//rect.style.border = '2px solid red';
+	}
+	
+	
+	if (fillColor !== 'transparent' || element.currentStyle['-css3-background'] || fill.src != 'none') rect.appendChild(fill);
+	else rect.filled = false;
+}
+
+
+BoxShadow.prototype = CSS3_Effect.prototype;
+function BoxShadow(element) {
+	var style = element.currentStyle['-moz-box-shadow'] || element.currentStyle['-webkit-box-shadow'] || element.currentStyle['box-shadow'] || '';
+	
+	//Because of the way the shadow is progressivley filtered, it blurs some corners more than others and looks strange when used with border-radius
+	//To compensate for this, reduce the radius of the affected corners. These numbers may need tweaking and may cause oddities on large radiuses
+	this.radiusFactor = new Array(1.2, 1.3, 1.1, 1.2);
+ 
+	if (style == '') {
+		this.remove = function () {}
+		return;
+	} 
+	CSS3_Effect.call(this, element);
+	
+	
+	var parts = style.split(',')[0].split(' ');
+	if (parts.length == 1) { return(false); }
+
+	
+	var shadow = {
+		x: parseInt(parts[0] || 0),
+		y: parseInt(parts[1] || 0),
+		radius: parseInt(parts[2] || 0),
+		color: parts[3]
+	};		
+
+
+	if (shadow.radius < 4) shadow.radius = 4;
+	
+	var shad  = this.vml;
+	shad.fillcolor = shadow.color;
+	shad.filled = true;
+	shad.stroked = false;	
+	shad.strokeWeight = 0 +'px';
+	shad.strokecolor = shadow.color;	
+	
+	shad.style.filter = 'progid:DXImageTransform.Microsoft.MotionBlur(Strength=' + shadow.radius + ', Direction=0, Add=\'false\')' +
+	 ' progid:DXImageTransform.Microsoft.MotionBlur(Strength=' + shadow.radius + ', Direction=90, Add=\'false\')' +
+	 ' progid:DXImageTransform.Microsoft.MotionBlur(Strength=' + shadow.radius + ', Direction=180, Add=\'false\')' +
+	 ' progid:DXImageTransform.Microsoft.MotionBlur(Strength=' + shadow.radius + ', Direction=270, Add=\'false\')';
+	 
+	shad.style.marginLeft = 2 + parseInt(shadow.x) - (shadow.radius) + 'px';
+	shad.style.marginTop = 2 + parseInt(shadow.y) - (shadow.radius) + 'px';
+
+	shad.antialias = true;
+	shad.strokeOpacity = 0;	
+
+}
+	
+
+
+
+
+
+
+function getarcs(elem) {
+    var corners = {topRight: 0, bottomRight: 0, bottomLeft: 0, topLeft: 0}
+    
+    var arcSize = elem.currentStyle['-moz-border-radius'] || elem.currentStyle['-webkit-border-radius'] ||  elem.currentStyle['border-radius'] || elem.currentStyle['-khtml-border-radius'];
+                           
+                           
+    if (arcSize) {
+    	if (arcSize.toString().split(' ').length > 2) {
+    		var parts = arcSize.split(' ');
+    		corners = {topRight: parseInt(parts[1]), bottomRight: parseInt(parts[2]), bottomLeft: parseInt(parts[3]), topLeft: parseInt(parts[0])};
+    	}
+        else corners = {topRight: parseInt(arcSize), bottomRight: parseInt(arcSize), bottomLeft: parseInt(arcSize), topLeft: parseInt(arcSize)}
+    }
+
+    var topRightArc = parseInt(elem.currentStyle['-moz-border-radius-topright'] || elem.currentStyle['-webkit-border-top-right-radius'] || elem.currentStyle['border-top-right-radius'] || elem.currentStyle['-khtml-border-top-right-radius']);
+
+    if (!isNaN(topRightArc)) corners.topRight = parseInt(topRightArc);
+
+    var bottomRightArc = parseInt(elem.currentStyle['-moz-border-radius-bottomright'] || elem.currentStyle['-webkit-border-bottom-right-radius'] || elem.currentStyle['border-bottom-right-radius'] || elem.currentStyle['-khtml-border-bottom-right-radius']);
+    if (!isNaN(bottomRightArc)) corners.bottomRight = parseInt(bottomRightArc);
+
+
+    var bottomLeftArc = parseInt(elem.currentStyle['-moz-border-radius-bottomleft'] || elem.currentStyle['-webkit-border-bottom-left-radius'] || elem.currentStyle['border-bottom-left-radius'] || elem.currentStyle['-khtml-border-bottom-left-radius']);
+    if (!isNaN(bottomLeftArc)) corners.bottomLeft = parseInt(bottomLeftArc);
+
+    var topLeftArc = parseInt(elem.currentStyle['-moz-border-radius-topleft'] || elem.currentStyle['-webkit-border-top-left-radius'] || elem.currentStyle['border-top-left-radius'] || elem.currentStyle['-khtml-border-top-left-radius']);
+    if (!isNaN(topLeftArc))  corners.topLeft = parseInt(topLeftArc);
+ 
+    return corners;
+}
+
+function getImageDimensions(url) {
+	var image = new Image();
+	image.src = url;
+	image.style.position = 'absolute';
+	image.style.top = '0';
+	image.style.left = '0';
+	window.document.body.appendChild(image);
+	var returnval = {width: image.offsetWidth, height: image.offsetHeight};
+	window.document.body.removeChild(image);
+	return returnval;
+}
+</script>
+

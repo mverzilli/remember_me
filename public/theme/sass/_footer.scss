@@ -1,0 +1,109 @@
+@mixin footer-pager {
+  width: 16px;
+  height: 29px;
+  position: relative;
+  top: -53px;
+  padding-left: 0px !important;
+  @include button-states(29px);
+}
+
+.footer-next {
+  background-image: url(../images/footer/next.png);
+  float: right;
+  @include footer-pager;
+}
+
+.footer-prev {
+  background-image: url(../images/footer/previous.png);
+  float: left;
+  @include footer-pager;
+}
+
+.jcarousel-clip, .jcarousel-container {
+  height: 79px;
+  overflow: hidden;
+}
+
+.jcarousel-container, .jcarousel-clip {
+  width: 620px;
+}
+
+.jcarousel-container {
+  background-image: url(../images/footer/container.png);
+}
+
+.jcarousel-item {
+  width: 56px;
+  margin:3px;
+  text-align: center;
+}
+
+.jcarousel-item a {
+  height: 76px;
+	width: 56px;
+  display: block;
+  outline: 0;
+  text-decoration: none;
+  @include button-states(90px);
+}
+
+.tool-name {
+	display: none;
+}
+
+.jcarousel-item.selected a, .jcarousel-item.selected a:hover {
+	background-position: 0px -180px;
+  cursor: default;
+}
+
+#geochat a {
+  background-image: url(../images/footer/buttons/geoChat.png);
+}
+
+#riff a {
+  background-image: url(../images/footer/buttons/riff.png);
+}
+
+#taskMeUp a {
+  background-image: url(../images/footer/buttons/taskMeUp.png);
+}
+
+#resourceMap a {
+  background-image: url(../images/footer/buttons/resourceMap.png);
+}
+
+#nuntium a {
+  background-image: url(../images/footer/buttons/nuntium.png);
+}
+
+#nuntiumLocalGateway a {
+  background-image: url(../images/footer/buttons/nuntiumLocalGateway.png);
+}
+
+#seentags a {
+  background-image: url(../images/footer/buttons/seentags.png);
+}
+
+#mesh4X a {
+  background-image: url(../images/footer/buttons/mesh4x.png);
+}
+
+#reportingWheel a {
+  background-image: url(../images/footer/buttons/reportingWheel.png);
+}
+
+#verboice a {
+  background-image: url(../images/footer/buttons/verboice.png);
+}
+
+#geochatPolls a {
+  background-image: url(../images/footer/buttons/geoChatPolls.png);
+}
+
+#veegilo a {
+  background-image: url(../images/footer/buttons/veegilo.png);
+}
+
+#remindem a {
+  background-image: url(../images/footer/buttons/remindem.png);
+}

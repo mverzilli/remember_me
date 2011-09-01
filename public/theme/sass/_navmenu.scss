@@ -1,0 +1,21 @@
+/* -------------- Main Top menu ------------------- */
+#NavMenu { 
+  position:absolute; width:100%; text-align:center;
+   
+  ul { 
+    background:#FFF; 
+    font-size:12px; 
+    display:inline-block; 
+    margin:0; padding:0; 
+    height:31px; 
+    border-bottom:1px solid #FFF;
+  }
+  
+  ul li { list-style:none; display:inline-block; vertical-align:middle; background: url(../images/interface/backbody.png) repeat-x top; height:31px; line-height:28px; padding:0 10px; margin:0 0 0 -3px; border-bottom:1px solid #b6bac0; border-right:1px solid #b6bac0; }
+  ul li:hover { background:#FFFFFF; }
+  ul li:last-child:hover, li:first-child:hover { background: url(../images/interface/backbody.png) repeat-x top; color:#ff6600; }  
+  ul li.active { background:none; color:#ff6600; border-bottom:1px solid #FFFFFF; border-right:none; }  
+  ul li.before { border-radius:0px 0px 8px 0px; -moz-border-radius:0px 0px 8px 0px; -webkit-border-radius:0px 0px 8px 0px; border-right:1px solid #b6bac0; }  
+  ul li.after { border-radius:0px 0px 0px 8px; -moz-border-radius:0px 0px 0px 8px; -webkit-border-radius:0px 0px 0px 8px; border-left:1px solid #b6bac0; }  
+  ul li:last-child { border-right:none; }
+}

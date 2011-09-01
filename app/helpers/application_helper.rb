@@ -28,21 +28,11 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", options)
   end
-end
-
-def styled_button_to(name, *args, &block)
-  html_options = args.extract_options!.symbolize_keys
-
-  function = block_given? ? update_page(&block) : args[0] || ''
-  onclick = "#{"#{html_options[:onclick]}; " if html_options[:onclick]}#{function}; return false;"
-
-  content_tag(:button, name, html_options.merge(:type => 'button', :class => "white", :onclick => onclick)) do
-    (content_tag :span) + name
-  end
-end
-
-def styled_submit(name, *args)
-  content_tag(:button, :type => 'submit', :class => "white") do
-    (content_tag :span)+ name
+  
+  def link_button_to(body, url, html_options = {})
+    default_options = { :type => 'button', :class => 'white' }
+    onclick = "window.location='#{url}';return false;"
+    
+    content_tag(:button, body, default_options.merge(html_options.merge(:onclick => onclick)))
   end
 end

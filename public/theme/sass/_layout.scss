@@ -1,0 +1,110 @@
+
+html {
+  height: 100%;
+}
+
+body {
+  background: #FFFFFF url(../images/interface/backbody.png) repeat-x top;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+/* for centering */
+#toolbar, #header, #container, #footer-container {
+  @include pagesize;
+}
+
+#header {
+  height: 80px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: url(../images/footer/shadow.png);
+  background-repeat: no-repeat;
+  background-position: center bottom;  
+}
+
+#header .BreadCrumb { margin:18px 0 0 0; width:620px; float:right }
+
+#toolbar {
+  height: 30px;
+  background:none; 
+  position:relative;
+}
+
+#footer-span {
+  height: 200px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0px;
+  border-top: 1px solid #cccccc;
+  width: 100%;
+  @include gray-degrade;
+  color: $darkgray;
+  font-size: 12px;
+  a {
+    color: $darkgray;
+    text-decoration: none;
+    &:hover {
+      color: $darkgray_hover;
+    }
+  }
+}
+
+#footer-container {
+  background: url(../images/footer/shadow.png);
+  background-repeat:no-repeat;
+  background-position:center 5px;
+  height: 148px;
+  padding-top: 26px;
+  padding-bottom: 13px;
+  & > div:nth-child(1) {
+    border-bottom: 1px solid #d0d0d0;
+  }
+  & > div:nth-child(2) {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+    text-shadow: 0px 1px 0px #fff;
+    a:not(:first-child) { padding-left: 11px; }
+  }
+  .platform {
+    background: url(../images/footer/InSTEDDPlatform.png);
+    background-repeat: no-repeat;
+    width: 290px;
+    height: 89px;
+    padding-top: 28px;
+    a { color: $orange; }
+    a:hover { color: $orange_hover; }
+  }
+  .more {
+    float: right;
+    margin: 7px 0px;
+  }
+}
+
+body.smallfooter #footer-span {
+  height: 52px;
+}
+
+body.smallfooter #footer-container {
+  height: 52px;
+  padding:0px;
+  & > div:nth-child(1) {
+    display: none;
+  }
+  & > div:nth-child(2) {
+    padding-top: 20px;
+  }
+}
+
+@import "footer";
+@import "pulldown";
+@import "navmenu";
+@import "usermenu";
