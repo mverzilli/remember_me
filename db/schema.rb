@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823190602) do
+ActiveRecord::Schema.define(:version => 20110905202511) do
 
   create_table "channels", :force => true do |t|
     t.integer  "user_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20110823190602) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "schedule_id"
+    t.text     "occurrence_rule"
   end
 
   add_index "messages", ["schedule_id"], :name => "fk_messages_schedules"

@@ -1,17 +1,30 @@
 require 'test_helper'
 
 class ScheduleTest < ActiveSupport::TestCase
-  
-  test "validate presence of required fields" do
+
+  test "validate presence of required fields in schedule" do
     schedule = Schedule.new
     schedule.save
     
     assert schedule.invalid?
     assert !schedule.errors[:keyword].blank?
-    assert !schedule.errors[:timescale].blank?
     assert !schedule.errors[:user_id].blank?
     assert !schedule.errors[:welcome_message].blank?
     assert !schedule.errors[:type].blank?    
+  end
+  
+  [FixedSchedule, RandomSchedule].each do |klass|
+    test "validate presence of required fields in #{klass}" do
+      schedule = klass.new
+      schedule.save
+    
+      assert schedule.invalid?
+      assert !schedule.errors[:keyword].blank?
+      assert !schedule.errors[:timescale].blank?
+      assert !schedule.errors[:user_id].blank?
+      assert !schedule.errors[:welcome_message].blank?
+      assert !schedule.errors[:type].blank?    
+    end
   end
   
   test "validate uniqueness of keyword" do
@@ -27,7 +40,7 @@ class ScheduleTest < ActiveSupport::TestCase
     randweeks = randweeks_make
     subscriber = Subscriber.make :schedule => randweeks
     
-    randweeks.generate_reminders :for => subscriber
+    randweeks.generate_reminders_for subscriber
 
     messages = randweeks.messages
     sent_at = (1..5).map { |i| subscriber.subscribed_at + i.send(randweeks.timescale.to_sym) }
@@ -46,7 +59,7 @@ class ScheduleTest < ActiveSupport::TestCase
     pregnant = pregnant_make
     subscriber = Subscriber.make :schedule => pregnant
 
-    pregnant.generate_reminders :for => subscriber
+    pregnant.generate_reminders_for subscriber
 
     messages = pregnant.messages
 

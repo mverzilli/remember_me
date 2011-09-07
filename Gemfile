@@ -14,9 +14,10 @@ gem 'nuntium_api', '>=0.12'
 gem "jquery-rails"
 
 gem 'mocha'
-gem 'ParseTree'
+#gem 'ParseTree'
 gem 'ffaker'
 gem 'machinist'
+gem "ice_cube", "~> 0.6.13"
 
 # Use unicorn as the web server
 # gem 'unicorn'
