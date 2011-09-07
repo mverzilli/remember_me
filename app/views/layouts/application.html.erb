@@ -10,6 +10,7 @@
   <%= yield(:head) %>
 </head>
 <body>
+  <%= flash_message %>
   <div id="wrapper">
     <div id="toolbar">
       <ul id="instedd-pulldown"></ul>
@@ -51,9 +52,6 @@
     </div>
     
     <div id="container">
-
-    	<p class="notice"><%= notice %></p>
-    	<p class="alert"><%= alert %></p>
 
     	<%= yield %>
 

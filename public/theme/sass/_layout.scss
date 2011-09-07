@@ -23,7 +23,7 @@ body {
 #header {
   height: 80px;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   background: url(../images/footer/shadow.png);
   background-repeat: no-repeat;
   background-position: center bottom;  
@@ -108,3 +108,4 @@ body.smallfooter #footer-container {
 @import "pulldown";
 @import "navmenu";
 @import "usermenu";
+@import "flash_alerts";
