@@ -1,5 +1,5 @@
 class Schedule < ActiveRecord::Base
-  validates_presence_of :keyword, :timescale, :user_id, :welcome_message, :type
+  validates_presence_of :keyword, :user_id, :welcome_message, :type
   validates_uniqueness_of :keyword
   
   belongs_to :user
@@ -15,8 +15,7 @@ class Schedule < ActiveRecord::Base
   
   attr_accessor_with_default :notifySubscribers, true
   
-  def generate_reminders options
-    recipient = options[:for]
+  def generate_reminders_for recipient
     messages = self.reminders
     
     messages.each_with_index do |message, index|
@@ -28,14 +27,23 @@ class Schedule < ActiveRecord::Base
     ['hours', 'days', 'weeks', 'months', 'years']
   end
   
-  def build_message(to, body)
-    self.user = User.find(1)
-    self.user.build_message(to, body)
+  def build_message to, body 
+    self.user.build_message to, body 
   end
 
-  def send_message(to, body)
-    nuntium = Nuntium.new_from_config()
-    message = self.build_message(to, body)
+  def send_if_should message, options = {}
+    if can_send_messages?
+      send_message options[:to].phone_number, message.text
+    end
+  end
+
+  def can_send_messages?
+    !paused? #and it's not 3am?
+  end
+
+  def send_message to, body 
+    nuntium = Nuntium.new_from_config
+    message = self.build_message to, body
     nuntium.send_ao message
   end
   
@@ -43,7 +51,7 @@ class Schedule < ActiveRecord::Base
   
   def initialize_messages
     messages.each { |m| m.schedule = self }
-  end  
+  end 
 
   def notify_deletion_to_subscribers
     if notifySubscribers

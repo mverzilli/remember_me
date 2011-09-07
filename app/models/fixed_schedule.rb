@@ -1,4 +1,6 @@
 class FixedSchedule < Schedule
+  validates_presence_of :timescale
+  
   def sort_messages
     messages.sort_by!(&:offset)
   end
@@ -6,8 +8,7 @@ class FixedSchedule < Schedule
   protected
   
   def reminders
-    res = self.messages.all
-    res
+    self.messages.all
   end
   
   def enqueue_reminder message, index, recipient

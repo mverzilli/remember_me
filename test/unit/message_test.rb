@@ -21,7 +21,7 @@ class MessageTest < ActiveSupport::TestCase
     
     #edit message text
     aSubscriber = pregnant.subscribers.find(:first)
-    pregnant.generate_reminders :for => aSubscriber
+    pregnant.generate_reminders_for aSubscriber
     
     #grab the first message and edit it
     firstMessageID = pregnant.messages.find(:first).id
@@ -40,8 +40,8 @@ class MessageTest < ActiveSupport::TestCase
     
     aSubscriber = pregnant.subscribers.find_by_offset(0)
     bSubscriber = pregnant.subscribers.find_by_offset(2)
-    pregnant.generate_reminders :for => aSubscriber
-    pregnant.generate_reminders :for => bSubscriber
+    pregnant.generate_reminders_for aSubscriber
+    pregnant.generate_reminders_for bSubscriber
     
     #delete message with given id
     firstMessageID = pregnant.messages.find(:first).id
@@ -60,8 +60,8 @@ class MessageTest < ActiveSupport::TestCase
     
     aSubscriber = pregnant.subscribers.find_by_offset(0)
     bSubscriber = pregnant.subscribers.find_by_offset(2)
-    pregnant.generate_reminders :for => aSubscriber
-    pregnant.generate_reminders :for => bSubscriber
+    pregnant.generate_reminders_for aSubscriber
+    pregnant.generate_reminders_for bSubscriber
     
     #grab a message
     message = pregnant.messages.first
@@ -82,8 +82,8 @@ class MessageTest < ActiveSupport::TestCase
     
     aSubscriber = pregnant.subscribers.find_by_offset(0)
     bSubscriber = pregnant.subscribers.find_by_offset(2)
-    pregnant.generate_reminders :for => aSubscriber
-    pregnant.generate_reminders :for => bSubscriber
+    pregnant.generate_reminders_for aSubscriber
+    pregnant.generate_reminders_for bSubscriber
     
     #grab a message
     message = pregnant.messages.first

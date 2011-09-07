@@ -18,13 +18,17 @@ Schedule.blueprint do
   paused { false }
   keyword
   welcome_message { Faker::Lorem.sentence }
-  timescale { Schedule.time_scales[rand(Schedule.time_scales.count)] }
 end
 
 FixedSchedule.blueprint do
+  timescale { Schedule.time_scales[rand(Schedule.time_scales.count)] }
 end
 
 RandomSchedule.blueprint do
+  timescale { Schedule.time_scales[rand(Schedule.time_scales.count)] }
+end
+
+CalendarBasedSchedule.blueprint do
 end
 
 Subscriber.blueprint do
