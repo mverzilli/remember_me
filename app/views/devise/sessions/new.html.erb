@@ -1,12 +1,14 @@
-<h2>Log In</h2>
-
+<div class="box centered w30">
+  
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="field">
+  <h2>Log In</h2>
+  
+  <div class="field w30">
     <%= f.label :email %>
     <%= f.email_field :email %>
   </div>
 
-  <div class="field">
+  <div class="field w30">
     <%= f.label :password %>
     <%= f.password_field :password %>
   </div>
@@ -18,8 +20,10 @@
   <% end -%>
 
   <div class="actions">
-    <button type="submit" class="orange">Log In</button>
+    <button type="submit" class="white">Log In</button>
   </div>
+  
+  <%= render :partial => "devise/shared/links" %>
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+</div>

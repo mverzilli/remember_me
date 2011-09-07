@@ -33,7 +33,7 @@ p a {
   margin: 1px;
   &:focus { border:2px solid #dddddd; margin: 0px; }
   &.readonly, &.readonly:focus { background: $disabled_bgtext; color: $disabled_text; border-width:1px; margin: 1px; }
-  &.error { border:2px solid #ff6600; margin: 0px; }
+  &.error, .field_with_errors & { border:2px solid #ff6600; margin: 0px; }
 }
 
 input.ux-text {  height:22px; width:inherit; @include texboxes_border; }
@@ -459,7 +459,7 @@ a .menu-mid.wsub {
 /* ----- Widths ----- */
 @mixin width-class($size) {
   width: $size !important;
-  & > .ux-text, &.ux-text { width: $size - 6px !important; } 
+  & > .ux-text, &.ux-text, & > .field_with_errors > .ux-text { width: $size - 6px !important; } 
   & > .ux-dropdown .select, &.ux-dropdown .select { width: $size - 7px !important; }
   & > .ux-datepicker, &.ux-datepicker { width: $size - 4px - $ux_text_image_width !important; }
   & > .ux-search, &.ux-search { width: $size - 4px - $ux_text_image_width !important; }
@@ -582,8 +582,30 @@ label.error {
 
 .box.grey, .sbox.grey { background:#d0d0d0; color:#555555 }
 
+.box + .box { margin-top: 7px; }
+
 hr.shadow { background: #e5e6ec; background: -moz-linear-gradient(top, #e5e6ec 0%, #ffffff 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5e6ec), color-stop(100%, #ffffff));
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5e6ec', endColorstr='#ffffff',GradientType=0 ); height:15px; margin:3px 0 3px -10px; z-index:0; }
+
+.error_description {
+  background: url(../images/icons/medium/orange/alert.png) no-repeat 8px 8px;
+  color: $orange;
+  h2 { 
+    color: $orange; 
+    font-size: 18px; 
+    margin-bottom: 2px;
+  }
+  > * { margin-left: 35px; }
+  ul { 
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    list-style-image:url(../images/icons/misc/orange/arrowRight.png);
+    list-style-position:inside;
+  }
+}
 
 /* ---------------------- Tables --------------------------*/
 

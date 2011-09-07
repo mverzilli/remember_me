@@ -105,7 +105,7 @@ input.ux-text.readonly, input.ux-text.readonly:focus {
   margin: 1px;
 }
 /* line 36, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-input.ux-text.error {
+input.ux-text.error, .field_with_errors input.ux-text {
   border: 2px solid #ff6600;
   margin: 0px;
 }
@@ -198,7 +198,7 @@ textarea.ux-text.readonly, textarea.ux-text.readonly:focus {
   margin: 1px;
 }
 /* line 36, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-textarea.ux-text.error {
+textarea.ux-text.error, .field_with_errors textarea.ux-text {
   border: 2px solid #ff6600;
   margin: 0px;
 }
@@ -2459,7 +2459,7 @@ a .menu-mid.wsub {
   width: 60px !important;
 }
 /* line 462, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.w06 > .ux-text, .w06.ux-text {
+.w06 > .ux-text, .w06.ux-text, .w06 > .field_with_errors > .ux-text {
   width: 54px !important;
 }
 /* line 463, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
@@ -2484,7 +2484,7 @@ a .menu-mid.wsub {
   width: 150px !important;
 }
 /* line 462, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.w15 > .ux-text, .w15.ux-text {
+.w15 > .ux-text, .w15.ux-text, .w15 > .field_with_errors > .ux-text {
   width: 144px !important;
 }
 /* line 463, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
@@ -2509,7 +2509,7 @@ a .menu-mid.wsub {
   width: 200px !important;
 }
 /* line 462, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.w20 > .ux-text, .w20.ux-text {
+.w20 > .ux-text, .w20.ux-text, .w20 > .field_with_errors > .ux-text {
   width: 194px !important;
 }
 /* line 463, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
@@ -2534,7 +2534,7 @@ a .menu-mid.wsub {
   width: 300px !important;
 }
 /* line 462, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.w30 > .ux-text, .w30.ux-text {
+.w30 > .ux-text, .w30.ux-text, .w30 > .field_with_errors > .ux-text {
   width: 294px !important;
 }
 /* line 463, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
@@ -2559,7 +2559,7 @@ a .menu-mid.wsub {
   width: 400px !important;
 }
 /* line 462, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.w40 > .ux-text, .w40.ux-text {
+.w40 > .ux-text, .w40.ux-text, .w40 > .field_with_errors > .ux-text {
   width: 394px !important;
 }
 /* line 463, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
@@ -2584,7 +2584,7 @@ a .menu-mid.wsub {
   width: 500px !important;
 }
 /* line 462, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.w50 > .ux-text, .w50.ux-text {
+.w50 > .ux-text, .w50.ux-text, .w50 > .field_with_errors > .ux-text {
   width: 494px !important;
 }
 /* line 463, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
@@ -2609,7 +2609,7 @@ a .menu-mid.wsub {
   width: 540px !important;
 }
 /* line 462, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.w54 > .ux-text, .w54.ux-text {
+.w54 > .ux-text, .w54.ux-text, .w54 > .field_with_errors > .ux-text {
   width: 534px !important;
 }
 /* line 463, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
@@ -2634,7 +2634,7 @@ a .menu-mid.wsub {
   width: 550px !important;
 }
 /* line 462, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.w55 > .ux-text, .w55.ux-text {
+.w55 > .ux-text, .w55.ux-text, .w55 > .field_with_errors > .ux-text {
   width: 544px !important;
 }
 /* line 463, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
@@ -2659,7 +2659,7 @@ a .menu-mid.wsub {
   width: 600px !important;
 }
 /* line 462, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.w60 > .ux-text, .w60.ux-text {
+.w60 > .ux-text, .w60.ux-text, .w60 > .field_with_errors > .ux-text {
   width: 594px !important;
 }
 /* line 463, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
@@ -2738,7 +2738,7 @@ label.error {
   margin: 1px;
 }
 /* line 36, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.superblyTagfieldDiv.error {
+.superblyTagfieldDiv.error, .field_with_errors .superblyTagfieldDiv {
   border: 2px solid #ff6600;
   margin: 0px;
 }
@@ -2898,6 +2898,11 @@ label.error {
 }
 
 /* line 585, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.box + .box {
+  margin-top: 7px;
+}
+
+/* line 587, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 hr.shadow {
   background: #e5e6ec;
   background: -moz-linear-gradient(top, #e5e6ec 0%, white 100%);
@@ -2908,9 +2913,35 @@ hr.shadow {
   z-index: 0;
 }
 
+/* line 590, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.error_description {
+  background: url(../images/icons/medium/orange/alert.png) no-repeat 8px 8px;
+  color: #ff6600;
+}
+/* line 593, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.error_description h2 {
+  color: #ff6600;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+/* line 598, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.error_description > * {
+  margin-left: 35px;
+}
+/* line 599, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.error_description ul {
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  list-style-image: url(../images/icons/misc/orange/arrowRight.png);
+  list-style-position: inside;
+}
+
 /* ---------------------- Tables --------------------------*/
 /* -------- General ---------*/
-/* line 591, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 613, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable {
   border: 1px solid #e7e9ee;
   margin-top: 10px;
@@ -2920,7 +2951,7 @@ hr.shadow {
   border-radius: 6px 6px 6px 6px;
 }
 
-/* line 600, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 622, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable th {
   /* old browsers */
   background: #e5e6ec;
@@ -2937,24 +2968,24 @@ hr.shadow {
   border-bottom: 1px solid #e7e9ee;
 }
 
-/* line 615, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 637, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable th:first-child {
   border-left: none;
 }
 
-/* line 616, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 638, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable th:last-child {
   border-right: none;
 }
 
-/* line 617, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 639, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable th span {
   display: block;
   margin-right: 5px;
   float: right;
 }
 
-/* line 618, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 640, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable tr:nth-child(2) {
   background-color: #ffffff;
   /* firefox */
@@ -2966,12 +2997,12 @@ hr.shadow {
   color: #a7aab7;
 }
 
-/* line 628, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 650, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable tr:nth-child(2) td {
   padding: 15px 0 6px 10px;
 }
 
-/* line 632, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 654, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable td {
   letter-spacing: -0.005em;
   color: #5c658e;
@@ -2980,19 +3011,19 @@ hr.shadow {
 }
 
 /* -------- Clean ---------*/
-/* line 640, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 662, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .CleanTable th {
   background: #ffffff;
   border: none;
 }
 
-/* line 644, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 666, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .CleanTable td {
   border: none;
 }
 
 /* -------- Two column table  ---------*/
-/* line 650, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 672, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TwoColumn tr td:nth-child(2) {
   width: 100px;
   padding-right: 8px;
@@ -4155,6 +4186,6 @@ body.smallfooter #footer-container > div:nth-child(2) {
 #User .band {
   width: 40px;
   background-color: white;
-  margin: -15px auto 9px auto;
-  height: 6px;
+  margin: -11px auto 9px auto;
+  height: 2px;
 }
