@@ -1,16 +1,22 @@
-(function($){	
+(function($){
 	$(function(){
 		// initialize built-in components.
 		if ($.fn.datepicker) {
-			$(".ux-datepicker").datepicker();
+			$(".ux-datepicker")
+				.click(function(){ $(this).datepicker("show"); })
+				.datepicker();
 		}
+				
 		$("input[type='text']").addClass("ux-text");
+		$("input[type='password']").addClass("ux-text");
 		$("textarea").addClass("ux-text");
 		$("input[readonly='readonly'], textarea[readonly='readonly']").addClass("readonly");
 		$(".ux-dropdown select").addClass("styled");
 		$("input[type='radio']").addClass("styled");
 		$("input[type='checkbox']").addClass("styled");
 		$("button[disabled]").addClass("disabled");
+		
+		$(".ux-wajbar").wajbar();
 		
 		$(".ux-nstep").each(function(){
 			var nstep = $(this);
@@ -31,13 +37,15 @@
 		// position user menu
 		$('#User').mouseenter(function(){
 			var container = $('.container', $(this));
-			container.css('margin-left', -container.width()/2 + $(this).width()/2);
+			container.prepend($("<div>").addClass("band"));
+			container.css('margin-left', -container.width()/2 + $(this).width()/2 - 2);
+			$('.band', container).width($(this).width() + 20); // hack padding of #User
 		});
 		
 		// add in the pre-last li of the BreadCrumb a span
 		var bc_items = $('.BreadCrumb li');
 		if (bc_items.length >= 2) {
-			$(bc_items[bc_items.length - 2]).append("<span>");
+			$(bc_items[bc_items.length - 2]).append($("<span>"));
 		}
 		//
 		

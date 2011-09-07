@@ -31,28 +31,52 @@ var cfePositions = {
 	'checkbox': {
 		'on': '-20px 0px',
 		'on_hover': '-20px -20px',
-		'on_active': '0px -40px',
+		'on_active': '-20px -40px',
+		'on_disabled': '-20px -60px',
 		'off': '0px 0px',
 		'off_hover': '0px -20px',
-		'off_active': '-20px -40px'
+		'off_active': '0px -40px',
+		'off_disabled': '0px -60px'
 	},
 	'radio': {
 		'on': '-20px 0px',
 		'on_hover': '-20px -20px',
-		'on_active': '0px -40px',
+		'on_active': '-20px -40px',
+		'on_disabled': '-20px -60px',
 		'off': '0px 0px',
 		'off_hover': '0px -20px',
-		'off_active': '-20px -40px'
+		'off_active': '0px -40px',
+		'off_disabled': '0px -60px'
 	}
 };
 
 /* No need to change anything after this */
 
 
-document.write('<style type="text/css">input.styled { display: none; } select.styled { position: relative; ' + /*width: ' + selectWidth + 'px;*/ 'opacity: 0; filter: alpha(opacity=0); z-index: 5; } .disabled { opacity: 0.5; filter: alpha(opacity=50); }</style>');
+document.write('<style type="text/css">input.styled { display: none; } select.styled { position: relative; ' + /*width: ' + selectWidth + 'px;*/ 'opacity: 0; filter: alpha(opacity=0); z-index: 5; }' + /*.disabled { opacity: 0.5; filter: alpha(opacity=50); }*/ '</style>');
 
 function hasStyledClass(domElem) {
 	return domElem.className.match(/\bstyled\b/)
+}
+
+function backgroundPosition(domInputElem, stateModifier) {
+	var _type = domInputElem.type;
+	var _state;
+	if (domInputElem.checked == true) {
+		_state = 'on';
+	} else {
+		_state = 'off';
+	}
+	
+	if (domInputElem.getAttribute('disabled')) {
+		stateModifier = 'disabled';
+	}
+	
+	if (stateModifier) {
+		_state += '_' + stateModifier;
+	}
+	
+	return cfePositions[_type][_state];
 }
 
 var Custom = {
@@ -63,11 +87,8 @@ var Custom = {
 				span[a] = document.createElement("span");
 				span[a].className = inputs[a].type;
 
-				if(inputs[a].checked == true) {
-					span[a].style.backgroundPosition = cfePositions[inputs[a].type]['on'];
-				} else {
-					span[a].style.backgroundPosition = cfePositions[inputs[a].type]['off'];
-				}
+				span[a].style.backgroundPosition = backgroundPosition(inputs[a]);
+
 				inputs[a].parentNode.insertBefore(span[a], inputs[a]);
 				inputs[a].onchange = Custom.clear;
 				if(!inputs[a].getAttribute("disabled")) {
@@ -75,21 +96,11 @@ var Custom = {
 					span[a].onmouseup = Custom.check;
 					jQuery(span[a]).hover(function(){
 						element = this.nextSibling;
-						if(element.checked == true) {
-							this.style.backgroundPosition = cfePositions[element.type]['on_hover'];
-						} else if(element.checked != true) {
-							this.style.backgroundPosition = cfePositions[element.type]['off_hover'];
-						}
+						this.style.backgroundPosition = backgroundPosition(element, 'hover');
 					}, function(){
 						element = this.nextSibling;
-						if(element.checked == true) {
-							this.style.backgroundPosition = cfePositions[element.type]['on'];
-						} else if(element.checked != true) {
-							this.style.backgroundPosition = cfePositions[element.type]['off'];
-						}
+						this.style.backgroundPosition = backgroundPosition(element);
 					});
-				} else {
-					span[a].className = span[a].className += " disabled";
 				}
 				
 				if (inputs[a].type == "checkbox") {
@@ -135,45 +146,35 @@ var Custom = {
 	},
 	pushed: function() {
 		element = this.nextSibling;
-		if(element.checked == true) {
-			this.style.backgroundPosition = cfePositions[element.type]['off_active'];
-		} else if(element.checked != true) {
-			this.style.backgroundPosition = cfePositions[element.type]['on_active'];
-		}
+		this.style.backgroundPosition = backgroundPosition(element, 'active');
 	},
 	check: function() {
 		element = this.nextSibling;
 		if(element.checked == true && element.type == "checkbox") {
-			this.style.backgroundPosition = cfePositions[element.type]['off'];
 			element.checked = false;
+			this.style.backgroundPosition = backgroundPosition(element);
 		} else {
+			element.checked = true;
 			if(element.type == "checkbox") {
-				this.style.backgroundPosition = cfePositions[element.type]['on'];
+				this.style.backgroundPosition = backgroundPosition(element);
 			} else {
-				this.style.backgroundPosition = cfePositions[element.type]['on'];
+				this.style.backgroundPosition = backgroundPosition(element);
 				group = this.nextSibling.name;
 				inputs = document.getElementsByTagName("input");
 				for(a = 0; a < inputs.length; a++) {
 					if(inputs[a].name == group && inputs[a] != this.nextSibling) {
-						inputs[a].previousSibling.style.backgroundPosition = cfePositions[element.type]['off'];
+						inputs[a].previousSibling.style.backgroundPosition = backgroundPosition(inputs[a]);
 					}
 				}
 			}
-			element.checked = true;
 			jQuery(element).change();
 		}
 	},
 	clear: function() {
 		inputs = document.getElementsByTagName("input");
 		for(var b = 0; b < inputs.length; b++) {
-			if(inputs[b].type == "checkbox" && inputs[b].checked == true && hasStyledClass(inputs[b])) {
-				inputs[b].previousSibling.style.backgroundPosition = cfePositions[inputs[b].type]['on'];
-			} else if(inputs[b].type == "checkbox" && hasStyledClass(inputs[b])) {
-				inputs[b].previousSibling.style.backgroundPosition = cfePositions[inputs[b].type]['off'];
-			} else if(inputs[b].type == "radio" && inputs[b].checked == true && hasStyledClass(inputs[b])) {
-				inputs[b].previousSibling.style.backgroundPosition = cfePositions[inputs[b].type]['on'];
-			} else if(inputs[b].type == "radio" && hasStyledClass(inputs[b])) {
-				inputs[b].previousSibling.style.backgroundPosition = cfePositions[inputs[b].type]['off'];
+			if (hasStyledClass(inputs[b])) {
+				inputs[b].previousSibling.style.backgroundPosition = backgroundPosition(inputs[b]);
 			}
 		}
 	},

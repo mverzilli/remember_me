@@ -28,17 +28,35 @@
  *
  * http://docs.jquery.com/UI/Datepicker#theming
  */
-.ui-datepicker { width: 17em; padding: 6px;-webkit-box-shadow:0px 1px 4px 1px rgba(0, 0, 0, 0.4); -moz-box-shadow:0px 1px 4px 1px rgba(0, 0, 0, 0.4); box-shadow:0px 1px 4px 1px rgba(0, 0, 0, 0.4); display:none }
+.ui-datepicker { width: 200px; height: 195px; padding: 6px;-webkit-box-shadow:0px 1px 4px 1px rgba(0, 0, 0, 0.4); -moz-box-shadow:0px 1px 4px 1px rgba(0, 0, 0, 0.4); box-shadow:0px 1px 4px 1px rgba(0, 0, 0, 0.4); display:none }
 .ui-datepicker-div {   }
 .ui-datepicker .ui-datepicker-header { position:relative; padding:.2em 0; }
 .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 2px; width: 1.8em; height: 1.8em; }
+/*
 .ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }
+*/
+
+.ui-datepicker .ui-datepicker-prev { 
+  background-image:url(../images/buttons/plain/previous.png); 
+  @include button-states(30px);
+  left:2px;
+}
+
+.ui-datepicker .ui-datepicker-next { 
+  background-image:url(../images/buttons/plain/next.png); 
+  @include button-states(30px);
+  right:2px;
+}
+
+/*
 .ui-datepicker .ui-datepicker-prev { background:url(../images/buttons/plain/previous.png) no-repeat center top; width:22px; height:22px; left:2px; }
 .ui-datepicker .ui-datepicker-next { background:url(../images/buttons/plain/next.png) no-repeat center top; width:22px; height:22px; right:2px; }
 .ui-datepicker .ui-datepicker-prev-hover { background:url(../images/buttons/plain/previous.png) no-repeat center -29px !important; cursor:pointer; left:2px; }
 .ui-datepicker .ui-datepicker-next-hover { background:url(../images/buttons/plain/next.png) no-repeat center -29px !important; cursor:pointer; right:2px; }
 .ui-datepicker .ui-datepicker-prev-hover:active { background:url(../images/buttons/plain/previous.png) no-repeat center -59px !important; cursor:pointer; left:2px; }
 .ui-datepicker .ui-datepicker-next-hover:active { background:url(../images/buttons/plain/next.png) no-repeat center -59px !important; cursor:pointer; right:2px; }
+*/
+
 .ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span { display: block; position: absolute; left: 50%; margin-left: -8px; top: 50%; margin-top: -8px;  }
 .ui-datepicker .ui-datepicker-title { margin: 0 2.3em; line-height: 1.8em; text-align: center; }
 .ui-datepicker .ui-datepicker-title select { font-size:1em; margin:1px 0; }
@@ -47,7 +65,7 @@
 .ui-datepicker select.ui-datepicker-year { width: 49%;}
 .ui-datepicker table { font-family:Arial, Helvetica, sans-serif; width: 96%; font-size: 14px; border-collapse: collapse; margin:0 0 .4em; }
 .ui-datepicker th { padding: .5em 2px .5em 0; text-align: right; font-weight: normal; color:#cccccc; border: 0  }
-.ui-datepicker td { border: 0; padding:0; text-align:right }
+.ui-datepicker td { border: 0; padding:1px; text-align:right }
 .ui-datepicker td span, .ui-datepicker td a { display: inline-block; text-align: right; text-decoration: none; padding:2px 2px 2px 0; width:20px; height:16px }
 .ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
 .ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
@@ -93,16 +111,18 @@
 /* Interaction states
 ----------------------------------*/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { background:#ffffff; font-weight: normal }
-.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #555555/*{fcDefault}*/; text-decoration: none; }
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { background: #cccccc; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: white/*{fcDefault}*/; text-decoration: none; }
+/*
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { background: $disabled_bgtext !important; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
+*/
 .ui-state-hover a, .ui-state-hover a:hover { color: #212121/*{fcHover}*/; text-decoration: none; }
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background: #ffffff/*{bgColorActive}*/ url(images/ui-bg_glass_65_ffffff_1x400.png)/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #212121/*{fcActive}*/; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background: $darkgray; font-weight: normal/*{fwDefault}*/; color: white;  -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #212121/*{fcActive}*/; text-decoration: none; }
 .ui-widget :active { outline: none; }
 
 /* Interaction Cues
 ----------------------------------*/
-.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  { background: #cccccc; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px }
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  { background: white; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; border: 1px solid $disabled_bgtext; }
 .ui-state-highlight a, .ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a { color: #363636/*{fcHighlight}*/; }
 .ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border: 1px solid #cd0a0a/*{borderColorError}*/; background: #fef1ec/*{bgColorError}*/ url(images/ui-bg_glass_95_fef1ec_1x400.png)/*{bgImgUrlError}*/ 50%/*{bgErrorXPos}*/ 50%/*{bgErrorYPos}*/ repeat-x/*{bgErrorRepeat}*/; color: #cd0a0a/*{fcError}*/; }
 .ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a { color: #cd0a0a/*{fcError}*/; }
