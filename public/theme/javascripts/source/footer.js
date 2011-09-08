@@ -2,17 +2,17 @@ jQuery(function(){
 
 var apps = [
 	{ id:'geochat', url:'http://geochat.instedd.org/', name:'Geochat'},
-	{ id:'geochatPolls', url:'http://instedd.org/technologies/geochat-polls/', name:'Geochat Polls'},
-	{ id:'nuntium', url:'http://nuntium.instedd.org/', name:'Nuntium'},
-	{ id:'veegilo', url:'http://veegilo.instedd.org/', name:'Veegilo'},
-	{ id:'remindem', url:'http://remindem.instedd.org/', name:'Remindem'},
-	{ id:'nuntiumLocalGateway', url:'http://instedd.org/', name:'Nuntium Local Gateway'},
 	{ id:'mesh4X', url:'http://instedd.org/technologies/mesh4x/', name:'Mesh4X'},
+	{ id:'nuntium', url:'http://nuntium.instedd.org/', name:'Nuntium'},
+	{ id:'nuntiumLocalGateway', url:'http://instedd.org/', name:'Nuntium Local Gateway'},
+	{ id:'pollit', url:'http://instedd.org/technologies/geochat-polls/', name:'Pollit'},
+	{ id:'remindem', url:'http://remindem.instedd.org/', name:'Remindem'},
 	{ id:'reportingWheel', url:'http://reportingwheel.instedd.org/', name:'Reporting Wheel'},
 	{ id:'resourceMap', url:'http://resourcemap.instedd.org/', name:'Resource Map'},
 	{ id:'riff', url:'http://riff.instedd.org/', name:'Riff'},
 	{ id:'seentags', url:'http://seentags.instedd.org/', name:'Seentags'},
 	{ id:'taskMeUp', url:'http://taskmeup.instedd.org/', name:'Task Me Up'},
+	{ id:'veegilo', url:'http://veegilo.instedd.org/', name:'Veegilo'},
 	{ id:'verboice', url:'http://verboice.instedd.org/', name:'Verboice'}
 ];
 
@@ -33,6 +33,8 @@ $.each(apps, function(index, app){
 	$('#instedd-pulldown > li > ul').append($("<li>").append($("<a>").attr('href',app.url).text(app.name)));
 });
 
+$("#tools-carousel").append($("<li>"));
+
 function firstInCallback(carousel, item, i) {
   if (i > 1) jQuery(".footer-prev").show();
   else jQuery(".footer-prev").hide();
@@ -45,7 +47,6 @@ function lastInCallback(carousel, item, i) {
 }
 
 jQuery('#tools-carousel').jcarousel({
-  scroll: 9,
   buttonNextHTML: '<a href="#" class="footer-next footer" onclick="return false;"> </a>',
   buttonPrevHTML: '<a href="#" class="footer-prev footer" onclick="return false;"> </a>',
   itemFirstInCallback: firstInCallback,

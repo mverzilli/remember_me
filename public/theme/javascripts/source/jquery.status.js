@@ -18,20 +18,21 @@ $.status.showError(msg, [kind]);
 			},
 			show: function(message, cssClass) {
 				$('.flash').remove();
-				var message = $('<div>').addClass('flash').addClass(cssClass).text(message);
+				var message = $('<div>').addClass('flash').addClass(cssClass).append($("<div>").text(message));
 				$("body").prepend(message);
 				this._display_flash(true);
 			},
 			_display_flash: function(doAnimation){
 				// for initial messages
 				var message = $(".flash");
+				var message_body = message.children("div");
 				if (message.length > 0) {
-					if (doAnimation) {
-						message.hide();
-					}
 					this._set_position(message);
 					if (doAnimation) {
-						window.setTimeout(function(){ message.slideDown('slow'); }, 200);
+						message_body.css('top', - message.outerHeight() + 'px');
+						window.setTimeout(function(){
+							message_body.animate({top : 0}, 1200);
+						}, 200);
 					}
 				}
 			},

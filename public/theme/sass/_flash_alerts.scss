@@ -1,18 +1,25 @@
-.flash {
+.flash { 
   position: absolute;
-  white-space: nowrap;
   top: 0px;
+  overflow: hidden;
+}
+
+.flash > div {
+  @extend .drop_shadow;
+  white-space: nowrap;
   padding: 5px 15px;
   display: inline-block;
   border-radius: 0px 0px 5px 5px;
+  position: relative;
+  margin: 0px 2px 2px 2px;  
 }
 
-.flash_notice {
+.flash_notice > div {
   background-color: #e6faa9;
   color: $green;
 }
 
-.flash_error {
+.flash_error > div {
   background-color: #ffee9e;
   color: $orange;
 }

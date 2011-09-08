@@ -3,8 +3,8 @@
 <% end %>
 
 <%= form_for(@schedule) do |f| %>
-  <% if @schedule.errors.any? %>
-    <div id="error_explanation">
+  <% if @schedule.errors.any? %>  
+    <div class="box w60 error_description">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
 
       <ul>
@@ -15,50 +15,52 @@
     </div>
   <% end %>
 
-  <p class="Title">
-    <%= f.label :title, "Title" %><br />
+  <div class="field w60">
+    <%= f.label :title, "Title" %>
     <%= f.text_field :title, :class => "causesPendingSaveNoticeOnChange" %>
-  </p>
+  </div>
   
-  <p class="Title">
+  <div class="field w60">
     <%= f.label :keyword, "Keyword" %>
     <p>Users will register with this keyword</p>
     <%= f.text_field :keyword, :class => "causesPendingSaveNoticeOnChange" %>
-  </p>
+  </div>
 
-  <p class="Title">
-  <%= f.label :welcome_message, "Welcome message" %>
-    <div class="w50">
-      <%= f.text_area :welcome_message, :rows => 3, :class => "causesPendingSaveNoticeOnChange Txarea WajBar", :placeholder => 'Write your welcome message here' , :maxlength => 140 %>
+  <div class="field">
+    <%= f.label :welcome_message, "Welcome message" %>
+    <div class="w60">
+      <%= f.text_area :welcome_message, :rows => 3, :class => "causesPendingSaveNoticeOnChange ux-wajbar", :placeholder => 'Write your welcome message here' , :maxlength => 140 %>
     </div>
   </p>
   
-  <p class = "Title" >Every</p>
-  <div class="pulldown w30">
-    <%= f.select :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange styled" %>
+  <div class="field">
+    <label>Mode</label>
+    <p>Choose whether you want to set up a timeline for your messages or send them randomly</p>
+
+    <%= f.radio_button :type,
+      "FixedSchedule",
+      :id => "fixed_schedule_option",
+      :class => "causesPendingSaveNoticeOnChange styled"
+    %>
+    <%= f.label :type, "Timeline", :class => 'radio' %>
+    <br/>
+    
+    
+    <%= f.radio_button :type,
+      "RandomSchedule",
+      :id => "random_schedule_option",
+      :class => "causesPendingSaveNoticeOnChange styled"
+    %>
+    <%= f.label :type, "Random", :class => 'radio' %>
+    <span>once every</span>
+    
+    <div class="ux-dropdown w20 inline">
+      <%= f.select :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange" %>
+    </div>
+    
   </div>
 
-  <p class= "Title" >Mode</p>
-  <p>
-    <div class="field">
-      <%= f.radio_button :type,
-        "FixedSchedule",
-        :id => "fixed_schedule_option",
-        :class => "causesPendingSaveNoticeOnChange styled"
-      %>
-      <%= f.label :type, "Timeline" %>
-    </div>
-    <div class="field">
-      <%= f.radio_button :type,
-        "RandomSchedule",
-        :id => "random_schedule_option",
-        :class => "causesPendingSaveNoticeOnChange styled"
-      %>
-      <%= f.label :type, "Random once #{@schedule.timescale.one_to_s}" %>
-    </div>
-  </p>
-
-  <p>
+  <p class="w60">
     <%= "This Reminder is #{
       if @schedule.paused?
         'paused and won\'t send messages'
@@ -69,8 +71,8 @@
   </p>
 
   <div class="field">
-    <%= f.check_box :paused?, :type =>"checkbox", :class => "styled"%>
-    <%= f.label :paused?, "Pause this reminder" %>
+    <%= f.check_box :paused?, :type =>"checkbox" %>
+    <%= f.label :paused?, "Pause this reminder", :class => 'checkbox' %>
   </div>
 
   <hr />

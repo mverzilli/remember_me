@@ -19,7 +19,7 @@ body {
 #toolbar, #header, #container, #footer-container {
   @include pagesize;
 }
-
+#container { padding-top:15px }
 #header {
   height: 80px;
   margin-top: 5px;
@@ -36,6 +36,9 @@ body {
   background:none; 
   position:relative;
 }
+
+ul.RightMenu { margin:0; padding:0; position:absolute; right:0; z-index:10 }
+ul.RightMenu li { list-style:none; display:inline-block; vertical-align:top; margin:0; padding:0 }
 
 #footer-span {
   height: 200px;

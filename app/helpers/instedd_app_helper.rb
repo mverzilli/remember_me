@@ -1,22 +1,20 @@
 module InsteddAppHelper
   def flash_message
-    if flash[:notice]
-      content_tag :div, :class => 'flash flash_notice' do
-        flash[:notice]
-      end
-    end
-
-    if flash[:error]
-      content_tag :div, :class => 'flash flash_error' do
-        flash[:error]
+    res = nil
+    
+    keys = { :notice => 'flash_notice', :error => 'flash_error', :alert => 'flash_error' }
+    
+    keys.each do |key, value|
+      if flash[key]
+        res = content_tag :div, :class => "flash #{value}" do
+          content_tag :div do
+            flash[key]
+          end
+        end
       end
     end
     
-    if flash[:alert]
-      content_tag :div, :class => 'flash flash_error' do
-        flash[:alert]
-      end
-    end
+    res
   end
 end
 

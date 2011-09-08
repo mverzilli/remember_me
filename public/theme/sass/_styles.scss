@@ -354,103 +354,6 @@ button.orange {
 .lblock{ @include icon_button; background-image:url(../images/levelSelector/disable.png) }
 
 
-/* ---------- MENU ----------*/
-
-.nav {
-	background: #fff url(../images/header/backheader.png) repeat-x; height:32px; z-index:10
-}
-.nav ul {
-	margin: 0;
-	list-style: none;
-	font-size: 12px;
-}
-.nav li {
-	display:inline-block;
-	position: relative;
-}
-.nav li.sep {
-	background:#f2f2f2; border-right:1px solid #ffffff; height:30px; width:1px; padding:0; margin:0 }
-.nav li a {
-	display: block;
-	line-height: 38px;
-}
-a .menu-mid {
-	padding: 0 10px;
-	margin-top:2px;
-	height: 31px;
-	line-height: 28px;
-	display: block;
-}
-a .menu-mid.wsub {
-	background:url(../images/icons/misc/black/arrowDown.png) no-repeat 97% 45%;
-	margin: 2px 7px 0 7px;
-	padding: 0 14px 0 6px;
-}
-
-.nav li a:hover .menu-mid.wsub,
-.nav li.active a .menu-mid.wsub,
-.nav li:hover a .menu-mid.wsub {
-	background:#fff url(../images/icons/misc/black/arrowDown.png) no-repeat 97% 45%; -moz-border-radius:5px 5px 0 0; -webkit-border-radius:5px 5px 0 0; border-radius:5px 5px 0 0; -webkit-box-shadow: 0px -1px 2px 2px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px -1px 2px 2px rgba(0, 0, 0, 0.3); box-shadow: 0px -1px 2px 2px rgba(0, 0, 0, 0.3); 
-}
-
-
-.nav li a:hover,
-.nav li.active a,
-.nav li.hover a,
-.nav li:hover a {
-	color: #000;
-}
-.nav li:hover .sub,
-.nav li.hover .sub {
-	display:block;
-}
-.nav li .sub {
-	display: none;
-	position: absolute;
-	top: 32px;
-	left: 7px;
-	padding-top: 9px;
-	-moz-border-radius:0 5px 5px 5px; -webkit-border-radius:0 5px 5px 5px; border-radius:0 5px 5px 5px; -webkit-box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3); box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3); 
-}
-.nav li ul {
-	margin: 0;
-	padding: 0 12px 10px;
-	list-style: none;
-	font-size: 14px;
-}
-
-.nav li:hover li,
-.nav li.active li {
-	width: 100%;
-	padding: 1px 0 2px;
-	border-bottom: 1px #C1D9F0 dashed;
-	background: none !important;
-	
-}
-.nav li:hover li a,
-.nav li.active li a {
-	color: #09548B;
-	background: none !important;
-	line-height: normal;
-	width: 156px;
-	padding: 8px 3px 3px;
-	text-indent: 1px;
-}
-.nav li:hover li a:hover,
-.nav li.active li a:hover {
-	color: #fff;
-	background: #165B9F !important;
-	text-decoration: none;
-	line-height: normal;
-}
-/*IE*/
-.nav li li a:hover,
-.nav li li a:hover {
-	color: #fff;
-	background: #165B9F !important;
-	text-decoration: none;
-	line-height: normal;
-}
 
 
 
@@ -577,7 +480,8 @@ label.error {
 
 
 /* ------------ Gral BOX ------------------- */
-.box { background:#FFFFFF; padding:10px; box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2); -moz-box-shadow:0px 1px 1px 1px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2); border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px }
+.drop_shadow { box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2); -moz-box-shadow:0px 1px 1px 1px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2); border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.box { @extend .drop_shadow; background:#FFFFFF; padding:10px; }
 .sbox { padding:2px; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px }
 
 .box.grey, .sbox.grey { background:#d0d0d0; color:#555555 }
@@ -616,7 +520,6 @@ hr.shadow { background: #e5e6ec; background: -moz-linear-gradient(top, #e5e6ec 0
 	-webkit-border-radius:6px 6px 6px 6px;
 	border-radius:6px 6px 6px 6px;
 	border-collapse:collapse
-	
 }
 .GralTable th {
 	/* old browsers */
@@ -627,46 +530,19 @@ hr.shadow { background: #e5e6ec; background: -moz-linear-gradient(top, #e5e6ec 0
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e6ec));
 	/* ie */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e6ec',GradientType=0 );
-	color:#a7aab7;
+	color:#555555;
+	font-weight:normal;
 	text-align:left;
-	padding: 6px 0 0 10px;
-	border-right:1px solid #e7e9ee;
-	border-bottom:1px solid #e7e9ee
+	padding:6px;
 }
-.GralTable th:first-child { border-left:none }
-.GralTable th:last-child { border-right:none }
-.GralTable th span { display:block; margin-right:5px; float:right }
-.GralTable tr:nth-child(2) {
-	background-color: #ffffff;
-	/* firefox */
-	background: -moz-linear-gradient(top, #e5e6ec 0%, #ffffff 30%);
-	/* webkit */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(30%,#ffffff), color-stop(0%,#e5e6ec));
-	/* ie */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e6ec',GradientType=0 );
-	color:#a7aab7
-}
-.GralTable tr:nth-child(2) td {
-	padding: 15px 0 6px 10px;
-}
+.GralTable tr:nth-child(2) { background:url(../images/interface/backtd.png) repeat-x }
 
-.GralTable td {
-	letter-spacing:-0.005em;
-	color:#5c658e;
-	padding: 0 0 0 10px;
-	border-spacing:0;
-}
+.GralTable td { letter-spacing:-0.005em; padding:2px 6px }
 
 /* -------- Clean ---------*/
-.CleanTable th {
-	background:#ffffff;
-	border:none
-}
-.CleanTable td {
-	border:none
-}
+.CleanTable th { background:#ffffff}
 
 /* -------- Two column table  ---------*/
 .TwoColumn tr td:nth-child(1) { }
-.TwoColumn tr td:nth-child(2) { width:100px; padding-right:8px; text-align:right }
+.TwoColumn tr td:nth-child(2) { width:100px; text-align:right }
 

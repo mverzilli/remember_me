@@ -1,40 +1,49 @@
 (function($){
-	$(function(){
-		// initialize built-in components.
-		if ($.fn.datepicker) {
-			$(".ux-datepicker")
-				.click(function(){ $(this).datepicker("show"); })
-				.datepicker();
-		}
+	$.extend({ 
+		instedd: {
+			init_components: function(container) {
+				// initialize built-in components.
+				if ($.fn.datepicker) {
+					$(".ux-datepicker", container)
+						.click(function(){ $(this).datepicker("show"); })
+						.datepicker();
+				}
+
+				$("input[type='text']", container).addClass("ux-text");
+				$("input[type='password']", container).addClass("ux-text");
+				$("input[type='email']", container).addClass("ux-text");
+				$("textarea", container).addClass("ux-text");
+				$("input[readonly='readonly'], textarea[readonly='readonly']", container).addClass("readonly");
+				$(".ux-dropdown select", container).addClass("styled");
+				$("input[type='radio']", container).addClass("styled");
+				$("input[type='checkbox']", container).addClass("styled");
+				$("button[disabled]", container).addClass("disabled");
+
+				$(".ux-wajbar", container).wajbar();
+
+				$(".ux-nstep", container).each(function(){
+					var nstep = $(this);
+					var source = $("input[type='text']", nstep);
+					var kdown = $("<input>").attr('type','button').addClass('kdown').val('');
+					var kup = $("<input>").attr('type','button').addClass('kup').val('');
+					nstep.append(kdown).append(kup);
+					var current = function(){
+						var res = parseInt(source.val());
+						return isNaN(res) ? 0 : res;
+					};
+					kdown.click(function(){ source.val(current()-1); });
+					kup.click(function(){ source.val(current()+1); });
+				});
 				
-		$("input[type='text']").addClass("ux-text");
-		$("input[type='password']").addClass("ux-text");
-		$("input[type='email']").addClass("ux-text");
-		$("textarea").addClass("ux-text");
-		$("input[readonly='readonly'], textarea[readonly='readonly']").addClass("readonly");
-		$(".ux-dropdown select").addClass("styled");
-		$("input[type='radio']").addClass("styled");
-		$("input[type='checkbox']").addClass("styled");
-		$("button[disabled]").addClass("disabled");
+				Custom.init();
+			}
+		} 
+	});
+	
+	$(function(){
+		$.instedd.init_components($(document));
 		
-		$(".ux-wajbar").wajbar();
-		
-		$(".ux-nstep").each(function(){
-			var nstep = $(this);
-			var source = $("input[type='text']", nstep);
-			var kdown = $("<input>").attr('type','button').addClass('kdown').val('');
-			var kup = $("<input>").attr('type','button').addClass('kup').val('');
-			nstep.append(kdown).append(kup);
-			var current = function(){
-				var res = parseInt(source.val());
-				return isNaN(res) ? 0 : res;
-			};
-			kdown.click(function(){ source.val(current()-1); });
-			kup.click(function(){ source.val(current()+1); });
-		});
-		
-		// these are one time per page
-		
+		// these are one time per page		
 		// position user menu
 		$('#User').mouseenter(function(){
 			var container = $('.container', $(this));

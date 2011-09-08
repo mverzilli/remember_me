@@ -1,10 +1,10 @@
 @mixin footer-pager {
-  width: 16px;
-  height: 29px;
+  width: 20px;
+  height: 79px;
   position: relative;
-  top: -53px;
+  top: -80px;
   padding-left: 0px !important;
-  @include button-states(29px);
+  @include button-states(80px);
 }
 
 .footer-next {
@@ -33,7 +33,7 @@
 }
 
 .jcarousel-item {
-  width: 56px;
+  width: 54px;
   margin:3px;
   text-align: center;
 }
@@ -96,8 +96,8 @@
   background-image: url(../images/footer/buttons/verboice.png);
 }
 
-#geochatPolls a {
-  background-image: url(../images/footer/buttons/geoChatPolls.png);
+#pollit a {
+  background-image: url(../images/footer/buttons/pollit.png);
 }
 
 #veegilo a {
