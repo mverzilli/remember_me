@@ -1,19 +1,19 @@
 module InsteddAppHelper
   def flash_message
     if flash[:notice]
-      content_tag :div, :class => 'flash_notice' do
+      content_tag :div, :class => 'flash flash_notice' do
         flash[:notice]
       end
     end
 
     if flash[:error]
-      content_tag :div, :class => 'flash_error' do
+      content_tag :div, :class => 'flash flash_error' do
         flash[:error]
       end
     end
     
     if flash[:alert]
-      content_tag :div, :class => 'flash_error' do
+      content_tag :div, :class => 'flash flash_error' do
         flash[:alert]
       end
     end

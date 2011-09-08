@@ -2875,9 +2875,9 @@ label.error {
 .box {
   background: #FFFFFF;
   padding: 10px;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -2943,15 +2943,14 @@ hr.shadow {
 /* -------- General ---------*/
 /* line 613, ../sass/_styles.scss */
 .GralTable {
-  border: 1px solid #e7e9ee;
-  margin-top: 10px;
   width: 100%;
   -moz-border-radius: 6px 6px 6px 6px;
   -webkit-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
+  border-collapse: collapse;
 }
 
-/* line 622, ../sass/_styles.scss */
+/* line 621, ../sass/_styles.scss */
 .GralTable th {
   /* old browsers */
   background: #e5e6ec;
@@ -2968,24 +2967,24 @@ hr.shadow {
   border-bottom: 1px solid #e7e9ee;
 }
 
-/* line 637, ../sass/_styles.scss */
+/* line 636, ../sass/_styles.scss */
 .GralTable th:first-child {
   border-left: none;
 }
 
-/* line 638, ../sass/_styles.scss */
+/* line 637, ../sass/_styles.scss */
 .GralTable th:last-child {
   border-right: none;
 }
 
-/* line 639, ../sass/_styles.scss */
+/* line 638, ../sass/_styles.scss */
 .GralTable th span {
   display: block;
   margin-right: 5px;
   float: right;
 }
 
-/* line 640, ../sass/_styles.scss */
+/* line 639, ../sass/_styles.scss */
 .GralTable tr:nth-child(2) {
   background-color: #ffffff;
   /* firefox */
@@ -2997,12 +2996,12 @@ hr.shadow {
   color: #a7aab7;
 }
 
-/* line 650, ../sass/_styles.scss */
+/* line 649, ../sass/_styles.scss */
 .GralTable tr:nth-child(2) td {
   padding: 15px 0 6px 10px;
 }
 
-/* line 654, ../sass/_styles.scss */
+/* line 653, ../sass/_styles.scss */
 .GralTable td {
   letter-spacing: -0.005em;
   color: #5c658e;
@@ -3011,19 +3010,19 @@ hr.shadow {
 }
 
 /* -------- Clean ---------*/
-/* line 662, ../sass/_styles.scss */
+/* line 661, ../sass/_styles.scss */
 .CleanTable th {
   background: #ffffff;
   border: none;
 }
 
-/* line 666, ../sass/_styles.scss */
+/* line 665, ../sass/_styles.scss */
 .CleanTable td {
   border: none;
 }
 
 /* -------- Two column table  ---------*/
-/* line 672, ../sass/_styles.scss */
+/* line 671, ../sass/_styles.scss */
 .TwoColumn tr td:nth-child(2) {
   width: 100px;
   padding-right: 8px;
@@ -4191,23 +4190,22 @@ body.smallfooter #footer-container > div:nth-child(2) {
 }
 
 /* line 1, ../sass/_flash_alerts.scss */
-.flash, .flash_notice, .flash_error {
-  border-radius: 0px 0px 5px 5px;
-  display: inline-block;
-  padding: 5px 15px;
+.flash {
   position: absolute;
-  margin: 11px auto 0px auto;
-  top: 93px;
-  left: 479px;
+  white-space: nowrap;
+  top: 0px;
+  padding: 5px 15px;
+  display: inline-block;
+  border-radius: 0px 0px 5px 5px;
 }
 
-/* line 12, ../sass/_flash_alerts.scss */
+/* line 10, ../sass/_flash_alerts.scss */
 .flash_notice {
   background-color: #e6faa9;
   color: #769925;
 }
 
-/* line 18, ../sass/_flash_alerts.scss */
+/* line 15, ../sass/_flash_alerts.scss */
 .flash_error {
   background-color: #ffee9e;
   color: #ff6600;
