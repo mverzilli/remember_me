@@ -31,6 +31,7 @@ class Schedule < ActiveRecord::Base
     self.user.build_message to, body 
   end
 
+  #toDo: remove default behavior
   def send_if_should message, options = {}
     if can_send_messages?
       send_message options[:to].phone_number, message.text

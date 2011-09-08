@@ -6,9 +6,12 @@ class Message < ActiveRecord::Base
     :if => lambda { !marked_for_destruction? && schedule.type == "FixedSchedule" },
     :message => "is required for schedules with a fixed timeline"
   
-  before_destroy :remove_dj_messages
-  after_update :update_dj_messages
-  after_create :enqueue_dj_messages
+  before_destroy :alert_schedule_from_message_destroy
+  after_update :alert_schedule_from_message_update
+  after_create :alert_schedule_from_message_creation
+  # serialize :occurrence_rule, IceCube::Rule
+
+  #toDo: move this behavior to the schedule and remove the if's after merge
   
   def enqueue_dj_messages
     self.schedule.subscribers.each do |subscriber|
@@ -44,7 +47,32 @@ class Message < ActiveRecord::Base
   end
   
   def rule
-    IceCube::Rule.from_yaml occurrence_rule
+    @rule ||= IceCube::Rule.from_yaml occurrence_rule
+  rescue
+    @rule ||= occurrence_rule
+  end
+
+  def alert_schedule_from_message_creation
+    if schedule.class == CalendarBasedSchedule
+      schedule.new_message_has_been_created self
+    else
+      enqueue_dj_messages
+    end
+  end
+
+  def alert_schedule_from_message_destroy
+    if schedule.class == CalendarBasedSchedule
+      schedule.message_has_been_destroyed self
+    else
+      remove_dj_messages
+    end
+  end
+  def alert_schedule_from_message_update
+    if schedule.class == CalendarBasedSchedule
+      schedule.message_has_been_updated self
+    else
+      update_dj_messages
+    end
   end
   
 end
