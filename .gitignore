@@ -3,3 +3,4 @@ config/nuntium.yml
 .bundle/
 tmp/
 .DS_Store
+remindem.tmproj
