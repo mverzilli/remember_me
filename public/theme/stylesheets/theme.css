@@ -3137,7 +3137,7 @@ label.error {
 
 /* line 497, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .box {
-  margin-bottom: 7px;
+  margin-bottom: 7px !important;
 }
 
 /* line 499, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
