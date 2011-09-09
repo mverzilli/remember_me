@@ -4,7 +4,7 @@
 			init_components: function(container) {
 				// initialize built-in components.
 				if ($.fn.datepicker) {
-					$(".ux-datepicker", container)
+					$(".ux-datepicker:not([readonly])", container)
 						.click(function(){ $(this).datepicker("show"); })
 						.datepicker();
 				}
@@ -13,27 +13,35 @@
 				$("input[type='password']", container).addClass("ux-text");
 				$("input[type='email']", container).addClass("ux-text");
 				$("textarea", container).addClass("ux-text");
-				$("input[readonly='readonly'], textarea[readonly='readonly']", container).addClass("readonly");
 				$(".ux-dropdown select", container).addClass("styled");
 				$("input[type='radio']", container).addClass("styled");
 				$("input[type='checkbox']", container).addClass("styled");
-				$("button[disabled]", container).addClass("disabled");
 
 				$(".ux-wajbar", container).wajbar();
 
 				$(".ux-nstep", container).each(function(){
 					var nstep = $(this);
 					var source = $("input[type='text']", nstep);
-					var kdown = $("<input>").attr('type','button').addClass('kdown').val('');
-					var kup = $("<input>").attr('type','button').addClass('kup').val('');
+					var kdown = $("<button>").attr('type','button').addClass('kdown').text('');
+					var kup = $("<button>").attr('type','button').addClass('kup').text('');
 					nstep.append(kdown).append(kup);
-					var current = function(){
-						var res = parseInt(source.val());
-						return isNaN(res) ? 0 : res;
-					};
-					kdown.click(function(){ source.val(current()-1); });
-					kup.click(function(){ source.val(current()+1); });
+					
+					if (source.attr('readonly')) {
+						// is readonly
+						kdown.attr('disabled', true);
+						kup.attr('disabled', true);
+					} else {
+						var current = function(){
+							var res = parseInt(source.val());
+							return isNaN(res) ? 0 : res;
+						};
+						kdown.click(function(){ source.val(current()-1); });
+						kup.click(function(){ source.val(current()+1); });
+					}
 				});
+				
+				$("input[readonly='readonly'], textarea[readonly='readonly']", container).addClass("readonly");
+				$("button[disabled]", container).addClass("disabled");
 				
 				Custom.init();
 			}

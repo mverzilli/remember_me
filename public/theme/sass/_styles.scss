@@ -32,7 +32,7 @@ p a {
   box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.3) inset;
   margin: 1px;
   &:focus { border:2px solid #dddddd; margin: 0px; }
-  &.readonly, &.readonly:focus { background: $disabled_bgtext; color: $disabled_text; border-width:1px; margin: 1px; }
+  &.readonly, &.readonly:focus { background-color: $disabled_bgtext; color: $disabled_text; border-width:1px; margin: 1px; }
   &.error, .field_with_errors & { border:2px solid #ff6600; margin: 0px; }
 }
 
@@ -62,13 +62,17 @@ input.ux-text {  height:22px; width:inherit; @include texboxes_border; }
     line-height: 25px; 
   }
   
-  &:hover .selectPrefix{ background-position-y: -40px; }
-  &:hover .select { background-position-y: -40px; }
-  &:active .selectPrefix{ background-position-y: -80px; }
-  &:active .select{ background-position-y: -80px; line-height: 26px; }
-  .select.disabled, .selectPrefix.disabled {
-    background-position-y: -120px;
+  &:hover .selectPrefix{ background-position: left -40px; }
+  &:hover .select { background-position: right -40px; }
+  &:active .selectPrefix{ background-position: left -80px; }
+  &:active .select{ background-position: right -80px; line-height: 26px; }
+  .selectPrefix.disabled {
+    background-position: left -120px;
     line-height: 25px;
+  }
+  .select.disabled {
+    background-position: right -120px;
+    line-height: 25px;  
   }
 
   select.styled { 
@@ -100,15 +104,17 @@ textarea.ux-text { width: inherit; @include texboxes_border; padding:2px 2px; re
   position:relative; 
   display:inline;
   .kup { 
-    @include button-states(10px);
-    background:url(../images/numericStepper/up.png) no-repeat center top; 
+    @include button-states(10px, center);
+    background-image:url(../images/numericStepper/up.png);
+    background-color:transparent;
     width:15px; height:12px; 
     cursor:pointer; border:none; 
     position:absolute; right:3px; top:-1px;
   }
   .kdown { 
-    @include button-states(10px);
-    background:url(../images/numericStepper/down.png) no-repeat center top; 
+    @include button-states(10px, center);
+    background-image:url(../images/numericStepper/down.png);
+    background-color:transparent;
     width:15px; height:12px; 
     cursor:pointer; border:none; 
     position:absolute; right:3px; bottom:-4px 
@@ -137,8 +143,9 @@ span.radio {
 .ux-search { 
   background: url(../images/search/magnifyingGlass.png) no-repeat 99% 2px;
   padding-right: $ux_text_image_width !important;
-  &:hover { background-position-y: -18px; }
-  &:focus { background-position-y: -38px; }
+  &:hover { background-position: 99% -18px; }
+  &:focus { background-position: 99% -38px; }
+  &.readonly { background-position: 99% -58px; }
 }
 
 /* ----- Calendar ----- */
@@ -146,7 +153,9 @@ span.radio {
   background:url(../images/datePicker/calendar.png) no-repeat 99% 2px; 
   padding-right: $ux_text_image_width !important;
   width:inherit; 
-  &:focus { background-position-y: -18px; }
+  &:hover { background-position: 99% -18px; }
+  &:focus { background-position: 99% -38px; }
+  &.readonly { background-position: 99% -58px; }
 }
 
 /* ----- BreadCrumb ----- */
@@ -281,8 +290,7 @@ button.orange {
   margin: 4px 2px; 
   cursor:pointer; border:none;
   padding-top: 4px;
-  &:hover { background-position:0 -30px; }
-  &:active { background-position:0 -60px; }
+  @include button-states(30px);
   &:not(:empty) { padding-left: 27px; }
 }
 
@@ -486,7 +494,7 @@ label.error {
 
 .box.grey, .sbox.grey { background:#d0d0d0; color:#555555 }
 
-.box + .box { margin-top: 7px; }
+.box { margin-bottom: 7px; }
 
 hr.shadow { background: #e5e6ec; background: -moz-linear-gradient(top, #e5e6ec 0%, #ffffff 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5e6ec), color-stop(100%, #ffffff));
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5e6ec', endColorstr='#ffffff',GradientType=0 ); height:15px; margin:3px 0 3px -10px; z-index:0; }

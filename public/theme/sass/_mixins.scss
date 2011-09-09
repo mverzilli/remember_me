@@ -21,14 +21,16 @@
 }
 
 
-@mixin button-states($imageHeight) {
+@mixin button-states($imageHeight, $horizontalPosition: 0px) {
   background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-position-y: 0px;
+  background-position: $horizontalPosition 0px;
   &:hover {
-    background-position-y: -$imageHeight;
+    background-position: $horizontalPosition -1*$imageHeight;  // -1* is needed for appropiate sass compilation
   }
   &:active {
-    background-position-y: -2*$imageHeight;
+    background-position: $horizontalPosition -2*$imageHeight;
+  }
+  &.disabled {
+    background-position: $horizontalPosition -3*$imageHeight;
   }
 }

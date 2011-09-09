@@ -3,17 +3,7 @@
 <% end %>
 
 <%= form_for(@schedule) do |f| %>
-  <% if @schedule.errors.any? %>  
-    <div class="box w60 error_description">
-      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
-
-      <ul>
-      <% @schedule.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= errors_for @schedule, :as => :schedule %>
 
   <div class="field w60">
     <%= f.label :title, "Title" %>
@@ -31,7 +21,7 @@
     <div class="w60">
       <%= f.text_area :welcome_message, :rows => 3, :class => "causesPendingSaveNoticeOnChange ux-wajbar", :placeholder => 'Write your welcome message here' , :maxlength => 140 %>
     </div>
-  </p>
+  </div>
   
   <div class="field">
     <label>Mode</label>

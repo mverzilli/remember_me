@@ -99,7 +99,7 @@ input.ux-text:focus {
 }
 /* line 35, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 input.ux-text.readonly, input.ux-text.readonly:focus {
-  background: #d0d0d0;
+  background-color: #d0d0d0;
   color: #999999;
   border-width: 1px;
   margin: 1px;
@@ -139,27 +139,32 @@ input.ux-text.error, .field_with_errors input.ux-text {
 }
 /* line 65, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-dropdown:hover .selectPrefix {
-  background-position-y: -40px;
+  background-position: left -40px;
 }
 /* line 66, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-dropdown:hover .select {
-  background-position-y: -40px;
+  background-position: right -40px;
 }
 /* line 67, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-dropdown:active .selectPrefix {
-  background-position-y: -80px;
+  background-position: left -80px;
 }
 /* line 68, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-dropdown:active .select {
-  background-position-y: -80px;
+  background-position: right -80px;
   line-height: 26px;
 }
 /* line 69, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.ux-dropdown .select.disabled, .ux-dropdown .selectPrefix.disabled {
-  background-position-y: -120px;
+.ux-dropdown .selectPrefix.disabled {
+  background-position: left -120px;
   line-height: 25px;
 }
-/* line 74, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 73, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-dropdown .select.disabled {
+  background-position: right -120px;
+  line-height: 25px;
+}
+/* line 78, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-dropdown select.styled {
   width: inherit;
   height: 28px;
@@ -169,7 +174,7 @@ input.ux-text.error, .field_with_errors input.ux-text {
 }
 
 /* ----- Text Area ----- */
-/* line 84, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 88, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 textarea.ux-text {
   width: inherit;
   border: 1px solid #dddddd;
@@ -192,7 +197,7 @@ textarea.ux-text:focus {
 }
 /* line 35, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 textarea.ux-text.readonly, textarea.ux-text.readonly:focus {
-  background: #d0d0d0;
+  background-color: #d0d0d0;
   color: #999999;
   border-width: 1px;
   margin: 1px;
@@ -203,7 +208,7 @@ textarea.ux-text.error, .field_with_errors textarea.ux-text {
   margin: 0px;
 }
 
-/* line 86, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 90, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox {
   border: 1px solid #dddddd;
   background: #d0d0d0;
@@ -219,14 +224,14 @@ textarea.ux-text.error, .field_with_errors textarea.ux-text {
   white-space: nowrap;
 }
 
-/* line 87, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 91, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox div {
   display: inline-block;
   vertical-align: middle;
   margin-left: -2px;
 }
 
-/* line 88, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 92, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox div.L {
   color: #555555;
   width: 4%;
@@ -234,7 +239,7 @@ textarea.ux-text.error, .field_with_errors textarea.ux-text {
   padding-left: 0px;
 }
 
-/* line 89, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 93, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox div.R {
   color: #ff6600;
   width: 4%;
@@ -242,14 +247,14 @@ textarea.ux-text.error, .field_with_errors textarea.ux-text {
   padding-right: 0px;
 }
 
-/* line 90, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 94, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox div.M {
   background: #ff6600;
   width: 88%;
   margin: 0 2px;
 }
 
-/* line 91, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 95, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox div span {
   background: #555555;
   height: 4px;
@@ -257,38 +262,38 @@ textarea.ux-text.error, .field_with_errors textarea.ux-text {
   width: 80%;
 }
 
-/* line 93, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 97, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox.readonly div.R {
   color: white;
 }
 
-/* line 94, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 98, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox.readonly div.M {
   background: white;
 }
 
-/* line 95, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 99, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox.readonly div.L {
   color: #999999;
 }
 
-/* line 96, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 100, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TaskBox.readonly div span {
   background: #999999;
 }
 
 /* ----- Numeric Stepper ----- */
-/* line 99, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 103, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-nstep {
   position: relative;
   display: inline;
 }
-/* line 102, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 106, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-nstep .kup {
   background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-position-y: 0px;
-  background: url(../images/numericStepper/up.png) no-repeat center top;
+  background-position: center 0px;
+  background-image: url(../images/numericStepper/up.png);
+  background-color: transparent;
   width: 15px;
   height: 12px;
   cursor: pointer;
@@ -297,20 +302,24 @@ textarea.ux-text.error, .field_with_errors textarea.ux-text {
   right: 3px;
   top: -1px;
 }
-/* line 28, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ux-nstep .kup:hover {
-  background-position-y: -10px;
+  background-position: center -10px;
 }
-/* line 31, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ux-nstep .kup:active {
-  background-position-y: -20px;
+  background-position: center -20px;
 }
-/* line 109, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.ux-nstep .kup.disabled {
+  background-position: center -30px;
+}
+/* line 114, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-nstep .kdown {
   background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-position-y: 0px;
-  background: url(../images/numericStepper/down.png) no-repeat center top;
+  background-position: center 0px;
+  background-image: url(../images/numericStepper/down.png);
+  background-color: transparent;
   width: 15px;
   height: 12px;
   cursor: pointer;
@@ -319,17 +328,21 @@ textarea.ux-text.error, .field_with_errors textarea.ux-text {
   right: 3px;
   bottom: -4px;
 }
-/* line 28, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ux-nstep .kdown:hover {
-  background-position-y: -10px;
+  background-position: center -10px;
 }
-/* line 31, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ux-nstep .kdown:active {
-  background-position-y: -20px;
+  background-position: center -20px;
+}
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.ux-nstep .kdown.disabled {
+  background-position: center -30px;
 }
 
 /* ----- Checkbox ----- */
-/* line 119, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 125, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 span.checkbox {
   background: url(../images/checkBox/white.png) no-repeat;
   width: 19px;
@@ -339,7 +352,7 @@ span.checkbox {
 }
 
 /* ----- Radio ----- */
-/* line 128, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 134, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 span.radio {
   background: url(../images/radioButton/white.png) no-repeat;
   width: 16px;
@@ -349,34 +362,46 @@ span.radio {
 }
 
 /* ----- Search ----- */
-/* line 137, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 143, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-search {
   background: url(../images/search/magnifyingGlass.png) no-repeat 99% 2px;
   padding-right: 25px !important;
 }
-/* line 140, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 146, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-search:hover {
-  background-position-y: -18px;
+  background-position: 99% -18px;
 }
-/* line 141, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 147, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-search:focus {
-  background-position-y: -38px;
+  background-position: 99% -38px;
+}
+/* line 148, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-search.readonly {
+  background-position: 99% -58px;
 }
 
 /* ----- Calendar ----- */
-/* line 145, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 152, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-datepicker {
   background: url(../images/datePicker/calendar.png) no-repeat 99% 2px;
   padding-right: 25px !important;
   width: inherit;
 }
-/* line 149, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 156, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-datepicker:hover {
+  background-position: 99% -18px;
+}
+/* line 157, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ux-datepicker:focus {
-  background-position-y: -18px;
+  background-position: 99% -38px;
+}
+/* line 158, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-datepicker.readonly {
+  background-position: 99% -58px;
 }
 
 /* ----- BreadCrumb ----- */
-/* line 153, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 162, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb {
   background: #d0d0d0;
   border-radius: 4px;
@@ -384,18 +409,18 @@ span.radio {
   overflow: hidden;
 }
 
-/* line 154, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 163, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb:focus {
   background: #333333;
 }
 
-/* line 155, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 164, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb ul {
   margin: 0;
   padding: 0 0 0 1px;
 }
 
-/* line 156, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 165, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li {
   background: url(../images/breadCrumbs/item.png) no-repeat left top;
   margin: 0;
@@ -408,18 +433,18 @@ span.radio {
   text-shadow: 1px 1px #ffffff;
 }
 
-/* line 157, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 166, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:hover {
   background: url(../images/breadCrumbs/item.png) no-repeat left -30px;
 }
 
-/* line 158, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 167, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:active {
   background: url(../images/breadCrumbs/item.png) no-repeat left -60px;
   line-height: 22px;
 }
 
-/* line 159, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 168, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:first-child {
   background: url(../images/breadCrumbs/item.png) no-repeat -10px top !important;
   border-radius: 4px 0 0 4px;
@@ -428,35 +453,35 @@ span.radio {
   padding-left: 8px;
 }
 
-/* line 160, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 169, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:first-child:hover {
   background: url(../images/breadCrumbs/item.png) no-repeat -10px -30px !important;
 }
 
-/* line 161, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 170, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:first-child:active {
   background: url(../images/breadCrumbs/item.png) no-repeat -10px -60px !important;
   border-left: 1px solid #d0d0d0;
 }
 
-/* line 162, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 171, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:nth-last-child(0n+2) {
   background: url(../images/breadCrumbs/item.png) no-repeat left top;
   padding: 0 5px 0 10px;
   position: relative;
 }
 
-/* line 163, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 172, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:nth-last-child(0n+2):hover {
   background: url(../images/breadCrumbs/item.png) no-repeat left -30px;
 }
 
-/* line 164, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 173, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:nth-last-child(0n+2):active {
   background: url(../images/breadCrumbs/item.png) no-repeat left -60px;
 }
 
-/* line 165, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 174, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:nth-last-child(0n+2) span {
   background: url(../images/breadCrumbs/item.png) no-repeat right top;
   height: 21px;
@@ -465,17 +490,17 @@ span.radio {
   right: -6px;
 }
 
-/* line 166, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 175, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:nth-last-child(0n+2):hover span {
   background: url(../images/breadCrumbs/item.png) no-repeat right -30px;
 }
 
-/* line 167, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 176, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:nth-last-child(0n+2):active span {
   background: url(../images/breadCrumbs/item.png) no-repeat right -60px;
 }
 
-/* line 168, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 177, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:last-child {
   background: none !important;
   color: #555555;
@@ -483,12 +508,12 @@ span.radio {
   text-shadow: none;
 }
 
-/* line 169, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 178, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:last-child:first-child {
   border-left: 1px solid #d0d0d0;
 }
 
-/* line 170, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 179, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .BreadCrumb li:last-child:hover {
   background: none !important;
   color: #555555;
@@ -502,7 +527,7 @@ $hover_background_color,$hover_background_color2,
 $active_border_color, $active_border_top_color, 
 $disabled_border_color,$disabled_background_color,$disabled_color) {
 */
-/* line 245, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 254, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.white {
   text-shadow: 0px 1px 0px white;
   padding: 5px 8px;
@@ -521,7 +546,7 @@ button.white {
   height: 29px;
   margin: 4px 2px;
 }
-/* line 199, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 208, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.white:hover {
   padding: 5px 8px;
   border: 1px solid white;
@@ -537,7 +562,7 @@ button.white:hover {
   color: black;
   cursor: pointer;
 }
-/* line 213, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 222, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.white:active {
   background: #d2d2d2;
   border: 1px solid #d0d0d0;
@@ -549,7 +574,7 @@ button.white:active {
   filter: progid:DXImageTransform.Microsoft.Shadow(color='$border_color',direction='0',strength='0');
   color: black;
 }
-/* line 224, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 233, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.white.disabled {
   opacity: 1;
   background: white;
@@ -562,7 +587,7 @@ button.white.disabled {
   color: #999999;
 }
 
-/* line 254, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 263, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.grey {
   text-shadow: 0px -1px 0px black;
   padding: 5px 8px;
@@ -581,7 +606,7 @@ button.grey {
   height: 29px;
   margin: 4px 2px;
 }
-/* line 199, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 208, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.grey:hover {
   padding: 5px 8px;
   border: 1px solid #313131;
@@ -597,7 +622,7 @@ button.grey:hover {
   color: white;
   cursor: pointer;
 }
-/* line 213, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 222, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.grey:active {
   background: #3b3b3b;
   border: 1px solid #3c3c3c;
@@ -609,7 +634,7 @@ button.grey:active {
   filter: progid:DXImageTransform.Microsoft.Shadow(color='$border_color',direction='0',strength='0');
   color: white;
 }
-/* line 224, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 233, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.grey.disabled {
   opacity: 1;
   background: #767676;
@@ -622,7 +647,7 @@ button.grey.disabled {
   color: #cccccc;
 }
 
-/* line 263, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 272, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.orange {
   text-shadow: 0px -1px 0px #fe3700;
   padding: 5px 8px;
@@ -641,7 +666,7 @@ button.orange {
   height: 29px;
   margin: 4px 2px;
 }
-/* line 199, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 208, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.orange:hover {
   padding: 5px 8px;
   border: 1px solid #fe3700;
@@ -657,7 +682,7 @@ button.orange:hover {
   color: white;
   cursor: pointer;
 }
-/* line 213, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 222, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.orange:active {
   background: #ff6802;
   border: 1px solid #ff6802;
@@ -669,7 +694,7 @@ button.orange:active {
   filter: progid:DXImageTransform.Microsoft.Shadow(color='$border_color',direction='0',strength='0');
   color: white;
 }
-/* line 224, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 233, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 button.orange.disabled {
   opacity: 1;
   background: #fe9639;
@@ -684,7 +709,7 @@ button.orange.disabled {
 
 /* ---------- Icon buttons --------- */
 /* ----- Color ----- */
-/* line 290, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 298, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .caccept {
   background-color: transparent;
   background-position: left top;
@@ -697,22 +722,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/color/accept.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .caccept:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .caccept:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.caccept.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .caccept:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 291, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 299, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .cadd {
   background-color: transparent;
   background-position: left top;
@@ -725,22 +756,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/color/add.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .cadd:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .cadd:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.cadd.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .cadd:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 292, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 300, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .cremove {
   background-color: transparent;
   background-position: left top;
@@ -753,23 +790,29 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/color/remove.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .cremove:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .cremove:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.cremove.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .cremove:not(:empty) {
   padding-left: 27px;
 }
 
 /* ----- Fancy ----- */
-/* line 296, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 304, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .faccept {
   background-color: transparent;
   background-position: left top;
@@ -782,22 +825,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/accept.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .faccept:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .faccept:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.faccept.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .faccept:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 297, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 305, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fadd {
   background-color: transparent;
   background-position: left top;
@@ -810,22 +859,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/add.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fadd:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fadd:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fadd.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fadd:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 298, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 306, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fandroid {
   background-color: transparent;
   background-position: left top;
@@ -838,22 +893,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/android.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fandroid:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fandroid:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fandroid.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fandroid:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 299, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 307, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fapple {
   background-color: transparent;
   background-position: left top;
@@ -866,22 +927,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/apple.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fapple:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fapple:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fapple.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fapple:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 300, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 308, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .farrange {
   background-color: transparent;
   background-position: left top;
@@ -894,22 +961,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/arrange.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .farrange:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .farrange:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.farrange.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .farrange:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 301, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 309, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .farrow {
   background-color: transparent;
   background-position: left top;
@@ -922,22 +995,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/arrow.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .farrow:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .farrow:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.farrow.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .farrow:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 302, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 310, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fblock {
   background-color: transparent;
   background-position: left top;
@@ -950,22 +1029,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/block.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fblock:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fblock:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fblock.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fblock:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 303, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 311, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fbranch {
   background-color: transparent;
   background-position: left top;
@@ -978,22 +1063,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/branch.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fbranch:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fbranch:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fbranch.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fbranch:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 304, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 312, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fbug {
   background-color: transparent;
   background-position: left top;
@@ -1006,22 +1097,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/bug.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fbug:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fbug:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fbug.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fbug:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 305, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 313, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fclaim {
   background-color: transparent;
   background-position: left top;
@@ -1034,22 +1131,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/claim.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fclaim:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fclaim:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fclaim.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fclaim:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 306, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 314, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fclose {
   background-color: transparent;
   background-position: left top;
@@ -1062,22 +1165,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/close.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fclose:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fclose:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fclose.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fclose:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 307, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 315, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fconfiguration {
   background-color: transparent;
   background-position: left top;
@@ -1090,22 +1199,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/configuration.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fconfiguration:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fconfiguration:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fconfiguration.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fconfiguration:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 308, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 316, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fdelete {
   background-color: transparent;
   background-position: left top;
@@ -1118,22 +1233,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/trash.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fdelete:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fdelete:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fdelete.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fdelete:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 309, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 317, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fedit {
   background-color: transparent;
   background-position: left top;
@@ -1146,22 +1267,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/edit.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fedit:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fedit:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fedit.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fedit:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 310, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 318, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fexport {
   background-color: transparent;
   background-position: left top;
@@ -1174,22 +1301,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/export.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fexport:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fexport:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fexport.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fexport:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 311, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 319, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ffacebook {
   background-color: transparent;
   background-position: left top;
@@ -1202,22 +1335,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/facebook.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ffacebook:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ffacebook:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.ffacebook.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ffacebook:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 312, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 320, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ffolder {
   background-color: transparent;
   background-position: left top;
@@ -1230,22 +1369,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/folder.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ffolder:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ffolder:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.ffolder.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ffolder:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 313, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 321, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fhelp {
   background-color: transparent;
   background-position: left top;
@@ -1258,22 +1403,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/help.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fhelp:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fhelp:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fhelp.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fhelp:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 314, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 322, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fimport {
   background-color: transparent;
   background-position: left top;
@@ -1286,22 +1437,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/import.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fimport:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fimport:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fimport.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fimport:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 315, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 323, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .finsert {
   background-color: transparent;
   background-position: left top;
@@ -1314,22 +1471,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/insert.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .finsert:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .finsert:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.finsert.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .finsert:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 316, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 324, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fkey {
   background-color: transparent;
   background-position: left top;
@@ -1342,22 +1505,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/key.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fkey:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fkey:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fkey.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fkey:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 317, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 325, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fleave {
   background-color: transparent;
   background-position: left top;
@@ -1370,22 +1539,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/leave.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fleave:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fleave:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fleave.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fleave:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 318, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 326, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fleft {
   background-color: transparent;
   background-position: left top;
@@ -1398,22 +1573,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/left.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fleft:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fleft:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fleft.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fleft:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 319, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 327, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .flocation {
   background-color: transparent;
   background-position: left top;
@@ -1426,22 +1607,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/location.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .flocation:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .flocation:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.flocation.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .flocation:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 320, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 328, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fmerge {
   background-color: transparent;
   background-position: left top;
@@ -1454,22 +1641,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/merge.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fmerge:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fmerge:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fmerge.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fmerge:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 321, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 329, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fmessage {
   background-color: transparent;
   background-position: left top;
@@ -1482,22 +1675,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/message.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fmessage:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fmessage:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fmessage.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fmessage:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 322, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 330, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fpause {
   background-color: transparent;
   background-position: left top;
@@ -1510,22 +1709,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/pause.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fpause:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fpause:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fpause.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fpause:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 323, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 331, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fphone {
   background-color: transparent;
   background-position: left top;
@@ -1538,22 +1743,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/phone.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fphone:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fphone:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fphone.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fphone:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 324, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 332, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fplay {
   background-color: transparent;
   background-position: left top;
@@ -1566,22 +1777,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/play.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fplay:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fplay:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fplay.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fplay:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 325, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 333, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fpreview {
   background-color: transparent;
   background-position: left top;
@@ -1594,22 +1811,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/preview.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fpreview:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fpreview:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fpreview.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fpreview:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 326, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 334, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .frecord {
   background-color: transparent;
   background-position: left top;
@@ -1622,22 +1845,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/record.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .frecord:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .frecord:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.frecord.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .frecord:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 327, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 335, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .frecording {
   background-color: transparent;
   background-position: left top;
@@ -1650,22 +1879,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/recording.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .frecording:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .frecording:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.frecording.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .frecording:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 328, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 336, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fremove {
   background-color: transparent;
   background-position: left top;
@@ -1678,22 +1913,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/remove.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fremove:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fremove:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fremove.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fremove:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 329, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 337, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .frequest {
   background-color: transparent;
   background-position: left top;
@@ -1706,22 +1947,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/request.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .frequest:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .frequest:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.frequest.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .frequest:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 330, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 338, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fright {
   background-color: transparent;
   background-position: left top;
@@ -1734,22 +1981,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/right.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fright:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fright:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fright.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fright:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 331, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 339, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .frss {
   background-color: transparent;
   background-position: left top;
@@ -1762,22 +2015,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/rss.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .frss:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .frss:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.frss.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .frss:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 332, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 340, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fsettings {
   background-color: transparent;
   background-position: left top;
@@ -1790,22 +2049,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/settings.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fsettings:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fsettings:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fsettings.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fsettings:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 333, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 341, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fsnapshot {
   background-color: transparent;
   background-position: left top;
@@ -1818,22 +2083,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/snapshot.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fsnapshot:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fsnapshot:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fsnapshot.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fsnapshot:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 334, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 342, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fstop {
   background-color: transparent;
   background-position: left top;
@@ -1846,22 +2117,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/stop.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fstop:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fstop:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fstop.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fstop:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 335, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 343, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fstopped {
   background-color: transparent;
   background-position: left top;
@@ -1874,22 +2151,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/stopped.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fstopped:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fstopped:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fstopped.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fstopped:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 336, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 344, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fteach {
   background-color: transparent;
   background-position: left top;
@@ -1902,22 +2185,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/teach.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fteach:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fteach:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fteach.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fteach:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 337, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 345, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ftwitter {
   background-color: transparent;
   background-position: left top;
@@ -1930,22 +2219,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/twitter.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ftwitter:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ftwitter:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.ftwitter.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .ftwitter:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 338, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 346, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fuser {
   background-color: transparent;
   background-position: left top;
@@ -1958,22 +2253,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/user.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fuser:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fuser:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fuser.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fuser:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 339, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 347, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fusers {
   background-color: transparent;
   background-position: left top;
@@ -1986,22 +2287,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/users.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fusers:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fusers:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fusers.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fusers:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 340, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 348, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fuTurn {
   background-color: transparent;
   background-position: left top;
@@ -2014,22 +2321,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/uTurn.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fuTurn:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fuTurn:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fuTurn.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fuTurn:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 341, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 349, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fwindows {
   background-color: transparent;
   background-position: left top;
@@ -2042,23 +2355,29 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/fancy/windows.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fwindows:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .fwindows:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.fwindows.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .fwindows:not(:empty) {
   padding-left: 27px;
 }
 
 /* ----- Plain ----- */
-/* line 344, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 352, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .padd {
   background-color: transparent;
   background-position: left top;
@@ -2071,22 +2390,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/plain/add.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .padd:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .padd:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.padd.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .padd:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 345, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 353, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pblock {
   background-color: transparent;
   background-position: left top;
@@ -2099,22 +2424,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/plain/block.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pblock:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pblock:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.pblock.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pblock:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 346, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 354, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pclose {
   background-color: transparent;
   background-position: left top;
@@ -2127,22 +2458,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/plain/close.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pclose:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pclose:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.pclose.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pclose:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 347, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 355, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pnext {
   background-color: transparent;
   background-position: left top;
@@ -2155,22 +2492,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/plain/next.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pnext:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pnext:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.pnext.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pnext:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 348, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 356, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pprevious {
   background-color: transparent;
   background-position: left top;
@@ -2183,22 +2526,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/plain/previous.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pprevious:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pprevious:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.pprevious.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pprevious:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 349, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 357, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .premove {
   background-color: transparent;
   background-position: left top;
@@ -2211,22 +2560,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/plain/remove.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .premove:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .premove:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.premove.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .premove:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 350, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 358, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pstop {
   background-color: transparent;
   background-position: left top;
@@ -2239,22 +2594,28 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/plain/stop.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pstop:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pstop:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.pstop.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pstop:not(:empty) {
   padding-left: 27px;
 }
 
-/* line 351, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 359, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pstopped {
   background-color: transparent;
   background-position: left top;
@@ -2267,23 +2628,29 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/buttons/plain/stopped.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pstopped:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .pstopped:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.pstopped.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .pstopped:not(:empty) {
   padding-left: 27px;
 }
 
 /* ----- Level Selector ----- */
-/* line 354, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 362, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .lblock {
   background-color: transparent;
   background-position: left top;
@@ -2296,249 +2663,255 @@ button.orange.disabled {
   cursor: pointer;
   border: none;
   padding-top: 4px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
   background-image: url(../images/levelSelector/disable.png);
 }
-/* line 284, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .lblock:hover {
-  background-position: 0 -30px;
+  background-position: 0px -30px;
 }
-/* line 285, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .lblock:active {
-  background-position: 0 -60px;
+  background-position: 0px -60px;
 }
-/* line 286, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.lblock.disabled {
+  background-position: 0px -90px;
+}
+/* line 294, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .lblock:not(:empty) {
   padding-left: 27px;
 }
 
 /* ----- Widths ----- */
-/* line 372, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 380, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w06 {
   width: 60px !important;
 }
-/* line 365, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w06 > .ux-text, .w06.ux-text, .w06 > .field_with_errors > .ux-text {
   width: 54px !important;
 }
-/* line 366, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w06 > .ux-dropdown .select, .w06.ux-dropdown .select {
   width: 53px !important;
 }
-/* line 367, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w06 > .ux-datepicker, .w06.ux-datepicker {
   width: 31px !important;
 }
-/* line 368, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w06 > .ux-search, .w06.ux-search {
   width: 31px !important;
 }
-/* line 369, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w06 hr.shadow {
   width: 80px;
 }
 
-/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 381, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w15 {
   width: 150px !important;
 }
-/* line 365, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w15 > .ux-text, .w15.ux-text, .w15 > .field_with_errors > .ux-text {
   width: 144px !important;
 }
-/* line 366, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w15 > .ux-dropdown .select, .w15.ux-dropdown .select {
   width: 143px !important;
 }
-/* line 367, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w15 > .ux-datepicker, .w15.ux-datepicker {
   width: 121px !important;
 }
-/* line 368, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w15 > .ux-search, .w15.ux-search {
   width: 121px !important;
 }
-/* line 369, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w15 hr.shadow {
   width: 170px;
 }
 
-/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 382, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w20 {
   width: 200px !important;
 }
-/* line 365, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w20 > .ux-text, .w20.ux-text, .w20 > .field_with_errors > .ux-text {
   width: 194px !important;
 }
-/* line 366, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w20 > .ux-dropdown .select, .w20.ux-dropdown .select {
   width: 193px !important;
 }
-/* line 367, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w20 > .ux-datepicker, .w20.ux-datepicker {
   width: 171px !important;
 }
-/* line 368, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w20 > .ux-search, .w20.ux-search {
   width: 171px !important;
 }
-/* line 369, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w20 hr.shadow {
   width: 220px;
 }
 
-/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 383, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w30 {
   width: 300px !important;
 }
-/* line 365, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w30 > .ux-text, .w30.ux-text, .w30 > .field_with_errors > .ux-text {
   width: 294px !important;
 }
-/* line 366, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w30 > .ux-dropdown .select, .w30.ux-dropdown .select {
   width: 293px !important;
 }
-/* line 367, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w30 > .ux-datepicker, .w30.ux-datepicker {
   width: 271px !important;
 }
-/* line 368, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w30 > .ux-search, .w30.ux-search {
   width: 271px !important;
 }
-/* line 369, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w30 hr.shadow {
   width: 320px;
 }
 
-/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 384, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w40 {
   width: 400px !important;
 }
-/* line 365, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w40 > .ux-text, .w40.ux-text, .w40 > .field_with_errors > .ux-text {
   width: 394px !important;
 }
-/* line 366, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w40 > .ux-dropdown .select, .w40.ux-dropdown .select {
   width: 393px !important;
 }
-/* line 367, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w40 > .ux-datepicker, .w40.ux-datepicker {
   width: 371px !important;
 }
-/* line 368, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w40 > .ux-search, .w40.ux-search {
   width: 371px !important;
 }
-/* line 369, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w40 hr.shadow {
   width: 420px;
 }
 
-/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 385, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w50 {
   width: 500px !important;
 }
-/* line 365, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w50 > .ux-text, .w50.ux-text, .w50 > .field_with_errors > .ux-text {
   width: 494px !important;
 }
-/* line 366, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w50 > .ux-dropdown .select, .w50.ux-dropdown .select {
   width: 493px !important;
 }
-/* line 367, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w50 > .ux-datepicker, .w50.ux-datepicker {
   width: 471px !important;
 }
-/* line 368, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w50 > .ux-search, .w50.ux-search {
   width: 471px !important;
 }
-/* line 369, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w50 hr.shadow {
   width: 520px;
 }
 
-/* line 378, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 386, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w54 {
   width: 540px !important;
 }
-/* line 365, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w54 > .ux-text, .w54.ux-text, .w54 > .field_with_errors > .ux-text {
   width: 534px !important;
 }
-/* line 366, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w54 > .ux-dropdown .select, .w54.ux-dropdown .select {
   width: 533px !important;
 }
-/* line 367, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w54 > .ux-datepicker, .w54.ux-datepicker {
   width: 511px !important;
 }
-/* line 368, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w54 > .ux-search, .w54.ux-search {
   width: 511px !important;
 }
-/* line 369, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w54 hr.shadow {
   width: 560px;
 }
 
-/* line 379, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 387, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w55 {
   width: 550px !important;
 }
-/* line 365, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w55 > .ux-text, .w55.ux-text, .w55 > .field_with_errors > .ux-text {
   width: 544px !important;
 }
-/* line 366, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w55 > .ux-dropdown .select, .w55.ux-dropdown .select {
   width: 543px !important;
 }
-/* line 367, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w55 > .ux-datepicker, .w55.ux-datepicker {
   width: 521px !important;
 }
-/* line 368, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w55 > .ux-search, .w55.ux-search {
   width: 521px !important;
 }
-/* line 369, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w55 hr.shadow {
   width: 570px;
 }
 
-/* line 380, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 388, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w60 {
   width: 600px !important;
 }
-/* line 365, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 373, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w60 > .ux-text, .w60.ux-text, .w60 > .field_with_errors > .ux-text {
   width: 594px !important;
 }
-/* line 366, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 374, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w60 > .ux-dropdown .select, .w60.ux-dropdown .select {
   width: 593px !important;
 }
-/* line 367, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 375, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w60 > .ux-datepicker, .w60.ux-datepicker {
   width: 571px !important;
 }
-/* line 368, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 376, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w60 > .ux-search, .w60.ux-search {
   width: 571px !important;
 }
-/* line 369, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 377, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .w60 hr.shadow {
   width: 620px;
 }
 
 /* ----- Error ----- */
-/* line 383, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 391, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 label.error {
   background: url(../images/icons/small/orange/alert.png) no-repeat;
   color: #ff6600 !important;
@@ -2555,20 +2928,20 @@ label.error {
 .pulldown span.r { background:url(../images/combobox/white.png) no-repeat right top; height:26px; width:20px; display:block; position:absolute; right:0px; cursor:pointer }
 .pulldown:hover span.r { background:url(../images/combobox/white.png) no-repeat right -39px; height:26px; width:20px; display:block; position:absolute; right:0px; cursor:pointer }
 .pulldown select { margin-top:-26px; position:absolute; z-index:5; cursor:pointer; opacity: 0 }*/
-/* line 396, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 404, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 ::-webkit-input-placeholder {
   font-style: italic;
   color: #999;
 }
 
-/* line 397, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 405, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 :-moz-placeholder {
   font-style: italic;
   color: #999;
 }
 
 /* ------------ Super TAG ------------------ */
-/* line 401, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 409, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagfieldDiv {
   border: 1px solid #dddddd;
   padding: 0 2px;
@@ -2590,7 +2963,7 @@ label.error {
 }
 /* line 35, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagfieldDiv.readonly, .superblyTagfieldDiv.readonly:focus {
-  background: #d0d0d0;
+  background-color: #d0d0d0;
   color: #999999;
   border-width: 1px;
   margin: 1px;
@@ -2601,18 +2974,18 @@ label.error {
   margin: 0px;
 }
 
-/* line 403, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 411, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagfieldClearer {
   clear: both;
 }
 
-/* line 405, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 413, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagfieldDiv ul {
   margin: 0;
   padding: 0;
 }
 
-/* line 407, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 415, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagfield {
   /* if no javascript */
   outline: none;
@@ -2622,7 +2995,7 @@ label.error {
   background-color: #FFFFFF;
 }
 
-/* line 416, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 424, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagInput {
   border: none;
   outline: none;
@@ -2630,13 +3003,13 @@ label.error {
   margin: 0px;
 }
 
-/* line 423, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 431, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagInputItem {
   padding: 0px;
   margin: 0px;
 }
 
-/* line 428, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 436, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagItems > li {
   list-style: none;
   float: left;
@@ -2648,19 +3021,19 @@ label.error {
   -webkit-border-radius: 2px;
 }
 
-/* line 437, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 445, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagItems .superblyTagItem {
   background-color: #d0d0d0;
 }
 
-/* line 441, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 449, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblyTagItems .superblyTagItem a {
   color: #000000;
   cursor: pointer;
   font-style: normal;
 }
 
-/* line 446, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 454, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .remove {
   background-image: url(../images/tags/cross.png);
   height: 10px;
@@ -2669,19 +3042,22 @@ label.error {
   margin-left: 2px;
   display: inline-block;
   background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-position-y: 0px;
+  background-position: 0px 0px;
 }
-/* line 28, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .remove:hover {
-  background-position-y: -15px;
+  background-position: 0px -15px;
 }
-/* line 31, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .remove:active {
-  background-position-y: -30px;
+  background-position: 0px -30px;
+}
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.remove.disabled {
+  background-position: 0px -45px;
 }
 
-/* line 448, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 456, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblySuggestItems {
   min-width: 100px;
   position: absolute;
@@ -2698,7 +3074,7 @@ label.error {
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* line 460, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 468, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblySuggestItems .superblySuggestItem {
   padding: 3px 5px;
   list-style: none;
@@ -2710,18 +3086,18 @@ label.error {
   border-radius: 3px;
 }
 
-/* line 469, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 477, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblySuggestItems .superblySuggestItem:hover {
   cursor: pointer;
   background: #cccccc;
 }
 
-/* line 473, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 481, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblySuggestItems .selected {
   background-color: #cccccc;
 }
 
-/* line 477, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 485, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .superblySuggestItems:empty {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -2729,7 +3105,7 @@ label.error {
 }
 
 /* ------------ Gral BOX ------------------- */
-/* line 483, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 491, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .drop_shadow, .box, .flash > div {
   box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
@@ -2739,13 +3115,13 @@ label.error {
   -webkit-border-radius: 5px;
 }
 
-/* line 484, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 492, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .box {
   background: #FFFFFF;
   padding: 10px;
 }
 
-/* line 485, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 493, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .sbox {
   padding: 2px;
   border-radius: 5px;
@@ -2753,18 +3129,18 @@ label.error {
   -webkit-border-radius: 5px;
 }
 
-/* line 487, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 495, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .box.grey, .sbox.grey {
   background: #d0d0d0;
   color: #555555;
 }
 
-/* line 489, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
-.box + .box {
-  margin-top: 7px;
+/* line 497, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.box {
+  margin-bottom: 7px;
 }
 
-/* line 491, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 499, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 hr.shadow {
   background: #e5e6ec;
   background: -moz-linear-gradient(top, #e5e6ec 0%, white 100%);
@@ -2775,22 +3151,22 @@ hr.shadow {
   z-index: 0;
 }
 
-/* line 494, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 502, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .error_description {
   background: url(../images/icons/medium/orange/alert.png) no-repeat 8px 8px;
   color: #ff6600;
 }
-/* line 497, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 505, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .error_description h2 {
   color: #ff6600;
   font-size: 18px;
   margin-bottom: 2px;
 }
-/* line 502, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 510, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .error_description > * {
   margin-left: 35px;
 }
-/* line 503, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 511, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .error_description ul {
   font-size: 12px;
   line-height: 20px;
@@ -2803,7 +3179,7 @@ hr.shadow {
 
 /* ---------------------- Tables --------------------------*/
 /* -------- General ---------*/
-/* line 517, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 525, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable {
   width: 100%;
   -moz-border-radius: 6px 6px 6px 6px;
@@ -2812,7 +3188,7 @@ hr.shadow {
   border-collapse: collapse;
 }
 
-/* line 524, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 532, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable th {
   /* old browsers */
   background: #e5e6ec;
@@ -2828,25 +3204,25 @@ hr.shadow {
   padding: 6px;
 }
 
-/* line 538, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 546, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable tr:nth-child(2) {
   background: url(../images/interface/backtd.png) repeat-x;
 }
 
-/* line 540, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 548, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .GralTable td {
   letter-spacing: -0.005em;
   padding: 2px 6px;
 }
 
 /* -------- Clean ---------*/
-/* line 543, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 551, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .CleanTable th {
   background: #ffffff;
 }
 
 /* -------- Two column table  ---------*/
-/* line 547, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+/* line 555, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
 .TwoColumn tr td:nth-child(2) {
   width: 100px;
   text-align: right;
@@ -3104,34 +3480,40 @@ hr.shadow {
 .ui-datepicker .ui-datepicker-prev {
   background-image: url(../images/buttons/plain/previous.png);
   background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-position-y: 0px;
+  background-position: 0px 0px;
   left: 2px;
 }
-/* line 28, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ui-datepicker .ui-datepicker-prev:hover {
-  background-position-y: -30px;
+  background-position: 0px -30px;
 }
-/* line 31, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ui-datepicker .ui-datepicker-prev:active {
-  background-position-y: -60px;
+  background-position: 0px -60px;
+}
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.ui-datepicker .ui-datepicker-prev.disabled {
+  background-position: 0px -90px;
 }
 
 /* line 45, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_datepicker.scss */
 .ui-datepicker .ui-datepicker-next {
   background-image: url(../images/buttons/plain/next.png);
   background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-position-y: 0px;
+  background-position: 0px 0px;
   right: 2px;
 }
-/* line 28, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ui-datepicker .ui-datepicker-next:hover {
-  background-position-y: -30px;
+  background-position: 0px -30px;
 }
-/* line 31, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .ui-datepicker .ui-datepicker-next:active {
-  background-position-y: -60px;
+  background-position: 0px -60px;
+}
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.ui-datepicker .ui-datepicker-next.disabled {
+  background-position: 0px -90px;
 }
 
 /*
@@ -3728,16 +4110,19 @@ body.smallfooter #footer-container > div:nth-child(2) {
   top: -80px;
   padding-left: 0px !important;
   background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-position-y: 0px;
+  background-position: 0px 0px;
 }
-/* line 28, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .footer-next:hover {
-  background-position-y: -80px;
+  background-position: 0px -80px;
 }
-/* line 31, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .footer-next:active {
-  background-position-y: -160px;
+  background-position: 0px -160px;
+}
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.footer-next.disabled {
+  background-position: 0px -240px;
 }
 
 /* line 16, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_footer.scss */
@@ -3750,16 +4135,19 @@ body.smallfooter #footer-container > div:nth-child(2) {
   top: -80px;
   padding-left: 0px !important;
   background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-position-y: 0px;
+  background-position: 0px 0px;
 }
-/* line 28, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .footer-prev:hover {
-  background-position-y: -80px;
+  background-position: 0px -80px;
 }
-/* line 31, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .footer-prev:active {
-  background-position-y: -160px;
+  background-position: 0px -160px;
+}
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.footer-prev.disabled {
+  background-position: 0px -240px;
 }
 
 /* line 22, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_footer.scss */
@@ -3793,16 +4181,19 @@ body.smallfooter #footer-container > div:nth-child(2) {
   outline: 0;
   text-decoration: none;
   background-repeat: no-repeat;
-  background-position-x: 0px;
-  background-position-y: 0px;
+  background-position: 0px 0px;
 }
-/* line 28, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 27, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .jcarousel-item a:hover {
-  background-position-y: -90px;
+  background-position: 0px -90px;
 }
-/* line 31, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+/* line 30, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
 .jcarousel-item a:active {
-  background-position-y: -180px;
+  background-position: 0px -180px;
+}
+/* line 33, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_mixins.scss */
+.jcarousel-item a.disabled {
+  background-position: 0px -270px;
 }
 
 /* line 50, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_footer.scss */

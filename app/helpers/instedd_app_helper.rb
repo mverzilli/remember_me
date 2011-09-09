@@ -16,6 +16,23 @@ module InsteddAppHelper
     
     res
   end
+  
+  def errors_for(object, options = {})
+    if object.errors.any?
+       # TODO change on rails 3.1 to ActiveModel::Naming.param_key(object)
+      object_name = options[:as].try(:to_s) || ActiveModel::Naming.singular(object)
+          
+      content_tag :div, :class => "box w60 error_description" do
+        (content_tag :h2 do
+          "#{pluralize(object.errors.count, 'error')} prohibited this #{object_name.humanize} from being saved:"
+        end) \
+        + \
+        (content_tag :ul do
+          raw object.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
+        end)
+      end
+    end
+  end
 end
 
 module DeviseHelper  
