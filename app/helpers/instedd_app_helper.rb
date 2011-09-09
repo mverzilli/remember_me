@@ -39,7 +39,7 @@ module DeviseHelper
   def devise_error_messages!
     return if resource.errors.full_messages.empty?
     
-    (content_tag :div, :class => 'centered box w30 error_description' do
+    (content_tag :div, :class => 'box w60 error_description' do
       (content_tag :h2, 'The following errors occurred') \
       + \
       (content_tag :ul do

@@ -1,8 +1,6 @@
 
 <%= devise_error_messages! %>
 
-<div class="centered box w30">
-
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <h2>Create account</h2>
   
@@ -25,7 +23,4 @@
     <button type="submit" class="white">Create account</button>
   </div>
   
-  <%= render :partial => "devise/shared/links" %>
 <% end %>
-
-</div>
