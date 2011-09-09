@@ -144,7 +144,7 @@ class CalendarBasedScheduleTest < ActiveSupport::TestCase
     assert_equal Time.utc(2011,"sep",9,20,15,1), wake_up_event.message_timestamp_cursor
     assert_equal Time.utc(2011,"sep",9,20,15,1), job.run_at    
 
-    message2 = schedule.messages.create! :text => 'msg2' , :occurrence_rule => IceCube::Rule.weekly.day(:saturday)
+    message3 = schedule.messages.create! :text => 'msg3' , :occurrence_rule => IceCube::Rule.weekly.day(:saturday)
 
     assert_equal 1, Delayed::Job.count
     
@@ -317,11 +317,83 @@ class CalendarBasedScheduleTest < ActiveSupport::TestCase
     #     - if it's after cursor, nothing. Even if it's before today, the new message must be sent, but not rescheduled.
     #     - if after today and before cursor, reschedule. In this case this won't happen.
     #toDo
+    
+    schedule = CalendarBasedSchedule.make
+    message1 = schedule.messages.create! :text => 'msg1' , :occurrence_rule => IceCube::Rule.weekly.day(:friday)
+    subscriber = Subscriber.make :schedule => schedule
+    schedule.generate_reminders_for subscriber
+
+    #Corre el primer día y rebota
+    job = Delayed::Job.first
+    wake_up_event = YAML.load(job.handler)
+
+    assert_equal Time.utc(2011,"sep",9,20,15,1), wake_up_event.message_timestamp_cursor
+    assert_equal Time.utc(2011,"sep",9,20,15,1), job.run_at
+
+    Time.expects(:now).returns(Time.utc(2011,"sep",9,23,15,1)).at_least_once()
+    Delayed::Job.first.delete    
+    wake_up_event.perform
+
+    assert_equal 0, @messages_sent.size
+
+    assert_equal 1, Delayed::Job.count
+    job = Delayed::Job.first
+    wake_up_event = YAML.load(job.handler)
+
+    assert_equal Time.utc(2011,"sep",9,20,15,1), wake_up_event.message_timestamp_cursor
+    assert_equal Time.utc(2011,"sep",10,20,15,1), job.run_at
+
+    #corre el segundo día y rebota
+
+    Time.expects(:now).returns(Time.utc(2011,"sep",10,23,15,1)).at_least_once()
+    Delayed::Job.first.delete    
+    wake_up_event.perform
+
+    assert_equal 0, @messages_sent.size
+
+    assert_equal 1, Delayed::Job.count
+    job = Delayed::Job.first
+    wake_up_event = YAML.load(job.handler)
+
+    assert_equal Time.utc(2011,"sep",9,20,15,1), wake_up_event.message_timestamp_cursor
+    assert_equal Time.utc(2011,"sep",11,20,15,1), job.run_at
+    
+    message2 = schedule.messages.create! :text => 'msg2' , :occurrence_rule => IceCube::Rule.weekly.day(:saturday)
+
+    #Corre el tercer día y manda los dos mensajes
+    Time.expects(:now).returns(Time.utc(2011,"sep",11,20,15,1)).at_least_once()
+    Delayed::Job.first.delete    
+    wake_up_event.perform
+
+    assert_equal 1, @messages_sent.size
+    message_sent = @messages_sent[0]
+    assert_equal message1.text, message_sent[:body]
+
+    assert_equal 1, Delayed::Job.count
+    job = Delayed::Job.first
+    wake_up_event = YAML.load(job.handler)
+
+    assert_equal Time.utc(2011,"sep",10,20,15,1), wake_up_event.message_timestamp_cursor
+    assert_equal Time.utc(2011,"sep",10,20,15,1), job.run_at
+
+    Delayed::Job.first.delete    
+    wake_up_event.perform
+
+    assert_equal 2, @messages_sent.size
+    message_sent = @messages_sent[1]
+    assert_equal message2.text, message_sent[:body]
+
+    assert_equal 1, Delayed::Job.count
+    job = Delayed::Job.first
+    wake_up_event = YAML.load(job.handler)
+
+    assert_equal Time.utc(2011,"sep",16,20,15,1), wake_up_event.message_timestamp_cursor
+    assert_equal Time.utc(2011,"sep",16,20,15,1), job.run_at    
+    
   end
   
   test "two messages scheduled on the same date" do
-    #   If I have 2 messages scheduled for the same day both must be sent
-    #     - One for mondays and another for September 12, 2011.
+    #   If I have 2 messages scheduled for the same day, both must be sent
     
     schedule = CalendarBasedSchedule.make
     message1 = schedule.messages.create! :text => 'msg1' , :occurrence_rule => IceCube::Rule.weekly.day(:friday)
@@ -369,7 +441,62 @@ class CalendarBasedScheduleTest < ActiveSupport::TestCase
     #     - If the new day falls between today and the cursor, the event must be rescheduled
     #     - If not, well, it's not necessary, but it's better if it's rescheduled to the first event from today...
     #       Even if the date stays the same
-    #toDo
+    
+    schedule = CalendarBasedSchedule.make
+    message1 = schedule.messages.create! :text => 'msg1' , :occurrence_rule => IceCube::Rule.weekly.day(:friday)
+    message2 = schedule.messages.create! :text => 'msg2' , :occurrence_rule => IceCube::Rule.weekly.day(:monday)
+
+    subscriber1 = Subscriber.make :schedule => schedule
+    schedule.generate_reminders_for subscriber1
+    
+    assert_equal 1, Delayed::Job.count
+    
+    Time.expects(:now).returns(Time.utc(2011,"sep",10,17,35,42)).at_least_once()
+    subscriber2 = Subscriber.make :schedule => schedule
+    schedule.generate_reminders_for subscriber2
+    
+    assert_equal 2, Delayed::Job.count
+
+    job1 = Delayed::Job.first
+    wake_up_event1 = YAML.load(job1.handler)
+    
+    assert_equal Time.utc(2011,"sep",9,20,15,1), wake_up_event1.message_timestamp_cursor
+    assert_equal Time.utc(2011,"sep",9,20,15,1), job1.run_at
+    
+    job2 = Delayed::Job.last
+    wake_up_event2 = YAML.load(job2.handler)
+    
+    assert_equal Time.utc(2011,"sep",12,17,35,42), wake_up_event2.message_timestamp_cursor
+    assert_equal Time.utc(2011,"sep",12,17,35,42), job2.run_at
+
+    # I have to find the message again to force the schedule to look for it's subscribers and find them
+    message1 = Message.find(message1.id)
+    message1.occurrence_rule = IceCube::Rule.weekly.day(:sunday)  
+    message1.save!
+    assert_equal 2, Delayed::Job.count
+
+    job1 = Delayed::Job.first
+    wake_up_event1 = YAML.load(job1.handler)
+    
+    assert_equal Time.utc(2011,"sep",11,20,15,1), wake_up_event1.message_timestamp_cursor
+    assert_equal Time.utc(2011,"sep",11,20,15,1), job1.run_at
+    
+    job2 = Delayed::Job.last
+    wake_up_event2 = YAML.load(job2.handler)
+    
+    assert_equal Time.utc(2011,"sep",11,17,35,42), wake_up_event2.message_timestamp_cursor
+    assert_equal Time.utc(2011,"sep",11,17,35,42), job2.run_at
+      
+  end
+  
+  test "right date calculation" do
+    schedule = CalendarBasedSchedule.make
+
+    new_time = schedule.today_at_the_same_time_than Time.utc(2011,"sep",1,17,35,42)
+    assert_equal Time.utc(2011,"sep",6,17,35,42), new_time
+    
+    new_time = schedule.today_at_the_same_time_than Time.utc(2011,"sep",10,17,35,42)
+    assert_equal Time.utc(2011,"sep",6,17,35,42), new_time
   end
   
 end

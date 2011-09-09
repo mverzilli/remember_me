@@ -47,7 +47,14 @@ class CalendarBasedSchedule < Schedule
   end
   
   def message_has_been_updated message
-    
+    # I don't search only for the scheduled jobs of that message
+    # because of the new rule the message could now stand before any other message scheduled for any subscriber
+    self.subscribers.each do |subscriber|
+      delayed_job = Delayed::Job.where(:subscriber_id => subscriber.id).first
+      wake_up_event = YAML.load(delayed_job.handler)
+      schedule_reminder_for subscriber, next_message_occurrence_from(today_at_the_same_time_than wake_up_event.message_timestamp_cursor)
+      Delayed::Job.destroy(delayed_job.id)
+    end
   end
   
   def message_has_been_destroyed message
@@ -76,7 +83,7 @@ class CalendarBasedSchedule < Schedule
   end
   
   def between_two_hours_of timestamp
-    timestamp_at_today = timestamp + (Time.now.getutc.yday - timestamp.getutc.yday) * one_day
+    timestamp_at_today = today_at_the_same_time_than timestamp
     
     Time.now.between?(timestamp_at_today - two_hours, timestamp_at_today + two_hours)
   end
@@ -88,6 +95,10 @@ class CalendarBasedSchedule < Schedule
   
   def one_day
     60 * 60 * 24
+  end
+  
+  def today_at_the_same_time_than timestamp
+    timestamp + (Time.now.getutc.yday - timestamp.getutc.yday) * one_day
   end
   
 end
