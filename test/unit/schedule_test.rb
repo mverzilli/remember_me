@@ -7,11 +7,11 @@ class ScheduleTest < ActiveSupport::TestCase
     schedule.save
     
     assert schedule.invalid?
-    assert !schedule.errors[:keyword].blank?
-    assert !schedule.errors[:user_id].blank?
-    assert !schedule.errors[:welcome_message].blank?
-    assert !schedule.errors[:type].blank?    
-  end
+    assert !schedule.errors[:keyword].blank?, "Keyword must be present for all Schedules"
+    assert !schedule.errors[:user_id].blank?, "User ID must be present for all Schedules"
+    assert !schedule.errors[:welcome_message].blank?, "Welcome Message must be present for all Schedules"
+    assert !schedule.errors[:type].blank?, "Type must be present for all Schedules"
+    end
   
   [FixedSchedule, RandomSchedule].each do |klass|
     test "validate presence of required fields in #{klass}" do
@@ -19,11 +19,11 @@ class ScheduleTest < ActiveSupport::TestCase
       schedule.save
     
       assert schedule.invalid?
-      assert !schedule.errors[:keyword].blank?
-      assert !schedule.errors[:timescale].blank?
-      assert !schedule.errors[:user_id].blank?
-      assert !schedule.errors[:welcome_message].blank?
-      assert !schedule.errors[:type].blank?    
+      assert !schedule.errors[:keyword].blank?, "Keyword must be present for #{klass}"
+      assert !schedule.errors[:timescale].blank?, "Timescale must be present for #{klass}"
+      assert !schedule.errors[:user_id].blank?, "User ID must be present for #{klass}"
+      assert !schedule.errors[:welcome_message].blank?, "Welcome Message must be present for #{klass}"
+      assert_equal klass.to_s, schedule.type
     end
   end
   
