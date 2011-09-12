@@ -7,6 +7,7 @@ class Schedule < ActiveRecord::Base
   
   has_many :messages, :dependent => :destroy
   has_many :subscribers, :dependent => :destroy
+  has_many :logs, :dependent => :destroy
   
   accepts_nested_attributes_for :messages, :allow_destroy => true, :reject_if => lambda { |message| message[:text].blank?}
   validates_associated :messages
@@ -69,7 +70,7 @@ class Schedule < ActiveRecord::Base
   end
   
   def create_information_log_described_by description
-    Log.create! :severity => :information, :description => description
+    Log.create! :schedule => self, :severity => :information, :description => description
   end
   
   private

@@ -1,18 +1,24 @@
-<table>
-  <tr>
-    <th>Severity</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div id="container">
+   	
+       <h1>Logs</h1>
+  
+   <div class="tablewrapp">
+       <table class="GralTable ">
+           <tr>
+               <th>Severity</th>
+               <th>Description</th>
+               <th>Creation Date</th>
+           </tr>
 <% @logs.each do |log| %>
-  <tr>
-    <td><%= log.severity %></td>
-    <td><%= log.description %></td>
-    <td><%= link_to log.description, log %></td>
-    <td><%= log.created_at %></td>
-  </tr>
+           <tr>
+			    <td><%= log.severity %></td>
+			    <td><%= log.description %></td>
+			    <td><%= log.created_at %></td>
+           </tr>
 <% end %>
-</table>
+       </table>
+  </div><!-- #tablewrapp -->
+   
+   <br><br><br>
+
+</div><!-- #container -->
