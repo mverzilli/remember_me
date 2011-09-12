@@ -18,6 +18,7 @@ gem 'mocha'
 gem 'ffaker'
 gem 'machinist'
 gem "ice_cube", "~> 0.6.13"
+gem "rand", "~> 0.9.1"
 
 # Use unicorn as the web server
 # gem 'unicorn'

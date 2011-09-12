@@ -15,6 +15,12 @@ class Schedule < ActiveRecord::Base
   before_destroy :notify_deletion_to_subscribers
   
   attr_accessor_with_default :notifySubscribers, true
+
+  def subscribe subscriber
+    generate_reminders_for subscriber
+    log_new_subscription_of subscriber.phone_number
+    welcome_message_for subscriber.phone_number
+  end
   
   def generate_reminders_for recipient
     messages = self.reminders
@@ -22,6 +28,10 @@ class Schedule < ActiveRecord::Base
     messages.each_with_index do |message, index|
       self.enqueue_reminder message, index, recipient
     end
+  end
+  
+  def welcome_message_for phone_number
+    [build_message(phone_number, welcome_message)]
   end
   
   def self.time_scales
@@ -47,6 +57,19 @@ class Schedule < ActiveRecord::Base
     nuntium = Nuntium.new_from_config
     message = self.build_message to, body
     nuntium.send_ao message
+    log_message_sent body, to
+  end
+  
+  def log_message_sent body, recipient_number
+    create_information_log_described_by "Message sent: " + body + " - recipient: " + recipient_number
+  end
+  
+  def log_new_subscription_of recipient_number
+    create_information_log_described_by "New subscriber: " + recipient_number + " - schedule: " + keyword
+  end
+  
+  def create_information_log_described_by description
+    Log.create! :severity => :information, :description => description
   end
   
   private

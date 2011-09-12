@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>Severity</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @logs.each do |log| %>
+  <tr>
+    <td><%= log.severity %></td>
+    <td><%= log.description %></td>
+    <td><%= link_to log.description, log %></td>
+    <td><%= log.created_at %></td>
+  </tr>
+<% end %>
+</table>
