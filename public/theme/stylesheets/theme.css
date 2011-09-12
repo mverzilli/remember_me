@@ -3233,6 +3233,42 @@ hr.shadow {
   text-align: right;
 }
 
+/* -------- ux-collapsible ---------*/
+/* line 560, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-collapsible > span:first-child {
+  display: block;
+}
+
+/* line 564, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-collapsible > span:first-child > a {
+  color: #555555;
+}
+/* line 566, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-collapsible > span:first-child > a:hover {
+  color: #777777;
+}
+
+/* line 569, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-collapsible > span:first-child > .arrow {
+  background: url(../images/icons/misc/grey/arrowDown.png) no-repeat left 5px;
+  padding: 3px 0 3px 12px;
+}
+
+/* line 574, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-collapsible.collapsed > span:first-child > .arrow {
+  background: url(../images/icons/misc/grey/arrowRight.png) no-repeat left 5px;
+}
+
+/* line 578, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-collapsible.collapsed .ux-content {
+  display: none;
+}
+
+/* line 579, /Users/bcardiff/Work/InSTEDD/common/theme/sass/_styles.scss */
+.ux-collapsible.box {
+  margin: -10px;
+}
+
 /*
 
 	jQuery Bubble Popup v.2.3.1
