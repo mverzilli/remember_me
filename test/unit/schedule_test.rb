@@ -2,6 +2,10 @@ require 'test_helper'
 
 class ScheduleTest < ActiveSupport::TestCase
 
+  def send_ao (message)
+    @messages_sent = @messages_sent << message
+  end
+  
   test "validate presence of required fields in schedule" do
     schedule = Schedule.new
     schedule.save
@@ -73,10 +77,6 @@ class ScheduleTest < ActiveSupport::TestCase
     end
   end
 
-  def send_ao (message)
-    @messages_sent = @messages_sent << message
-  end
-
   test "users are notified when schedule is destroyed" do
 
     Nuntium.expects(:new_from_config).returns(self).twice
@@ -125,6 +125,53 @@ class ScheduleTest < ActiveSupport::TestCase
     assert_equal 0, @messages_sent.size
 
     Nuntium.unstub(:find)
-
   end
+  
+  test "event is logged when subscriber is added" do
+    Nuntium.expects(:new_from_config).returns(self).twice
+    @messages_sent = []
+    
+    pregnant = pregnant_make
+    
+    subscriber = Subscriber.make :schedule => pregnant
+
+    pregnant.subscribe subscriber
+
+    assert_equal 1, Log.count
+
+    log = Log.first
+    
+    assert_equal :information, log.severity
+    assert_equal "New subscriber: sms://2492873342167 - schedule: pregnant", log.description
+    
+    Nuntium.unstub(:find)
+  end
+  
+  test "event is logged when message is sent" do
+    Nuntium.expects(:new_from_config).returns(self).twice
+    @messages_sent = []
+    
+    pregnant = pregnant_make
+    
+    subscriber = Subscriber.make :schedule => pregnant
+
+    pregnant.subscribe subscriber
+
+    assert_equal 1, Log.count
+    assert_equal 5, Delayed::Job.count
+    
+    job = Delayed::Job.first
+    scheduled_job = YAML.load(job.handler)
+    
+    scheduled_job.perform
+    assert_equal 2, Log.count
+    
+    log = Log.last
+    
+    assert_equal :information, log.severity
+    assert_equal "Message sent: pregnant1 - recipient: sms://1712276619826", log.description
+    
+    Nuntium.unstub(:find)
+  end
+  
 end

@@ -19,9 +19,7 @@ class Subscriber < ActiveRecord::Base
                                         :schedule => schedule,
                                         :subscribed_at => DateTime.current.utc
     
-    schedule.generate_reminders_for new_subscriber
-    
-    [schedule.build_message(params[:from], schedule.welcome_message)]
+    schedule.subscribe new_subscriber
   end
   
   def reference_time

@@ -14,7 +14,7 @@ class CalendarBasedSchedule < Schedule
     message_timestamp_cursor = options[:starting_at]
     if !paused? && between_two_hours_of(message_timestamp_cursor)
       messages_to_be_sent_on(message_timestamp_cursor).each do |message_to_send|
-        send_message subscriber, message_to_send.text
+        send_message subscriber.phone_number, message_to_send.text
       end
       schedule_reminder_for subscriber, next_message_occurrence_from(message_timestamp_cursor)
     else
