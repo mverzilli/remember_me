@@ -24,6 +24,14 @@
   </div>
   
   <div class="field">
+    <%= f.label :timescale %>
+    <p>Choose timescale reference to use</p> 
+    <div class="ux-dropdown w20 inline">
+      <%= f.select :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange" %>
+    </div>
+  </div>
+  
+  <div class="field">
     <label>Mode</label>
     <p>Choose whether you want to set up a timeline for your messages or send them randomly</p>
 
@@ -42,12 +50,6 @@
       :class => "causesPendingSaveNoticeOnChange styled"
     %>
     <%= f.label :type, "Random", :class => 'radio' %>
-    <span>once every</span>
-    
-    <div class="ux-dropdown w20 inline">
-      <%= f.select :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange" %>
-    </div>
-    
   </div>
 
   <p class="w60">
@@ -69,15 +71,17 @@
 
   <p class = "Title">Messages</p>
   <p>Write your schedule's messages</p>
-  <ul>
+  <ul class="vertical">
     <% @schedule.messages.each.with_index do |message,index| %>
       <%= f.fields_for :messages, message do |message_form| %>
         <%= render "message_fields", :f => message_form, :index => index%>
 	   <% end %>
     <% end %>
    <li class="fields">
-    <%= link_to_add_fields "add message", f, :messages, :class => "causesPendingSaveNoticeOnClick" %>
-  </li>
+     <div class="box gray w60">
+      <%= link_to_add_fields "Add message", f, :messages, :class => "causesPendingSaveNoticeOnClick" %>
+     </div>
+   </li>
 	</ul>
   <div class="actions">
     <button type="submit" class="orange">Save</button>

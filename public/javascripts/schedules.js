@@ -9,15 +9,6 @@ function toggleOffset(){
 		$('.offset').hide();
 }
 
-// The action.
-$('a').click(function() {
-  alert('click');
-  return false;
-});
- 
-// The most simple use.
-$('a').confirm();
-
 $(function() {
     $('#fixed_schedule_option').change(function(){
         toggleOffset();
@@ -32,6 +23,7 @@ $(function() {
     timescale.change(function(){
         updateTimescaleLabels($(this).val());
     });
+		timescale.change();
 
     $('.causesPendingSaveNoticeOnChange').change(function(){
         showUnsavedChangesAlert();
@@ -41,16 +33,16 @@ $(function() {
         showUnsavedChangesAlert();
     });
 
-    $('.WajBar').wajbar();
     toggleOffset();
 });
 
 function updateTimescaleLabels(new_value){
 	$('#random_schedule_option').next().text("Random once " + timescaleToOneString(new_value));
-	$('.offsetColumn.header').text(capitalizedSingular(new_value));
+	$('.offset .timescale').text(capitalizedSingular(new_value));
 }
 
 function notifySubscribersConfirm() {
+	// TODO review
 	var answer = confirm('Notify all subscribers of schedule deletion? \n\nClick "Cancel" to delete this schedule without sending a notification.');
 	if (answer) {
 		//send a message to the controller
@@ -104,7 +96,6 @@ function edit_fields(link, content) {
 
   getRow(link).after(content);
 
-  $(".WajBar").wajbar();
   //Hide offset control if user is editing a random schedule
   toggleOffset();
 }
@@ -153,6 +144,7 @@ function add_fields(link, association, content) {
 
   //Add the new instance to the list
   $(link).closest(".fields").before(newRowContent);
+	$.instedd.init_components($(link).closest(".fields").prev());
 /*
   //Get the values of the fields of the new object 
   var offset = $('#offset').val();
@@ -173,7 +165,6 @@ function add_fields(link, association, content) {
 
   textCell.append(text);
 */
-  $(".WajBar").wajbar();
   toggleOffset();
 }
 

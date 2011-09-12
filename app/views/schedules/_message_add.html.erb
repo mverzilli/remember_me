@@ -1,18 +1,17 @@
-<li class ="fields">
-  <div class="offset">
-    <div class="nstep">
-      <%= f.text_field "offset", :class => "TextField w06", :id => "nodes", :size => "2"%>
-      <input type="button" value="" onClick=<%= "this.form.nodes.value--"%> readonly="readonly" class="kdown">
-      <input type="button" value="" onClick=<%= "this.form.nodes.value++"%> class="kup">
-    </div>
-    <%= @schedule.timescale %>
-    </div>
-  <div class="text">
-    <div class="w50">
-      <%= f.text_area "text", :rows => 5, :class => "Txarea WajBar", :placeholder => 'Add message here' , :maxlength => 140 %>
-    </div>
-  </div>
-  <span float = "right">
-    <%= link_to_remove_fields "remove", f, :class => "causesPendingSaveNoticeOnClick" %>
+<li class="fields">
+  <div class="box grey w60">
+  <span class="right">
+    <%= link_to_remove_fields '', f, :class => "fdelete causesPendingSaveNoticeOnClick" %>
   </span>
+  <div class="offset left">
+    <div class="ux-nstep">
+      <%= f.text_field "offset", :id => "nodes", :size => "2"%>
+    </div>
+    <span class="timescale"><%= @schedule.timescale %></span>
+  </div>
+  <div class="clear"></div>
+  <div class="text">
+    <%= f.text_area "text", :rows => 5, :class => "ux-wajbar w60", :placeholder => 'Add message here' , :maxlength => 140 %>
+  </div>
+  </div>
 </li>
