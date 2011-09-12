@@ -22,7 +22,7 @@ module InsteddAppHelper
        # TODO change on rails 3.1 to ActiveModel::Naming.param_key(object)
       object_name = options[:as].try(:to_s) || ActiveModel::Naming.singular(object)
           
-      content_tag :div, :class => "box error_description #{html_options[:class] || 'w60'}" do
+      content_tag :div, :class => "box error_description #{options[:class] || 'w60'}" do
         (content_tag :h2 do
           "#{pluralize(object.errors.count, 'error')} prohibited this #{object_name.humanize} from being saved:"
         end) \
