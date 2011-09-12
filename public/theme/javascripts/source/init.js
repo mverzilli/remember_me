@@ -70,9 +70,23 @@
 		// position user menu
 		$('#User').mouseenter(function(){
 			var container = $('.container', $(this));
-			container.prepend($("<div>").addClass("band"));
-			container.css('margin-left', -container.width()/2 + $(this).width()/2 - 2);
-			$('.band', container).width($(this).width() + 20); // hack padding of #User
+			var band = $('.band', container);
+			if (band.length == 0) {
+				container.prepend(band = $("<div>").addClass("band"));
+			}
+			var margin_to_center = -container.width()/2 + $(this).width()/2 - 2;
+			container.css('margin-left', margin_to_center);
+			var exceeded = container.offset().left + container.width() - $(window).width() + 20; // HACK 20 a bit of space
+
+			if (exceeded > 0) {
+				container.css('margin-left', margin_to_center - $(this).width()/2 - exceeded - 10); // HACK padding of container
+				band.css('margin-left',  container.width()/2 + exceeded);
+			} else {
+				band.css('margin-left', 'auto');
+				band.css('margin-right', 'auto');
+			}
+			
+			band.width($(this).width() + 20); // hack padding of #User
 		});
 		
 		// add in the pre-last li of the BreadCrumb a span

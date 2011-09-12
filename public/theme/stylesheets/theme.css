@@ -4443,7 +4443,7 @@ body.smallfooter #footer-container > div:nth-child(2) {
 #User {
   background: url(../images/icons/misc/black/arrowDown.png) no-repeat 94% 6px;
   font-size: 12px;
-  padding: 4px 16px 2px 4px;
+  padding: 4px 20px 2px 4px;
   margin-top: 5px;
   position: absloute;
   cursor: pointer;
@@ -4497,7 +4497,8 @@ body.smallfooter #footer-container > div:nth-child(2) {
 #User .band {
   width: 40px;
   background-color: white;
-  margin: -11px auto 9px auto;
+  margin-top: -11px;
+  margin-bottom: 9px;
   height: 2px;
 }
 
