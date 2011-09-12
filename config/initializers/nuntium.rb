@@ -1,5 +1,9 @@
 class Nuntium
-  Config = YAML.load_file(File.expand_path('../../../config/nuntium.yml', __FILE__))[Rails.env]
+  unless Rails.env == 'test'
+    Config = YAML.load_file(File.expand_path('../../../config/nuntium.yml', __FILE__))[Rails.env]
+  else
+    Config = {}
+  end
   
   def self.new_from_config
     Nuntium.new Config['url'], Config['account'], Config['application'], Config['password']
