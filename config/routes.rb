@@ -1,11 +1,11 @@
 RememberMe::Application.routes.draw do
-  resources :logs
-
   devise_for :users
 
   resources :subscribers
 
-  resources :schedules, :except => :show
+  resources :schedules, :except => :show do
+    resources :logs, :only => :index
+  end
   
   resources :random_schedules, :controller => "schedules", :except => :show
 

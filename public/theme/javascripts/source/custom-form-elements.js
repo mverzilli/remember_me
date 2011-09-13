@@ -56,11 +56,7 @@ var cfePositions = {
 document.write('<style type="text/css">input.styled { display: none; } select.styled { position: relative; ' + /*width: ' + selectWidth + 'px;*/ 'opacity: 0; filter: alpha(opacity=0); z-index: 5; }' + /*.disabled { opacity: 0.5; filter: alpha(opacity=50); }*/ '</style>');
 
 function hasStyledClass(domElem) {
-	return domElem.className.match(/\bstyled\b/);
-}
-
-function hasHasStyledClass(domElem) {
-	return domElem.className.match(/\bhasStyled\b/);
+	return domElem.className.match(/\bstyled\b/)
 }
 
 function backgroundPosition(domInputElem, stateModifier) {
@@ -87,13 +83,12 @@ var Custom = {
 	init: function() {
 		var inputs = document.getElementsByTagName("input"), span = Array(), textnode, option, active;
 		for(a = 0; a < inputs.length; a++) {
-			if((inputs[a].type == "checkbox" || inputs[a].type == "radio") && hasStyledClass(inputs[a]) && !hasHasStyledClass(inputs[a])) {
+			if((inputs[a].type == "checkbox" || inputs[a].type == "radio") && hasStyledClass(inputs[a])) {
 				span[a] = document.createElement("span");
 				span[a].className = inputs[a].type;
 
 				span[a].style.backgroundPosition = backgroundPosition(inputs[a]);
 
-				inputs[a].className += ' hasStyled';
 				inputs[a].parentNode.insertBefore(span[a], inputs[a]);
 				inputs[a].onchange = Custom.clear;
 				if(!inputs[a].getAttribute("disabled")) {
@@ -115,8 +110,7 @@ var Custom = {
 		}
 		inputs = document.getElementsByTagName("select");
 		for(a = 0; a < inputs.length; a++) {
-			if(hasStyledClass(inputs[a]) && !hasHasStyledClass(inputs[a])) {
-				inputs[a].className += ' hasStyled';
+			if(hasStyledClass(inputs[a])) {
 				option = inputs[a].getElementsByTagName("option");
 				active = option[0].childNodes[0].nodeValue;
 				textnode = document.createTextNode(active);
