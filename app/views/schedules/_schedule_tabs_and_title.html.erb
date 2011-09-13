@@ -1,0 +1,7 @@
+<h1><%= schedule.title %></h1>
+
+<ul>
+	<li>Overview</li>
+	<li class="<%= "selected" if params[:controller] == "logs"%>" ><%= link_to "Logs", schedule_logs_path(schedule.id) %></li>
+	<li class="<%= "selected" if params[:controller] == "schedules"%>" ><%= link_to "Configuration", edit_schedule_path(schedule.id) %></li>
+</ul>

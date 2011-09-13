@@ -143,6 +143,7 @@ class ScheduleTest < ActiveSupport::TestCase
     
     assert_equal :information, log.severity
     assert_equal "New subscriber: sms://2492873342167 - schedule: pregnant", log.description
+    assert_equal pregnant, log.schedule
     
     Nuntium.unstub(:find)
   end
@@ -170,6 +171,7 @@ class ScheduleTest < ActiveSupport::TestCase
     
     assert_equal :information, log.severity
     assert_equal "Message sent: pregnant1 - recipient: sms://1712276619826", log.description
+    assert_equal pregnant, log.schedule
     
     Nuntium.unstub(:find)
   end

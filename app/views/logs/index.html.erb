@@ -1,18 +1,22 @@
-<table>
-  <tr>
-    <th>Severity</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= render "schedules/schedule_tabs_and_title", :schedule => @logs.first.schedule, :logs_selected => true %>
 
-<% @logs.each do |log| %>
-  <tr>
-    <td><%= log.severity %></td>
-    <td><%= log.description %></td>
-    <td><%= link_to log.description, log %></td>
-    <td><%= log.created_at %></td>
-  </tr>
-<% end %>
-</table>
+<div id="container">
+	<h1>Logs</h1>
+	<div class="tablewrapp">
+		<table class="GralTable ButtonTable">
+			<tr>
+				<th>Severity</th>
+				<th>Text</th>
+				<th>Timestamp</th>
+			</tr>
+			<% @logs.reverse.each do |log| %>
+			<tr>
+				<td><label class="<%= log.severity %>"><%= log.severity.to_s.capitalize %></td>
+				<td><%= log.description %></td>
+				<td><%= time_ago_in_words log.created_at %></td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+	<br><br><br>
+</div>

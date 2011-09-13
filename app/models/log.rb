@@ -2,7 +2,8 @@ class Log < ActiveRecord::Base
   validates :severity,
              :inclusion => {:in => [:information, :error, :warning]}
 
-  validates_presence_of :description, :severity
+  validates_presence_of :description, :severity, :schedule
+  belongs_to :schedule
   
   def severity
     read_attribute(:severity).to_sym rescue nil

@@ -7,14 +7,15 @@ class Subscriber < ActiveRecord::Base
   def self.subscribe params
     keyword, offset = params[:body].split
     user = User.find_by_email params[:'x-remindem-user']
-    return reply(self.invalid_author(keyword), :to => params[:from]) unless user
+    sender_phone_number = params[:from]
+    return reply(self.invalid_author(keyword), :to => sender_phone_number) unless user
     
     schedule = user.schedules.find_by_keyword keyword
     
-    return reply(self.no_schedule_message(keyword), :to => params[:from]) unless schedule
-    return reply(self.invalid_offset_message(params[:body], offset), :to => params[:from]) unless offset.nil? || offset.looks_as_an_int?
+    return reply(self.no_schedule_message(keyword), :to => sender_phone_number) unless schedule
+    return reply(self.invalid_offset_message(params[:body], offset), :to => sender_phone_number) unless offset.nil? || offset.looks_as_an_int?
     
-    new_subscriber = self.create! :phone_number => params[:from], 
+    new_subscriber = self.create! :phone_number => sender_phone_number, 
                                         :offset => offset ? offset : 0, 
                                         :schedule => schedule,
                                         :subscribed_at => DateTime.current.utc

@@ -13,6 +13,7 @@ Sham.description { Faker::Lorem.sentence }
 Log.blueprint do
   severity
   description
+  schedule
 end
 
 User.blueprint do
