@@ -45,14 +45,14 @@ class SchedulesControllerTest < ActionController::TestCase
     attributes = @schedule.attributes
     attributes[:type] = "FixedSchedule"
     
-    put :update, :id => @schedule.id, @schedule.class.name.underscore.to_sym => attributes
+    put :update, :id => @schedule.id, :schedule => attributes
   
     assert_template :edit
     assert !assigns(:schedule).errors[:messages].blank?
   end
   
   test "should update schedule" do
-    put :update, :id => @schedule.to_param, @schedule.class.name.underscore.to_sym => @schedule.attributes
+    put :update, :id => @schedule.to_param, :schedule => @schedule.attributes
     assert_redirected_to edit_schedule_path(assigns(:schedule))
   end
   
@@ -72,7 +72,7 @@ class SchedulesControllerTest < ActionController::TestCase
                                   "1" => {:id => msg2.id, :text => msg2.text, :offset => msg2.offset, "_destroy" => "1"}}
       }      
 
-      put :update, :id => randweeks.id, :random_schedule => schedule
+      put :update, :id => randweeks.id, :schedule => schedule
     end
 
     assert_redirected_to edit_schedule_path(assigns(:schedule))

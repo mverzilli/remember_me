@@ -61,10 +61,10 @@ class SchedulesController < AuthenticatedController
     @schedule = Schedule.find(params[:id])
     
     #Type needs to be manually set because it's protected, thus update_attributes doesn't affect it
-    @schedule.type = params[@schedule.class.name.underscore][:type]
+    @schedule.type = params[:schedule][:type]
     
     respond_to do |format|
-      if @schedule.update_attributes(params[@schedule.class.name.underscore])
+      if @schedule.update_attributes(params[:schedule])
         format.html { redirect_to(edit_schedule_url(@schedule), :notice => 'Schedule was successfully updated.') }
         format.xml  { head :ok }
       else

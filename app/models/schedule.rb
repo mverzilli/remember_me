@@ -17,6 +17,16 @@ class Schedule < ActiveRecord::Base
   
   attr_accessor_with_default :notifySubscribers, true
 
+  def self.inherited(child)
+    # force all subclass to have :schedule as model name
+    child.instance_eval do
+      def model_name
+        Schedule.model_name
+      end
+    end
+    super
+  end
+  
   def subscribe subscriber
     generate_reminders_for subscriber
     log_new_subscription_of subscriber.phone_number

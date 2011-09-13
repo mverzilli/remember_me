@@ -6,10 +6,6 @@ RememberMe::Application.routes.draw do
   resources :schedules, :except => :show do
     resources :logs, :only => :index
   end
-  
-  resources :random_schedules, :controller => "schedules", :except => :show
-
-  resources :fixed_schedules, :controller => "schedules", :except => :show
 
   match :receive_at, :controller => "nuntium", :action => :receive_at
   

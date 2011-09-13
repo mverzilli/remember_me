@@ -20,7 +20,7 @@ $(function() {
         toggleOffset();
     });
 	
-    timescale = $('#fixed_schedule_timescale, #random_schedule_timescale, #schedule_timescale');
+    timescale = $('#schedule_timescale');
 	
     timescale.change(function(){
         updateTimescaleLabels($(this).val());
