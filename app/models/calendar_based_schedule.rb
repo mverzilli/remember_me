@@ -55,6 +55,7 @@ class CalendarBasedSchedule < Schedule
       schedule_reminder_for subscriber, next_message_occurrence_from(today_at_the_same_time_than wake_up_event.message_timestamp_cursor)
       Delayed::Job.destroy(delayed_job.id)
     end
+    log_message_updated message
   end
   
   def message_has_been_destroyed message
@@ -68,6 +69,7 @@ class CalendarBasedSchedule < Schedule
         Delayed::Job.destroy(delayed_job.id)
       end
     end
+    log_message_deleted message
   end
   
   def new_message_has_been_created message
@@ -80,6 +82,7 @@ class CalendarBasedSchedule < Schedule
         Delayed::Job.destroy(delayed_job.id)
       end
     end
+    log_message_created message
   end
   
   def between_two_hours_of timestamp

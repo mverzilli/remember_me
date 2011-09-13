@@ -83,6 +83,18 @@ class Schedule < ActiveRecord::Base
     Log.create! :schedule => self, :severity => :information, :description => description
   end
   
+  def log_message_updated message
+    create_information_log_described_by "Message updated: " + message.text
+  end
+  
+  def log_message_deleted message
+    create_information_log_described_by "Message deleted: " + message.text
+  end
+  
+  def log_message_created message
+    create_information_log_described_by "Message created: " + message.text
+  end
+  
   private
   
   def initialize_messages
