@@ -1,20 +1,21 @@
-<li class ="fields">
-  <div class="offset">
-    <div class="nstep">
-      <%= tag :input, :class => "TextField w06", :name => "random_schedule[messages_attributes][#{f.options[:index]}][offset]" ,:id => "nodes#{f.options[:index]}", :size => "2", :type => "text", :value => f.object.offset%>
-      <input type="button" value="" onClick=<%= "this.form.nodes#{f.options[:index]}.value--"%> readonly="readonly" class="kdown">
-      <input type="button" value="" onClick=<%= "this.form.nodes#{f.options[:index]}.value++"%> class="kup">
+<li class="fields">
+  <div class="box grey w60">
+    <span class="right">
+      <%= tag :input, :type => "hidden", :name => "random_schedule[messages_attributes][#{f.options[:index]}][_destroy]" %>
+      <%= link_to_function '', "remove_fields(this)", :class => "fdelete causesPendingSaveNoticeOnClick" %>
+    </span>
+  
+  <div class="offset left">
+    <div class="ux-nstep">
+      <%= tag :input, :name => "random_schedule[messages_attributes][#{f.options[:index]}][offset]" ,:id => "nodes#{f.options[:index]}", :size => "2", :type => "text", :value => f.object.offset %>
     </div>
-    <%= @schedule.timescale %>
-    </div>
-  <div class="text">
-    <div class="w50">
-      <%= content_tag :textarea, f.object.text, :rows => 5, :class => "Txarea WajBar", :placeholder => 'Add message here',
-      :name => "random_schedule[messages_attributes][#{f.options[:index]}][text]" , :maxlength => 140 %>
-    </div>
+    <span class="timescale"><%= @schedule.timescale %></span>
   </div>
-  <span float = "right">
-    <%= tag :input, :type => "hidden", :name => "random_schedule[messages_attributes][#{f.options[:index]}][_destroy]" %>
-    <%= link_to_function("remove", "remove_fields(this)", :class => "causesPendingSaveNoticeOnClick") %>
-  </span>
+  
+  <div class="text">
+    <%= content_tag :textarea, f.object.text, :rows => 5, :class => "ux-wajbar w60", :placeholder => 'Add message here',
+      :name => "random_schedule[messages_attributes][#{f.options[:index]}][text]" , :maxlength => 140 %>
+  </div>
+
+  </div>
 </li>

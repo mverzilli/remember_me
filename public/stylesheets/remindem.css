@@ -1,3 +1,6 @@
 
 ul.vertical { padding: 0; }
 ul.vertical li { list-style: none; }
+
+.fields .aleft { clear: left; float: left; }
+.fields .farrow { height: 18px; }

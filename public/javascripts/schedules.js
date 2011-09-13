@@ -1,5 +1,5 @@
 function showUnsavedChangesAlert(){
-	$('.alert').text("There are unsaved changes in your schedule!")
+	$.status.showError("There are unsaved changes in your schedule!")
 }
 
 function toggleOffset(){
@@ -8,6 +8,8 @@ function toggleOffset(){
 	else
 		$('.offset').hide();
 }
+
+var timescale;
 
 $(function() {
     $('#fixed_schedule_option').change(function(){
@@ -18,7 +20,7 @@ $(function() {
         toggleOffset();
     });
 	
-    var timescale = $('#fixed_schedule_timescale, #random_schedule_timescale, #schedule_timescale');
+    timescale = $('#fixed_schedule_timescale, #random_schedule_timescale, #schedule_timescale');
 	
     timescale.change(function(){
         updateTimescaleLabels($(this).val());
@@ -85,7 +87,7 @@ function caseTimescale(value, hour, day, week, month, year, defaultCase){
 
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").attr("value", '1');
-  $(link).closest(".fields").hide();
+  getRow(link).hide();
 }
 
 function edit_fields(link, content) {
@@ -96,8 +98,10 @@ function edit_fields(link, content) {
 
   getRow(link).after(content);
 
+	$.instedd.init_components(getRow(link).next());
   //Hide offset control if user is editing a random schedule
   toggleOffset();
+	timescale.change();
 }
 
 function confirmChange(buttonOk) {
@@ -143,8 +147,8 @@ function add_fields(link, association, content) {
   var newRowContent = content.replace(regexp, new_id);
 
   //Add the new instance to the list
-  $(link).closest(".fields").before(newRowContent);
-	$.instedd.init_components($(link).closest(".fields").prev());
+  getRow(link).before(newRowContent);
+	$.instedd.init_components(getRow(link).prev());
 /*
   //Get the values of the fields of the new object 
   var offset = $('#offset').val();
@@ -166,6 +170,7 @@ function add_fields(link, association, content) {
   textCell.append(text);
 */
   toggleOffset();
+	timescale.change();
 }
 
 function getHiddenOffsetValue(link){

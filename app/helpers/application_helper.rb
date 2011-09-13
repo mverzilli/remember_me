@@ -1,18 +1,12 @@
 module ApplicationHelper
   def link_to_remove_fields(name, f, options={})
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this); notifySubscribersConfirm()", options)
-
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", options)
   end
   
   def link_to_edit_fields(name, f, association, edit_object, options={})
     fields = edit_fields_for f, association, edit_object, options
     
-    link_to_function(name, "edit_fields(this, \"#{escape_javascript(fields)}\")")
-  end
-
-  def button_to_edit_fields( f, association, edit_object, options={})
-    fields = edit_fields_for f, association, edit_object, options
-    button_to_function("", "edit_fields(this, \"#{escape_javascript(fields)}\")", :class => "icon farrow")
+    link_to_function(name, "edit_fields(this, \"#{escape_javascript(fields)}\")", :class => 'farrow')
   end
   
   def edit_fields_for(f, association, edit_object, options={})

@@ -11,6 +11,8 @@ h1 + p, h2 + p { margin: -15px 0 15px 0; color: $darkgray; }
 
 hr { border:0; height:1px; color:#dddddd; background:#dddddd; position:relative; margin: 3px 0px; }
 
+table { border-spacing: 0px; }
+
 /* ----- CLASSES ----- */
 a { color: inherit; text-decoration:none }
 a:hover { text-decoration:none; }
@@ -489,7 +491,7 @@ label.error {
 
 
 /* ------------ Gral BOX ------------------- */
-.drop_shadow { box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2); -moz-box-shadow:0px 1px 1px 1px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2); border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.drop_shadow { box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.3); -moz-box-shadow:0px 1px 1px 1px rgba(0, 0, 0, 0.3); -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.3); border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
 .box { @extend .drop_shadow; background:#FFFFFF; padding:10px; }
 .sbox { padding:2px; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px }
 
@@ -523,33 +525,28 @@ hr.shadow { background: #e5e6ec; background: -moz-linear-gradient(top, #e5e6ec 0
 /* ---------------------- Tables --------------------------*/
 
 /* -------- General ---------*/
-.GralTable {
-	width:100%;
-	-moz-border-radius:6px 6px 6px 6px;
-	-webkit-border-radius:6px 6px 6px 6px;
-	border-radius:6px 6px 6px 6px;
-	border-collapse:collapse
-}
-.GralTable th {
-	/* old browsers */
-	background: #e5e6ec;
-	/* firefox */
-	background: -moz-linear-gradient(top, #ffffff 0%, #e5e6ec 100%);
-	/* webkit */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e6ec));
-	/* ie */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e6ec',GradientType=0 );
-	color:#555555;
-	font-weight:normal;
-	text-align:left;
-	padding:6px;
-}
+.tablewrapp { padding:2px 0; border-radius:6px; -moz-border-radius:6px; -webkit-border-radius:6px; box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2); -moz-box-shadow:0px 1px 1px 1px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2) }
+
+.GralTable { width:100%; -moz-border-radius:6px 6px 6px 6px; -webkit-border-radius:6px 6px 6px 6px;	border-radius:6px 6px 6px 6px; border-collapse:collapse }
+
+.GralTable th {	background: #e5e6ec; background: -moz-linear-gradient(top, #ffffff 0%, #d0d0d0 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#d0d0d0)); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d0d0d0',GradientType=0 ); text-shadow: 0px 1px 0px #ffffff; color:#555555; font-weight:normal; text-align:left;	padding:6px; border-bottom:1px solid #ffffff; border-right:1px solid #ffffff }
+
+.GralTable th:last-child { border-right:none }
+
 .GralTable tr:nth-child(2) { background:url(../images/interface/backtd.png) repeat-x }
 
-.GralTable td { letter-spacing:-0.005em; padding:2px 6px }
+.GralTable td { letter-spacing:-0.005em; padding:2px 6px; border-bottom:1px solid #eeeeee }
+.GralTable tr:last-child td { border-bottom:none }
 
 /* -------- Clean ---------*/
 .CleanTable th { background:#ffffff}
+
+/* -------- Table with Buttons ---------*/
+.ButtonTable tr:hover { background:#eaeaea }
+.ButtonTable td { height:32px }
+.ButtonTable td button { padding:0; margin:-3px 0 0 0; float:right; display:none }
+.ButtonTable tr:hover td button { display:block }
+.ButtonTable tr td:last-child { width:160px }
 
 /* -------- Two column table  ---------*/
 .TwoColumn tr td:nth-child(1) { }
