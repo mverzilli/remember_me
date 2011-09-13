@@ -1,4 +1,4 @@
-<%= render "schedules/schedule_tabs_and_title", :schedule => @logs.first.schedule, :logs_selected => true %>
+<%= render "schedules/schedule_tabs_and_title", :schedule => Schedule.find(params[:schedule_id]), :logs_selected => true %>
 
 <div id="container">
 	<h1>Logs</h1>
