@@ -2,50 +2,24 @@ require 'test_helper'
 
 class SubscribersControllerTest < ActionController::TestCase
   setup do
-    sign_in users(:user1) 
-
-    @subscriber = randweeks_make.subscribers.first
+    sign_in users(:user1)
+    
+    @randweeks = randweeks_make
+    @subscriber = @randweeks.subscribers.first
+    
   end
 
   test "should get index" do
-    get :index
+    get :index, :schedule_id => @randweeks.id
     assert_response :success
     assert_not_nil assigns(:subscribers)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create subscriber" do
-    assert_difference('Subscriber.count') do
-      post :create, :subscriber => @subscriber.attributes
-    end
-
-    assert_redirected_to subscriber_path(assigns(:subscriber))
-  end
-
-  test "should show subscriber" do
-    get :show, :id => @subscriber.to_param
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, :id => @subscriber.to_param
-    assert_response :success
-  end
-
-  test "should update subscriber" do
-    put :update, :id => @subscriber.to_param, :subscriber => @subscriber.attributes
-    assert_redirected_to subscriber_path(assigns(:subscriber))
-  end
-
   test "should destroy subscriber" do
     assert_difference('Subscriber.count', -1) do
-      delete :destroy, :id => @subscriber.to_param
+      delete :destroy, :id => @subscriber.to_param, :schedule_id => @randweeks.id
     end
 
-    assert_redirected_to subscribers_path
+    assert_redirected_to schedule_subscribers_path(@randweeks)
   end
 end

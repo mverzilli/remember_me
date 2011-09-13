@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912205833) do
+ActiveRecord::Schema.define(:version => 20110913175132) do
 
   create_table "channels", :force => true do |t|
     t.integer  "user_id"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20110912205833) do
     t.string   "phone_number"
     t.datetime "subscribed_at"
     t.integer  "offset"
-    t.string   "received_messages"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "schedule_id"
