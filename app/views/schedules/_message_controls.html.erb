@@ -1,5 +1,7 @@
-
-
+<%
+  save_onclick ||= 'confirm_changes(this);'
+  cancel_onclick ||= 'revert_changes(this);'
+%>
 
 <li class="fields">
   <div class="box grey w60">
@@ -21,8 +23,8 @@
   
   <hr/>
   
-  <button type="button" class="orange" onclick="confirm_changes(this);">Save</button>
-  <button type="button" class="white" onclick="revert_changes(this);">Cancel</button>
+  <button type="button" class="orange" onclick="<%=save_onclick%>">Save</button>
+  <button type="button" class="white" onclick="<%=cancel_onclick%>">Cancel</button>
 
   </div>
 </li>

@@ -1,28 +1,3 @@
 <%= render "message_fields", :f => f %>
 
-
-<li class="fields">
-  <div class="box grey w60">
-    <span class="right">
-      <%= link_to_remove_fields '', f, :class => "fdelete causesPendingSaveNoticeOnClick" %>
-    </span>
-  
-  <div class="offset left">
-    <div class="ux-nstep">
-      <%= tag :input, :name => "edit_offset", :size => "2", :type => "text", :value => f.object.offset %>
-    </div>
-    <span class="timescale"><%= @schedule.timescale %></span>
-  </div>
-  
-  <div class="text">
-    <%= content_tag :textarea, f.object.text, :rows => 5, :class => "ux-wajbar w60", :placeholder => 'Add message here',
-      :name => "edit_text" , :maxlength => 140 %>
-  </div>
-  
-  <hr/>
-  
-  <button type="button" class="orange" onclick="confirm_add(this);">Save</button>
-  <button type="button" class="white" onclick="revert_add(this);">Cancel</button>
-  
-  </div>
-</li>
+<%= render "message_controls", :f => f, :save_onclick => 'confirm_add(this);', :cancel_onclick => 'revert_add(this);' %>
