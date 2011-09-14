@@ -40,7 +40,7 @@
       :id => "fixed_schedule_option",
       :class => "causesPendingSaveNoticeOnChange styled"
     %>
-    <%= f.label :type, "Timeline", :class => 'radio' %>
+    <%= f.label :type, FixedSchedule.mode_in_words, :class => 'radio' %>
     <br/>
     
     
@@ -49,7 +49,7 @@
       :id => "random_schedule_option",
       :class => "causesPendingSaveNoticeOnChange styled"
     %>
-    <%= f.label :type, "Random", :class => 'radio' %>
+    <%= f.label :type, RandomSchedule.mode_in_words, :class => 'radio' %>
   </div>
 
   <p class="w60">

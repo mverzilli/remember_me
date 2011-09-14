@@ -14,6 +14,7 @@ class Schedule < ActiveRecord::Base
   before_validation :initialize_messages
   
   before_destroy :notify_deletion_to_subscribers
+  before_update :log_if_paused_or_resumed
   
   attr_accessor_with_default :notifySubscribers, true
 
@@ -83,6 +84,18 @@ class Schedule < ActiveRecord::Base
     Log.create! :schedule => self, :severity => :information, :description => description
   end
   
+  def log_message_updated message
+    create_information_log_described_by "Message updated: " + message.text
+  end
+  
+  def log_message_deleted message
+    create_information_log_described_by "Message deleted: " + message.text
+  end
+  
+  def log_message_created message
+    create_information_log_described_by "Message created: " + message.text
+  end
+  
   private
   
   def initialize_messages
@@ -97,4 +110,25 @@ class Schedule < ActiveRecord::Base
       end
     end
   end
+  
+  def log_if_paused_or_resumed
+    if paused_changed?
+      if paused?
+        log_schedule_paused
+      else
+        log_schedule_resumed
+      end
+    end
+  end
+  def log_schedule_paused
+    create_information_log_described_by "Schedule paused"
+  end
+  def log_schedule_resumed
+    create_information_log_described_by "Schedule resumed"
+  end
+  
+  def mode_in_words
+    raise NotImplementedError, 'Subclasses must redefine this message'
+  end
+  
 end

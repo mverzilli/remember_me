@@ -1,10 +1,9 @@
 RememberMe::Application.routes.draw do
   devise_for :users
 
-  resources :subscribers
-
-  resources :schedules, :except => :show do
+  resources :schedules do
     resources :logs, :only => :index
+    resources :subscribers, :only => [:index, :destroy]
   end
 
   match :receive_at, :controller => "nuntium", :action => :receive_at

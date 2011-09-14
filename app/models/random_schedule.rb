@@ -18,4 +18,8 @@ class RandomSchedule < Schedule
       :subscriber_id => recipient.id,
       :run_at => index.send(self.timescale.to_sym).from_now
   end
+  
+  def self.mode_in_words
+    "Random"
+  end
 end

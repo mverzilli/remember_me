@@ -1,0 +1,24 @@
+<%= render "schedule_tabs_and_title", :schedule => @schedule %>
+
+<h2>Status</h2>
+<p>Lorem ipsum dolor sit amet</p>
+
+<div class= "w30 box grey", style= "height: 36px !important; padding: 0px 1px 1px 3px;">
+	<div style = "float: left ">
+			<h1 align= "right"><%= @schedule.subscribers.count %></h1>
+			<p>subscribers</p>
+	</div>
+	<div style= "float: right">
+		<%= link_button_to 'Download as CSV', schedules_path, :style => "width: 150px !important;" %>
+	</div>
+</div>
+<br>
+
+<h2>Properties</h2>
+<p>Donec fermentum</p>
+
+<p>Keyword: <%= @schedule.keyword %><br>
+Mode: <%= @schedule.class.mode_in_words %><br>
+Messages: <%= @schedule.messages.count %></p>
+
+<%= link_to '', edit_schedule_path(@schedule), :class => 'farrow' %><%= link_to 'Edit', edit_schedule_path(@schedule) %>

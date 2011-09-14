@@ -126,54 +126,110 @@ class ScheduleTest < ActiveSupport::TestCase
 
     Nuntium.unstub(:find)
   end
+
+  [FixedSchedule, RandomSchedule].each do |klass| #toDo: Add CalendarBasedSchedule to this list of tests
+
+    test "event is logged when subscriber is added to #{klass}" do
+      Nuntium.expects(:new_from_config).returns(self).twice
+      @messages_sent = []
+    
+      pregnant = klass.make :keyword => 'pregnant'
+    
+      subscriber = Subscriber.make :schedule => pregnant, :phone_number => 1234
+
+      pregnant.subscribe subscriber
+
+      assert_equal 1, Log.count
+
+      log = Log.first
+    
+      assert_equal :information, log.severity
+      assert_equal "New subscriber: 1234 - schedule: pregnant", log.description
+      assert_equal pregnant, log.schedule
+    
+      Nuntium.unstub(:find)
+    end
   
-  test "event is logged when subscriber is added" do
-    Nuntium.expects(:new_from_config).returns(self).twice
-    @messages_sent = []
+    test "event is logged when message is sent on #{klass}" do
+      Nuntium.expects(:new_from_config).returns(self).twice
+      @messages_sent = []
     
-    pregnant = pregnant_make
-    
-    subscriber = Subscriber.make :schedule => pregnant
+      pregnant = klass.make
+      pregnant.messages.create! :text => 'pregnant1', :offset => 0
+      subscriber = Subscriber.make :schedule => pregnant, :phone_number => 1234
 
-    pregnant.subscribe subscriber
+      pregnant.subscribe subscriber
 
-    assert_equal 1, Log.count
+      assert_equal 2, Log.count
+      assert_equal 1, Delayed::Job.count
+    
+      job = Delayed::Job.first
+      scheduled_job = YAML.load(job.handler)
+    
+      scheduled_job.perform
+      assert_equal 3, Log.count
+    
+      log = Log.last
+    
+      assert_equal :information, log.severity
+      assert_equal "Message sent: pregnant1 - recipient: 1234", log.description
+      assert_equal pregnant, log.schedule
+    
+      Nuntium.unstub(:find)
+    end
 
-    log = Log.first
+    test "event is logged when message is added updated or removed to #{klass}" do
+      
+      pregnant = klass.make
+      pregnant.messages.create! :text => 'pregnant1', :offset => 0
+
+      assert_equal 1, Log.count
+      log = Log.last
+      assert_equal :information, log.severity
+      assert_equal "Message created: pregnant1", log.description
+      assert_equal pregnant, log.schedule
+      
+      message = pregnant.messages.first
+      message.text= 'pregnant2'
+      message.save!
+      
+      assert_equal 2, Log.count
+      log = Log.last
+      assert_equal :information, log.severity
+      assert_equal "Message updated: pregnant2", log.description
+      assert_equal pregnant, log.schedule
+      
+      message = pregnant.messages.first
+      message.destroy
+      
+      assert_equal 3, Log.count
+      log = Log.last
+      assert_equal :information, log.severity
+      assert_equal "Message deleted: pregnant2", log.description
+      assert_equal pregnant, log.schedule
+    end
     
-    assert_equal :information, log.severity
-    assert_equal "New subscriber: sms://2492873342167 - schedule: pregnant", log.description
-    assert_equal pregnant, log.schedule
-    
-    Nuntium.unstub(:find)
+    test "event is logged when #{klass} is paused or resumed" do
+      schedule = klass.make
+      assert_equal 0, Log.count
+      
+      schedule.paused= true
+      schedule.save!
+      
+      assert_equal 1, Log.count
+      log = Log.last
+      assert_equal :information, log.severity
+      assert_equal "Schedule paused", log.description
+      assert_equal schedule, log.schedule
+      
+      schedule.paused= false
+      schedule.save!
+      
+      assert_equal 2, Log.count
+      log = Log.last
+      assert_equal :information, log.severity
+      assert_equal "Schedule resumed", log.description
+      assert_equal schedule, log.schedule
+    end
   end
-  
-  test "event is logged when message is sent" do
-    Nuntium.expects(:new_from_config).returns(self).twice
-    @messages_sent = []
-    
-    pregnant = pregnant_make
-    
-    subscriber = Subscriber.make :schedule => pregnant
-
-    pregnant.subscribe subscriber
-
-    assert_equal 1, Log.count
-    assert_equal 5, Delayed::Job.count
-    
-    job = Delayed::Job.first
-    scheduled_job = YAML.load(job.handler)
-    
-    scheduled_job.perform
-    assert_equal 2, Log.count
-    
-    log = Log.last
-    
-    assert_equal :information, log.severity
-    assert_equal "Message sent: pregnant1 - recipient: sms://1712276619826", log.description
-    assert_equal pregnant, log.schedule
-    
-    Nuntium.unstub(:find)
-  end
-  
 end

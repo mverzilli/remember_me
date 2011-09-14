@@ -13,7 +13,7 @@ Sham.description { Faker::Lorem.sentence }
 Log.blueprint do
   severity
   description
-  schedule
+  schedule { [RandomSchedule, FixedSchedule, CalendarBasedSchedule].pick.make }
 end
 
 User.blueprint do

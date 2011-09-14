@@ -57,6 +57,7 @@ class Message < ActiveRecord::Base
       schedule.new_message_has_been_created self
     else
       enqueue_dj_messages
+      schedule.log_message_created self
     end
   end
 
@@ -65,6 +66,7 @@ class Message < ActiveRecord::Base
       schedule.message_has_been_destroyed self
     else
       remove_dj_messages
+      schedule.log_message_deleted self
     end
   end
   def alert_schedule_from_message_update
@@ -72,6 +74,7 @@ class Message < ActiveRecord::Base
       schedule.message_has_been_updated self
     else
       update_dj_messages
+      schedule.log_message_updated self
     end
   end
   

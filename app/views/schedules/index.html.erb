@@ -11,11 +11,11 @@
   <% @schedules.each.with_index do |schedule,index| %>
     <tr>
       <td>
-        <%= link_to edit_schedule_path(schedule) do %>
+        <%= link_to schedule_path(schedule) do %>
           <%= schedule.title %> - <%= schedule.keyword %>
         <% end %>
       </td>
-      <td><%= link_to '', edit_schedule_path(schedule), :class => 'farrow' %></td>
+      <td><%= link_to '', schedule_path(schedule), :class => 'farrow' %></td>
     </tr>
     
       <!-- <td>
@@ -39,7 +39,7 @@
       </td>
     </tr> -->
   <% end %>
-
+	<tr><td><%= will_paginate @schedules %></td><td></td></tr>
     <tr>
       <td>
         <%= link_to 'Create Reminder', new_schedule_path %>
