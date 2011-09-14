@@ -73,10 +73,8 @@
   <p>Write your schedule's messages</p>
   
   <ul class="vertical">
-    <% @schedule.messages.each.with_index do |message,index| %>
-      <%= f.fields_for :messages, message do |message_form| %>
-        <%= render "message_fields", :f => message_form, :index => index%>
-	   <% end %>
+    <%= f.fields_for :messages do |message_form| %>
+      <%= render "message_fields", :f => message_form %>
     <% end %>
    <li class="fields">
      <div class="box grey w60">
