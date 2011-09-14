@@ -104,4 +104,7 @@ class CalendarBasedSchedule < Schedule
     timestamp + (Time.now.getutc.yday - timestamp.getutc.yday) * one_day
   end
   
+  def self.mode_in_words
+    "Calendar"
+  end
 end

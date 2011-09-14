@@ -126,4 +126,9 @@ class Schedule < ActiveRecord::Base
   def log_schedule_resumed
     create_information_log_described_by "Schedule resumed"
   end
+  
+  def mode_in_words
+    raise NotImplementedError, 'Subclasses must redefine this message'
+  end
+  
 end

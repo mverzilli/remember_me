@@ -1,7 +1,7 @@
 RememberMe::Application.routes.draw do
   devise_for :users
 
-  resources :schedules, :except => :show do
+  resources :schedules do
     resources :logs, :only => :index
     resources :subscribers, :only => [:index, :destroy]
   end
