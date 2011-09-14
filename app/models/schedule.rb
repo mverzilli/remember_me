@@ -14,6 +14,7 @@ class Schedule < ActiveRecord::Base
   before_validation :initialize_messages
   
   before_destroy :notify_deletion_to_subscribers
+  before_update :log_if_paused_or_resumed
   
   attr_accessor_with_default :notifySubscribers, true
 
@@ -108,5 +109,21 @@ class Schedule < ActiveRecord::Base
           "The schedule #{self.keyword} has been deleted. You will no longer receive messages from this schedule.")
       end
     end
+  end
+  
+  def log_if_paused_or_resumed
+    if paused_changed?
+      if paused?
+        log_schedule_paused
+      else
+        log_schedule_resumed
+      end
+    end
+  end
+  def log_schedule_paused
+    create_information_log_described_by "Schedule paused"
+  end
+  def log_schedule_resumed
+    create_information_log_described_by "Schedule resumed"
   end
 end

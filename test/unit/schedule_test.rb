@@ -127,7 +127,7 @@ class ScheduleTest < ActiveSupport::TestCase
     Nuntium.unstub(:find)
   end
 
-  [FixedSchedule, RandomSchedule].each do |klass|
+  [FixedSchedule, RandomSchedule].each do |klass| #toDo: Add CalendarBasedSchedule to this list of tests
 
     test "event is logged when subscriber is added to #{klass}" do
       Nuntium.expects(:new_from_config).returns(self).twice
@@ -207,6 +207,29 @@ class ScheduleTest < ActiveSupport::TestCase
       assert_equal :information, log.severity
       assert_equal "Message deleted: pregnant2", log.description
       assert_equal pregnant, log.schedule
+    end
+    
+    test "event is logged when #{klass} is paused or resumed" do
+      schedule = klass.make
+      assert_equal 0, Log.count
+      
+      schedule.paused= true
+      schedule.save!
+      
+      assert_equal 1, Log.count
+      log = Log.last
+      assert_equal :information, log.severity
+      assert_equal "Schedule paused", log.description
+      assert_equal schedule, log.schedule
+      
+      schedule.paused= false
+      schedule.save!
+      
+      assert_equal 2, Log.count
+      log = Log.last
+      assert_equal :information, log.severity
+      assert_equal "Schedule resumed", log.description
+      assert_equal schedule, log.schedule
     end
   end
 end
