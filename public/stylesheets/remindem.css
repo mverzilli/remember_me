@@ -4,3 +4,4 @@ ul.vertical li { list-style: none; }
 
 .fields .aleft { clear: left; float: left; }
 .fields .farrow { height: 18px; }
+.fields pre { font-family: Arial, Helvetica, sans-serif; margin: 0; }

@@ -3,16 +3,14 @@
   <span class="right">
     <%= link_to_remove_fields '', f, :class => "fdelete causesPendingSaveNoticeOnClick" %>
   </span>
-  <div class="offset left">
+  <div class="left">
     <%= f.hidden_field :offset, :class => "offset" %>    
-    <%= f.object.offset %>
+    <span class="offset"><%= f.object.offset %></span>
     
     <span class="timescale"><%= @schedule.timescale %></span>
   </div>
-  <%= f.hidden_field :text, :class => "text" %>
-  <span class="aleft">
-    <%= f.object.text %>
-  </span>
+  <%= f.hidden_field :text, :class => "hidden text" %>
+  <pre class="aleft text"><%= f.object.text %></pre>
   <span class="aleft">
     <%= link_to_edit_fields "Edit", f, :messages, f.object, :index => index %>
   </span>

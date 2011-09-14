@@ -1,3 +1,51 @@
+function MessageFields(row) {
+	this._row = $(row);
+	this._offset = $('input.offset', this._row);
+	this._offsetText = $('span.offset', this._row);
+	this._text = $('input.text', this._row);
+	this._textText = $('pre.text', this._row);
+}
+
+MessageFields.prototype.setOffset = function(value) {
+	this._offset.val(value);
+	this._offsetText.text(value);
+}
+MessageFields.prototype.getOffset = function() {
+	return this._offset.val();
+}
+MessageFields.prototype.setText = function(value) {
+	this._text.val(value);
+	this._textText.text(value);
+}
+MessageFields.prototype.getText = function() {
+	return this._text.val();
+}
+
+
+function MessageControls(row) {
+	this._row = $(row);
+	this._offset = $('input[name="edit_offset"]', this._row);
+	this._text = $('textarea[name="edit_text"]', this._row);
+}
+
+MessageControls.prototype.setOffset = function(value) {
+	this._offset.val(value);
+}
+MessageControls.prototype.getOffset = function() {
+	return this._offset.val();
+}
+MessageControls.prototype.setText = function(value) {
+	this._text.val(value);
+}
+MessageControls.prototype.getText = function() {
+	return this._text.val();
+}
+
+function assignMessageValues(dest, source) {
+	dest.setOffset(source.getOffset());
+	dest.setText(source.getText());	
+}
+
 function showUnsavedChangesAlert(){
 	$.status.showError("There are unsaved changes in your schedule!")
 }
@@ -43,18 +91,6 @@ function updateTimescaleLabels(new_value){
 	$('.offset .timescale').text(capitalizedSingular(new_value));
 }
 
-function notifySubscribersConfirm() {
-	// TODO review
-	var answer = confirm('Notify all subscribers of schedule deletion? \n\nClick "Cancel" to delete this schedule without sending a notification.');
-	if (answer) {
-		//send a message to the controller
-		$.post("test.php");
-	}
-	else {
-		alert("nananananana")
-	}
-}
-
 function capitalizedSingular(timescale) {
 	return caseTimescale(timescale, "Hour", "Day", "Week", "Month", "Year", "");
 }
@@ -91,53 +127,18 @@ function remove_fields(link) {
 }
 
 function edit_fields(link, content) {
-  getRow(link).hide();
+  var fieldsRow = getRow(link);
+  fieldsRow.after(content);
+	var controlsRow = getRow(link).next();
+	fieldsRow.hide();
+	
+	assignMessageValues(new MessageControls(controlsRow), new MessageFields(fieldsRow));
 
-  content = replace(content, "offsetValuePlaceHolder", getHiddenOffsetValue(link));
-  content = replace(content, "textValuePlaceHolder", getHiddenTextValue(link));
-
-  getRow(link).after(content);
-
-	$.instedd.init_components(getRow(link).next());
+	$.instedd.init_components(controlsRow);
+	
   //Hide offset control if user is editing a random schedule
   toggleOffset();
 	timescale.change();
-}
-
-function confirmChange(buttonOk) {
-	var currentRow = getRow(buttonOk);
-
-	var newOffset = $('#editOffset', currentRow).val();
-	var newText = $('#editText', currentRow).val();
-
-	var hiddenRow = $(currentRow).prev();
-  	
-	//Set hidden inputs' values	
-	$('.offset', hiddenRow).val(newOffset);
-	$('.text', hiddenRow).val(newText);
-
-	var offsetColumn = $('.offsetColumn', hiddenRow);
-	removePlainText(offsetColumn);
-	offsetColumn.append(newOffset);
-
-	var textColumn = $('.textColumn', hiddenRow);
-	removePlainText(textColumn);
-	textColumn.append(newText);
-	
-	hiddenRow.show();
-	currentRow.remove();
-	
-	toggleOffset();	
-}
-
-function removePlainText(jqueryObj) {
-	jqueryObj.contents().filter(function() {
-	  return this.nodeType == 3;
-	}).remove();
-} 
-
-function replace(content, placeholder, new_value) {
-  return content.replace(new RegExp(placeholder, "g"), new_value);		
 }
 
 function add_fields(link, association, content) {
@@ -148,56 +149,49 @@ function add_fields(link, association, content) {
 
   //Add the new instance to the list
   getRow(link).before(newRowContent);
-	$.instedd.init_components(getRow(link).prev());
-/*
-  //Get the values of the fields of the new object 
-  var offset = $('#offset').val();
-  var text = $('#text').val();
+	var fieldsRow = getRow(link).prev().prev();
+	var controlsRow = getRow(link).prev();
 
-  $('#offset').val('');
-  $('#text').val('');
-
-  var offsetCell = getNewOffsetCell(link);
-  var textCell = getNewTextCell(link);  
-
-  //Set hidden inputs' values	
-  offsetCell.children('.offset').attr("value", offset);
-  textCell.children('.text').attr("value", text);
-
-  //Update content to be displayed
-  offsetCell.append(offset);
-
-  textCell.append(text);
-*/
+	fieldsRow.hide();
+	$.instedd.init_components(fieldsRow);
+	$.instedd.init_components(controlsRow);
+	
+  //Hide offset control if user is editing a random schedule
   toggleOffset();
 	timescale.change();
 }
 
-function getHiddenOffsetValue(link){
-  return getOffsetCell(link).children('.offset').attr("value");
+function confirm_changes(buttonOk) {
+	var currentRow = getRow(buttonOk);
+	var hiddenRow = $(currentRow).prev();
+	
+	assignMessageValues(new MessageFields(hiddenRow), new MessageControls(currentRow));
+	
+	hiddenRow.show();
+	currentRow.remove();
+	
+	showUnsavedChangesAlert();
 }
 
-function getHiddenTextValue(link){
-  return getTextCell(link).children('.text').attr("value");
+function confirm_add(buttonOk) {
+	confirm_changes(buttonOk);
 }
 
+function revert_changes(buttonCancel) {
+	var currentRow = getRow(buttonCancel);
+	var hiddenRow = $(currentRow).prev();
+	hiddenRow.show();
+	currentRow.remove();
+}
+
+function revert_add(buttonCancel) {
+	var currentRow = getRow(buttonCancel);
+	var hiddenRow = $(currentRow).prev();
+	hiddenRow.remove();
+	currentRow.remove();
+}
 
 function getRow(link){
   return $(link).closest(".fields");
 }
 
-function getNewTextCell(link){
-  return getRow(link).prev().children('.text');
-}
-
-function getNewOffsetCell(link){
-  return getRow(link).prev().children('.offset');
-}
-
-function getOffsetCell(link) {
-  return getRow(link).children('.offset');	
-}
-
-function getTextCell(link) {
-  return getRow(link).children('.text');		
-}
