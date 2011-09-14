@@ -5,11 +5,11 @@
 
 <li class="fields">
   <div class="box grey w60">
-    <span class="right">
+
       <%= link_to_remove_fields '', f, :class => "fdelete causesPendingSaveNoticeOnClick" %>      
-    </span>
   
   <div class="offset left">
+    After<br/>
     <div class="ux-nstep">
       <%= tag :input, :name => "edit_offset", :size => "2", :type => "text", :value => f.object.offset %>
     </div>

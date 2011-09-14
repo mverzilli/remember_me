@@ -88,7 +88,7 @@ $(function() {
 
 function updateTimescaleLabels(new_value){
 	$('#random_schedule_option').next().text("Random once " + timescaleToOneString(new_value));
-	$('.offset .timescale').text(capitalizedSingular(new_value));
+	$('.timescale').text(capitalizedSingular(new_value));
 }
 
 function capitalizedSingular(timescale) {

@@ -1,11 +1,11 @@
 <li class="fields">
   <div class="box grey w60">
-  <span class="right">
+
     <%= link_to_remove_fields '', f, :class => "fdelete causesPendingSaveNoticeOnClick" %>
-  </span>
+
   <div class="left">
     <%= f.hidden_field :offset, :class => "offset" %>    
-    <span class="offset"><%= f.object.offset %></span>
+    After <span class="offset"><%= f.object.offset %></span>
     
     <span class="timescale"><%= @schedule.timescale %></span>
   </div>

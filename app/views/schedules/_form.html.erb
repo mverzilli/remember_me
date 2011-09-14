@@ -78,11 +78,8 @@
     <% end %>
    <li class="fields">
      <div class="box grey w60">
-      <table class="w60"><tr><td>
-        <%= link_to_add_fields "Add message", f, :messages, :class => "causesPendingSaveNoticeOnClick" %>
-      </td><td>
-        <button type="button" class="cadd right" onclick="$('.causesPendingSaveNoticeOnClick', $(this).closest('.box')).click();"></button>
-      </td></tr></table>
+      <%= link_to_add_fields "Add message", f, :messages, :class => "add_fields causesPendingSaveNoticeOnClick" %>
+      <button type="button" class="cadd right" onclick="$('.add_fields', $(this).closest('.box')).click();"></button>
      </div>
    </li>
 	</ul>
