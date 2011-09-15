@@ -33,7 +33,7 @@ class SchedulesControllerTest < ActionController::TestCase
       end
     end
 
-    assert_redirected_to edit_schedule_path(assigns(:schedule))
+    assert_redirected_to schedule_path(assigns(:schedule))
   end
 
   test "should get edit" do
@@ -53,7 +53,7 @@ class SchedulesControllerTest < ActionController::TestCase
   
   test "should update schedule" do
     put :update, :id => @schedule.to_param, :schedule => @schedule.attributes
-    assert_redirected_to edit_schedule_path(assigns(:schedule))
+    assert_redirected_to schedule_path(assigns(:schedule))
   end
   
   test "should destroy some messages on schedule update" do
@@ -75,7 +75,7 @@ class SchedulesControllerTest < ActionController::TestCase
       put :update, :id => randweeks.id, :schedule => schedule
     end
 
-    assert_redirected_to edit_schedule_path(assigns(:schedule))
+    assert_redirected_to schedule_path(assigns(:schedule))
   end
 
   test "should destroy schedule" do
