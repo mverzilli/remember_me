@@ -1,6 +1,6 @@
 class Schedule < ActiveRecord::Base
-  validates_presence_of :keyword, :user_id, :welcome_message, :type
-  # validates_presence_of :timescale, :unless => Proc.new {|schedule| schedule.type == "CalendarBasedSchedule"}
+  validates_presence_of :keyword, :user_id, :welcome_message, :type, :title
+  validates_presence_of :timescale, :unless => Proc.new {|schedule| schedule.type == "CalendarBasedSchedule"}
   validates_uniqueness_of :keyword
   
   belongs_to :user

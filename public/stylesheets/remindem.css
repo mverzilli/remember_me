@@ -15,3 +15,33 @@ ul.vertical li { list-style: none; }
 .fields .add_fields { display: block; margin: 2px 0; color: #2d79c4; }
 
 .fields pre { font-family: Arial, Helvetica, sans-serif; margin: 0; }
+
+.subscribersBox { width: 283px; height: 38px; padding: 0px 1px 0px 3px; }
+.csvDownload { height: 32px !important; width: 134px; margin-top: 3px; }
+.subscribersCount { font-size: 23px; height: 23px; }
+.subscribersBox > div { font-size: 11px; }
+
+.CleanTable th {
+  padding-bottom: 7px;
+}
+
+.CleanTable tr:nth-child(2) td > a.cremove {
+	margin-top: 11px;
+	margin-bottom: 0px;
+}
+
+.ItemsTable tr:last-child td {
+	padding-bottom: 1px;
+}
+
+.ItemsTable td > a.cremove {
+	margin-top: 1px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+}
+
+.ItemsTable td > a.cadd {
+	margin-top: 1px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+}

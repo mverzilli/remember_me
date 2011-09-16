@@ -1,0 +1,4 @@
+Phone number,Subscribed
+<% @subscribers.each do |subscriber| %>
+<%=subscriber.phone_number.to_s + ',' + time_ago_in_words(subscriber.subscribed_at)%>
+<% end %>

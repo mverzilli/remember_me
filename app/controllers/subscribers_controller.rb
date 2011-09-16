@@ -7,6 +7,10 @@ class SubscribersController < AuthenticatedController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @subscribers }
+      format.csv do
+        @subscribers = Subscriber.where(:schedule_id => params[:schedule_id])
+        render :csv => @subscribers
+      end
     end
   end
 

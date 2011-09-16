@@ -1,21 +1,21 @@
 <%= render "schedule_tabs_and_title", :schedule => @schedule %>
 
 <h2>Status</h2>
-<p>Lorem ipsum dolor sit amet</p>
+<p>Here you can see the overall status of your schedule</p>
 
-<div class= "w30 box grey", style= "height: 36px !important; padding: 0px 1px 1px 3px;">
-	<div style = "float: left ">
-			<h1 align= "right"><%= @schedule.subscribers.count %></h1>
-			<p>subscribers</p>
+<div class="box grey subscribersBox">
+	<div class="left" style="text-align: center">
+			<div class="subscribersCount"><%= @schedule.subscribers.count %></div>
+			<div>subscribers</div>
 	</div>
-	<div style= "float: right">
-		<%= link_button_to 'Download as CSV', schedules_path, :style => "width: 150px !important;" %>
+	<div class="right">
+		<%= link_button_to 'Download as CSV', schedule_subscribers_path(@schedule.id)+'.csv', :class => "csvDownload white" %>
 	</div>
+	<div class="clear"></div>
 </div>
 <br>
-
 <h2>Properties</h2>
-<p>Donec fermentum</p>
+<p>This is a summary of the properties of your schedule</p>
 
 <p>Keyword: <%= @schedule.keyword %><br>
 Mode: <%= @schedule.class.mode_in_words %><br>

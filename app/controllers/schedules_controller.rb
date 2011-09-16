@@ -45,8 +45,8 @@ class SchedulesController < AuthenticatedController
     @schedule = params[:schedule][:type].constantize.new(params[:schedule])
     
     respond_to do |format|
-      if @schedule.save  
-        format.html { redirect_to(edit_schedule_url(@schedule), :notice => 'Schedule was successfully created.') }
+      if @schedule.save
+        format.html { redirect_to(schedule_url(@schedule), :notice => 'Schedule was successfully created.') }
         format.xml  { render :xml => @schedule, :status => :created, :location => @schedule }
       else
         format.html { render :action => "new" }
@@ -57,7 +57,7 @@ class SchedulesController < AuthenticatedController
 
   # PUT /schedules/1
   # PUT /schedules/1.xml
-  def update    
+  def update
     @schedule = Schedule.find(params[:id])
     
     #Type needs to be manually set because it's protected, thus update_attributes doesn't affect it
@@ -65,7 +65,7 @@ class SchedulesController < AuthenticatedController
     
     respond_to do |format|
       if @schedule.update_attributes(params[:schedule])
-        format.html { redirect_to(edit_schedule_url(@schedule), :notice => 'Schedule was successfully updated.') }
+        format.html { redirect_to(schedule_url(@schedule), :notice => 'Schedule was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
