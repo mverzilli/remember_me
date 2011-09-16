@@ -15,6 +15,7 @@ class ScheduleTest < ActiveSupport::TestCase
     assert !schedule.errors[:user_id].blank?, "User ID must be present for all Schedules"
     assert !schedule.errors[:welcome_message].blank?, "Welcome Message must be present for all Schedules"
     assert !schedule.errors[:type].blank?, "Type must be present for all Schedules"
+    assert !schedule.errors[:title].blank?, "Type must be present for all Schedules"
     end
   
   [FixedSchedule, RandomSchedule].each do |klass|
@@ -23,17 +24,14 @@ class ScheduleTest < ActiveSupport::TestCase
       schedule.save
     
       assert schedule.invalid?
-      assert !schedule.errors[:keyword].blank?, "Keyword must be present for #{klass}"
       assert !schedule.errors[:timescale].blank?, "Timescale must be present for #{klass}"
-      assert !schedule.errors[:user_id].blank?, "User ID must be present for #{klass}"
-      assert !schedule.errors[:welcome_message].blank?, "Welcome Message must be present for #{klass}"
       assert_equal klass.to_s, schedule.type
     end
   end
   
   test "validate uniqueness of keyword" do
-    schedule1 = RandomSchedule.create! :keyword => "schedule", :timescale => "weeks", :user_id => 1, :welcome_message => "foo"
-    schedule2 = Schedule.new :keyword => "schedule"    
+    schedule1 = RandomSchedule.create! :keyword => "schedule", :timescale => "weeks", :user_id => 1, :welcome_message => "foo", :title => "bar"
+    schedule2 = Schedule.new :keyword => "schedule"
     schedule2.save
     
     assert schedule2.invalid?

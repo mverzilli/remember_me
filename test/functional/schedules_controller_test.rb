@@ -22,6 +22,7 @@ class SchedulesControllerTest < ActionController::TestCase
     assert_difference('Schedule.count') do
       assert_difference('Message.count') do
         schedule = {
+          :title => "Weekly Schedule",
           :keyword => "new",
           :timescale => "weeks",
           :type => "RandomSchedule",
