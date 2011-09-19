@@ -15,6 +15,30 @@ class MessageTest < ActiveSupport::TestCase
     @messages_sent << message
   end
   
+  test "should be able to create message for random schedules without offset" do
+    schedule = RandomSchedule.make
+    message = schedule.messages.create :text => 'lorem'
+    assert message.valid?
+  end
+
+  test "should validate offset presence for fixed schedule messages" do
+    schedule = FixedSchedule.make
+    message = schedule.messages.create :text => 'lorem'
+    assert !message.valid?
+  end
+
+  test "should validate numericality offset presence for fixed schedule messages" do
+    schedule = FixedSchedule.make
+    message = schedule.messages.create :text => 'lorem', :offset => 'a'
+    assert !message.valid?
+  end
+
+  test "should validate non-negative offset presence for fixed schedule messages" do
+    schedule = FixedSchedule.make
+    message = schedule.messages.create :text => 'lorem', :offset => '-1'
+    assert !message.valid?
+  end
+  
   test "updated message bodies are also updated in DJ queue" do
     #setup
     pregnant = pregnant_make
