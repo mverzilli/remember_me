@@ -52,9 +52,9 @@ function showUnsavedChangesAlert(){
 
 function toggleOffset(){
 	if ($('#fixed_schedule_option').is(':checked'))
-		$('.offset').show();
+		$('div.offset').css('visibility', 'visible');
 	else
-		$('.offset').hide();
+		$('div.offset').css('visibility', 'hidden');
 }
 
 var timescale;
