@@ -1,25 +1,28 @@
 <%= render "schedule_tabs_and_title", :schedule => @schedule %>
 
-<h2>Status</h2>
-<p>Here you can see the overall status of your schedule</p>
+<div class="box tab">
+	<h2>Status</h2>
+	<p>Here you can see the overall status of your schedule</p>
 
-<div class="box grey subscribersBox">
-	<div class="left" style="text-align: center">
+	<div class="box grey subscribersBox">
+		<div class="left" style="text-align: center">
 			<div class="subscribersCount"><%= @schedule.subscribers.count %></div>
 			<div>subscribers</div>
+		</div>
+		<div class="right">
+			<%= link_button_to 'Download as CSV', schedule_subscribers_path(@schedule.id)+'.csv', :class => "csvDownload white" %>
+		</div>
+		<div class="clear"></div>
 	</div>
-	<div class="right">
-		<%= link_button_to 'Download as CSV', schedule_subscribers_path(@schedule.id)+'.csv', :class => "csvDownload white" %>
-	</div>
-	<div class="clear"></div>
+	<br>
+	<hr>
+	<h2>Properties</h2>
+	<p>This is a summary of the properties of your schedule</p>
+
+	<p>Keyword: <%= @schedule.keyword %><br>
+		Mode: <%= @schedule.class.mode_in_words %><br>
+		Messages: <%= @schedule.messages.count %>
+	</p>
+
+	<%= link_to '', edit_schedule_path(@schedule), :class => 'farrow' %><%= link_to 'Edit', edit_schedule_path(@schedule) %>
 </div>
-<br>
-<hr>
-<h2>Properties</h2>
-<p>This is a summary of the properties of your schedule</p>
-
-<p>Keyword: <%= @schedule.keyword %><br>
-Mode: <%= @schedule.class.mode_in_words %><br>
-Messages: <%= @schedule.messages.count %></p>
-
-<%= link_to '', edit_schedule_path(@schedule), :class => 'farrow' %><%= link_to 'Edit', edit_schedule_path(@schedule) %>
