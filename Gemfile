@@ -19,7 +19,7 @@ gem 'ffaker'
 gem 'machinist'
 gem "ice_cube", "~> 0.6.13"
 gem "symbolize"
-gem 'will_paginate', '~> 3.0'
+gem 'kaminari'
 group :development, :test do
 	gem "rand", "~> 0.9.1"
 end

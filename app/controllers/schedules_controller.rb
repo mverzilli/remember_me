@@ -2,7 +2,7 @@ class SchedulesController < AuthenticatedController
   # GET /schedules
   # GET /schedules.xml
   def index
-    @schedules = Schedule.paginate(:page => params[:page], :per_page => 5).where(:user_id => current_user.id).all
+    @schedules = Schedule.where(:user_id => current_user.id).page(params[:page]).per(5)
 
     respond_to do |format|
       format.html # index.html.erb

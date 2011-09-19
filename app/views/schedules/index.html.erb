@@ -39,7 +39,6 @@
 			data-confirm="Are you sure you want to delete the schedule <%= schedule.title %>?" data-method="delete"></td>
     </tr>
   <% end %>
-	<tr><td><%= will_paginate @schedules %></td><td></td></tr>
     <tr>
       <td>
         <%= link_to 'Create Reminder', new_schedule_path %>
@@ -49,6 +48,7 @@
       </td>
     </tr>
   </table>
+<%= paginate @schedules %>
 </div>
 
 <br />

@@ -2,7 +2,7 @@ class SubscribersController < AuthenticatedController
   # GET /subscribers
   # GET /subscribers.xml
   def index
-    @subscribers = Subscriber.paginate(:page => params[:page], :per_page => 5).where(:schedule_id => params[:schedule_id])
+    @subscribers = Subscriber.where(:schedule_id => params[:schedule_id]).page(params[:page]).per(5)
 
     respond_to do |format|
       format.html # index.html.erb
