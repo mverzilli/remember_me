@@ -23,8 +23,10 @@
   
   <hr/>
   
-  <button type="button" class="orange" onclick="<%=save_onclick%>">Save</button>
-  <button type="button" class="white" onclick="<%=cancel_onclick%>">Cancel</button>
+  <div class="actions">
+    <button type="button" class="white" onclick="<%=save_onclick%>">Save</button>
+    <a href="#" onclick="<%=cancel_onclick%>; return false;">Cancel</a>
+  </div>
 
   </div>
 </li>
