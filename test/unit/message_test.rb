@@ -7,10 +7,6 @@ class MessageTest < ActiveSupport::TestCase
     @messages_sent = []
   end
 
-  def teardown
-    Nuntium.unstub(:find)
-  end
-
   def send_ao (message)
     @messages_sent << message
   end

@@ -101,9 +101,6 @@ class ScheduleTest < ActiveSupport::TestCase
     assert_equal message_body, second_message[:body]
     assert_equal second_subscriber.phone_number, second_message[:to]
     assert_equal "sms://remindem", second_message[:from]
-
-    Nuntium.unstub(:find)
-
   end
   
   test "users are NOT notified when schedule is destroyed" do
@@ -121,8 +118,6 @@ class ScheduleTest < ActiveSupport::TestCase
     pregnant.destroy
 
     assert_equal 0, @messages_sent.size
-
-    Nuntium.unstub(:find)
   end
 
   [FixedSchedule, RandomSchedule].each do |klass| #toDo: Add CalendarBasedSchedule to this list of tests
@@ -144,8 +139,6 @@ class ScheduleTest < ActiveSupport::TestCase
       assert_equal :information, log.severity
       assert_equal "New subscriber: 1234 - schedule: pregnant", log.description
       assert_equal pregnant, log.schedule
-    
-      Nuntium.unstub(:find)
     end
   
     test "event is logged when message is sent on #{klass}" do
@@ -172,8 +165,6 @@ class ScheduleTest < ActiveSupport::TestCase
       assert_equal :information, log.severity
       assert_equal "Message sent: pregnant1 - recipient: 1234", log.description
       assert_equal pregnant, log.schedule
-    
-      Nuntium.unstub(:find)
     end
 
     test "event is logged when message is added updated or removed to #{klass}" do
