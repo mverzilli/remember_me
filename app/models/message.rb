@@ -17,8 +17,9 @@ class Message < ActiveRecord::Base
   
   def enqueue_dj_messages
     self.schedule.subscribers.each do |subscriber|
-      if Time.now <  subscriber.reference_time + self.offset.send(self.schedule.timescale.to_sym) #if in the future
-        schedule.schedule_message self, subscriber, subscriber.reference_time + self.offset.send(self.schedule.timescale.to_sym)
+      expected_delivery_time = schedule.expected_delivery_time(self, subscriber)
+      if Time.now < expected_delivery_time #if in the future
+        schedule.schedule_message self, subscriber, expected_delivery_time
       end
     end
   end
@@ -30,7 +31,8 @@ class Message < ActiveRecord::Base
   def update_dj_messages
     if self.offset_changed?
       Delayed::Job.where("message_id = '#{self.id}'").each do |updatedJob|
-        updatedJob.run_at = Subscriber.find(updatedJob.subscriber_id).reference_time + self.offset.send(self.schedule.timescale.to_sym)
+        subscriber = Subscriber.find(updatedJob.subscriber_id)
+        updatedJob.run_at = schedule.expected_delivery_time(self, subscriber)
         if Time.now < updatedJob.run_at #if in future
           updatedJob.save!
         else #if in the past

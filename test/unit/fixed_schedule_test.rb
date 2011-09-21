@@ -19,8 +19,8 @@ class FixedScheduleTest < ActiveSupport::TestCase
     @messages_sent = @messages_sent << message
   end
   
-  def subscribe(phone)
-    Subscriber.subscribe :from => phone, :body => @schedule.keyword, :'x-remindem-user' => @schedule.user.email
+  def subscribe(phone, offset = nil)
+    Subscriber.subscribe :from => phone, :body => "#{@schedule.keyword} #{offset}", :'x-remindem-user' => @schedule.user.email
   end
 
   def assert_no_message_sent(phone)
@@ -90,5 +90,18 @@ class FixedScheduleTest < ActiveSupport::TestCase
     assert_message_sent @phone_1, 'text at 3'
   end
   
-  # paused, drop message but log warning
+  test "message delivery time should use subscribers offset" do
+    @schedule.messages.create! :text => 'text at 3', :offset => 3
+    
+    time_advance 2.hours
+    subscribe @phone_1, 1
+    
+    time_advance 1.day
+    assert_no_message_sent @phone_1
+
+    time_advance 1.day
+    assert_message_sent @phone_1, 'text at 3'
+  end
+  
+  # TODO paused, drop message but log warning
 end

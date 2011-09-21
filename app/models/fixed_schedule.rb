@@ -5,6 +5,10 @@ class FixedSchedule < Schedule
     messages.sort_by!(&:offset)
   end
   
+  def expected_delivery_time message, subscriber
+    subscriber.reference_time + message.offset.send(self.timescale.to_sym)
+  end
+  
   protected
   
   def reminders
@@ -12,8 +16,7 @@ class FixedSchedule < Schedule
   end
   
   def enqueue_reminder message, index, recipient
-    #TODO bugfix should use offset of recipient
-    schedule_message message, recipient, message.offset.send(self.timescale.to_sym).from_now
+    schedule_message message, recipient, expected_delivery_time(message, recipient)
   end
   
   def self.mode_in_words
