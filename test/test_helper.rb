@@ -82,7 +82,7 @@ class ActiveSupport::TestCase
   end
   
   def assert_message_sent(phone, text)
-    assert messages_to(phone).any? { |m| m[:body] == text }, "#{phone} did not receive expected message: #{text}"
+    assert messages_to(phone).any? { |m| m[:body].match(text) }, "#{phone} did not receive expected message: #{text}"
   end
   
   def clear_messages

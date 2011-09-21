@@ -69,10 +69,13 @@ class Schedule < ActiveRecord::Base
     end
   end
   
-  # TODO remove all Delajed::Job.enqueue ReminderJob... for this method
   def schedule_message message, subscriber, send_at
     Delayed::Job.enqueue ReminderJob.new(subscriber.id, self.id, message.id), 
       :message_id => message.id, :subscriber_id => subscriber.id, :run_at => send_at
+  end
+  
+  def last_job_for subscriber
+    Delayed::Job.order('run_at DESC').where(:subscriber_id => subscriber.id).first
   end
 
   def send_message to, body 

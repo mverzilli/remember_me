@@ -17,8 +17,18 @@ class Message < ActiveRecord::Base
   
   def enqueue_dj_messages
     self.schedule.subscribers.each do |subscriber|
-      expected_delivery_time = schedule.expected_delivery_time(self, subscriber)
-      if Time.now < expected_delivery_time #if in the future
+      if self.schedule.class <= FixedSchedule then
+        expected_delivery_time = schedule.expected_delivery_time(self, subscriber)
+      elsif self.schedule.class <= RandomSchedule then
+        last_job = schedule.last_job_for(subscriber)
+        if last_job.nil?
+          expected_delivery_time = Time.now.utc # TODO should snap no subscription_time 
+        else
+          expected_delivery_time = last_job.run_at + 1.send(schedule.timescale.to_sym)
+        end
+      end
+
+      if Time.now <= expected_delivery_time #if in the future
         schedule.schedule_message self, subscriber, expected_delivery_time
       end
     end
