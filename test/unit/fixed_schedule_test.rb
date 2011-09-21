@@ -102,6 +102,18 @@ class FixedScheduleTest < ActiveSupport::TestCase
     time_advance 1.day
     assert_message_sent @phone_1, 'text at 3'
   end
+
+  test "messages should not be sent if schedule is paused" do
+    @schedule.messages.create! :text => 'text at 1', :offset => 1
   
-  # TODO paused, drop message but log warning
+    subscribe @phone_1
+    time_advance 20.hours
+    assert_no_message_sent @phone_1
+    
+    @schedule.paused = true
+    @schedule.save!
+    
+    time_advance 5.hours
+    assert_no_message_sent @phone_1
+  end
 end
