@@ -1,16 +1,7 @@
 require 'test_helper'
 
 class MessageTest < ActiveSupport::TestCase
-  
-  def setup
-    Nuntium.expects(:new_from_config).returns(self).at_most_once()
-    @messages_sent = []
-  end
-
-  def send_ao (message)
-    @messages_sent << message
-  end
-  
+    
   test "should be able to create message for random schedules without offset" do
     schedule = RandomSchedule.make
     message = schedule.messages.create :text => 'lorem'

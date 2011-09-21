@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class ScheduleTest < ActiveSupport::TestCase
-
-  def send_ao (message)
-    @messages_sent = @messages_sent << message
-  end
   
   test "validate presence of required fields in schedule" do
     schedule = Schedule.new
@@ -76,10 +72,6 @@ class ScheduleTest < ActiveSupport::TestCase
   end
 
   test "users are notified when schedule is destroyed" do
-
-    Nuntium.expects(:new_from_config).returns(self).twice
-    @messages_sent = []
-
     pregnant = FixedSchedule.make :keyword => 'pregnant'
     first_subscriber = Subscriber.make :schedule => pregnant
     second_subscriber = Subscriber.make :schedule => pregnant
@@ -104,10 +96,6 @@ class ScheduleTest < ActiveSupport::TestCase
   end
   
   test "users are NOT notified when schedule is destroyed" do
-
-    Nuntium.expects(:new_from_config).returns(self).twice
-    @messages_sent = []
-
     pregnant = FixedSchedule.make :keyword => 'pregnant'
     first_subscriber = Subscriber.make :schedule => pregnant
     second_subscriber = Subscriber.make :schedule => pregnant
@@ -123,8 +111,6 @@ class ScheduleTest < ActiveSupport::TestCase
   [FixedSchedule, RandomSchedule].each do |klass| #toDo: Add CalendarBasedSchedule to this list of tests
 
     test "event is logged when subscriber is added to #{klass}" do
-      Nuntium.expects(:new_from_config).returns(self).twice
-      @messages_sent = []
     
       pregnant = klass.make :keyword => 'pregnant'
     
@@ -142,8 +128,6 @@ class ScheduleTest < ActiveSupport::TestCase
     end
   
     test "event is logged when message is sent on #{klass}" do
-      Nuntium.expects(:new_from_config).returns(self).twice
-      @messages_sent = []
     
       pregnant = klass.make
       pregnant.messages.create! :text => 'pregnant1', :offset => 0

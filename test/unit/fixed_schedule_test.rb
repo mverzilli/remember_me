@@ -3,10 +3,7 @@ require 'test_helper'
 class FixedScheduleTest < ActiveSupport::TestCase
   def setup
     set_current_time
-    
-    Nuntium.stubs(:new_from_config).returns(self)
-    clear_messages
-    
+        
     @schedule = FixedSchedule.make :timescale => 'day'
     @phone_1 = 'sms://4001'
   end
@@ -14,29 +11,9 @@ class FixedScheduleTest < ActiveSupport::TestCase
   def teardown
     Time.unstub(:now)
   end
-  
-  def send_ao(message)
-    @messages_sent = @messages_sent << message
-  end
-  
+    
   def subscribe(phone, offset = nil)
     Subscriber.subscribe :from => phone, :body => "#{@schedule.keyword} #{offset}", :'x-remindem-user' => @schedule.user.email
-  end
-
-  def messages_to(phone)
-    @messages_sent.find_all { |m| m[:to] == phone }
-  end
-
-  def assert_no_message_sent(phone)
-    assert messages_to(phone).empty?, "The following messages were not expected to be sent #{messages_to(phone)}"
-  end
-  
-  def assert_message_sent(phone, text)
-    assert messages_to(phone).any? { |m| m[:body] == text }, "#{phone} did not receive expected message: #{text}"
-  end
-  
-  def clear_messages
-    @messages_sent = []
   end
   
   test "subscribers should receive messages at subscription time" do

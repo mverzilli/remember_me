@@ -4,12 +4,6 @@ class CalendarBasedScheduleTest < ActiveSupport::TestCase
   
   def setup
     Time.expects(:now).returns(Time.utc(2011,"sep",6,20,15,1)).at_least_once()
-    Nuntium.expects(:new_from_config).returns(self).at_least_once()
-    @messages_sent = []
-  end
-
-  def send_ao (message)
-    @messages_sent << message
   end
     
   test "new subscriber" do

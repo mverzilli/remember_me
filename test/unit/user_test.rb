@@ -1,10 +1,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  def setup
-    Nuntium.expects(:new_from_config).returns(self).at_most_once
-  end
-  
+
   def create_channel(p1)
     @create_channel_p1 = p1
     return @create_channel_returns

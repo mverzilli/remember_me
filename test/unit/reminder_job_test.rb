@@ -2,15 +2,6 @@ require 'test_helper'
 
 class ReminderJobTest < ActiveSupport::TestCase
 
-  def setup
-    Nuntium.expects(:new_from_config).returns(self).at_most_once()
-    @messages_sent = []
-  end
-
-  def send_ao (message)
-    @messages_sent << message
-  end
-
   test "message is sent on perform" do
     #setup
     pregnant = pregnant_make
