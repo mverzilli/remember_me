@@ -21,7 +21,7 @@ ul.vertical li { list-style: none; }
 .subscribersBox { width: 283px; height: 38px; padding: 0px 1px 0px 3px; }
 .csvDownload { height: 32px !important; width: 134px; margin-top: 3px; }
 .subscribersCount { font-size: 23px; height: 23px; }
-.subscribersBox > div { font-size: 11px; }
+.subscribersBox > div { font-size: 11px; text-align: center;}
 
 .CleanTable th {
   padding-bottom: 7px;

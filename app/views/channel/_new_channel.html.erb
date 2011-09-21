@@ -1,0 +1,17 @@
+<%= errors_for @invalid_channel %>
+<div class="box w60">
+	<h1>Input Code</h1>
+
+	<% unless current_user.channel.nil? %>
+	<div class="Error">
+  		If you register a new channel, the current will be removed.
+	</div>
+	<% end %>
+
+	<% form_for :channel, :url => { :action => :create }, :remote => true do |f| %>
+		<%= f.text_field :code %>
+		<br>
+		<%=link_to 'Back', new_channel_path(:show_local_gateway => true), :remote => true %>
+		<button type="submit" class="white">Done</button>
+	<% end %>
+</div>

@@ -1,0 +1,10 @@
+<% if params[:show_local_gateway]
+	partial = 'download_local_gateway'
+else if params[:show_current]
+		partial = 'user_channel'
+	else
+		partial = 'new_channel'
+	end 
+end %>
+
+<%= render :partial => partial %>

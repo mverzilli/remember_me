@@ -1,11 +1,11 @@
-<%= render "schedule_tabs_and_title", :schedule => @schedule %>
+<%= render "shared/schedule_tabs_and_title", :schedule => @schedule %>
 
 <div class="box tab">
 	<h2>Status</h2>
 	<p>Here you can see the overall status of your schedule</p>
 
 	<div class="box grey subscribersBox">
-		<div class="left" style="text-align: center">
+		<div class="left">
 			<div class="subscribersCount"><%= @schedule.subscribers.count %></div>
 			<div>subscribers</div>
 		</div>
@@ -18,8 +18,8 @@
 	<hr>
 	<h2>Properties</h2>
 	<p>This is a summary of the properties of your schedule</p>
-
-	<p>Keyword: <%= @schedule.keyword %><br>
+	<p>
+		Keyword: <%= @schedule.keyword %><br>
 		Mode: <%= @schedule.class.mode_in_words %><br>
 		Messages: <%= @schedule.messages.count %>
 	</p>
