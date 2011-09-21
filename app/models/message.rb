@@ -18,10 +18,7 @@ class Message < ActiveRecord::Base
   def enqueue_dj_messages
     self.schedule.subscribers.each do |subscriber|
       if Time.now <  subscriber.reference_time + self.offset.send(self.schedule.timescale.to_sym) #if in the future
-        Delayed::Job.enqueue ReminderJob.new(subscriber.id, self.schedule.id, self.id),
-          :message_id => self.id,
-          :subscriber_id => subscriber.id,
-          :run_at => subscriber.reference_time + self.offset.send(self.schedule.timescale.to_sym)
+        schedule.schedule_message self, subscriber, subscriber.reference_time + self.offset.send(self.schedule.timescale.to_sym)
       end
     end
   end
