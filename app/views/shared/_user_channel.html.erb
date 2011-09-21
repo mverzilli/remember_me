@@ -1,9 +1,0 @@
-<div class="user_channel">
-  <% if current_user.channel.nil? %>
-    You need to <%= link_to 'setup a channel', :new_channel %>.
-  <% else %>
-    Subscribers should register via <%=current_user.channel.address%>
-    
-    <%= link_to 'Change channel', :new_channel %>
-  <% end %>
-</div>
