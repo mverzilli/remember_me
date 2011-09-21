@@ -18,13 +18,18 @@ class Subscriber < ActiveRecord::Base
     new_subscriber = self.create! :phone_number => sender_phone_number, 
                                         :offset => offset ? offset : 0, 
                                         :schedule => schedule,
-                                        :subscribed_at => DateTime.current.utc
+                                        :subscribed_at => Time.now.utc
     
     schedule.subscribe new_subscriber
   end
   
   def reference_time
       self.subscribed_at - self.offset.send(self.schedule.timescale.to_sym)
+  end
+  
+  def can_receive_message
+    # iif we are +/-2 hours from subscription time
+    (Time.now.utc.seconds_since_midnight - self.subscribed_at.seconds_since_midnight).abs.seconds < 2.hours
   end
     
   def self.no_schedule_message keyword

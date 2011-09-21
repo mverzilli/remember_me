@@ -47,6 +47,21 @@ class ActiveSupport::TestCase
     
     return schedule
   end
+    
+  # Sets current time as a stub on Time.now
+  def set_current_time(time=Time.at(946702800).utc)
+    Time.stubs(:now).returns(time)
+  end
+
+  # Returns base time to be used for tests in utc
+  def base_time
+    return Time.at(946702800).utc
+  end
+  
+  def time_advance(span)
+    set_current_time(Time.now + span)
+    Delayed::Worker.new.work_off
+  end  
 end
 
 class ActionController::TestCase

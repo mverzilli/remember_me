@@ -15,7 +15,7 @@ class SubscriberTest < ActiveSupport::TestCase
     assert_equal 10, created_subscriber.offset
     assert_not_nil created_subscriber.schedule
     assert_equal schedule, created_subscriber.schedule
-    assert_in_delta DateTime.current.utc.to_f, created_subscriber.subscribed_at.to_f, 1.minute.to_f
+    assert_in_delta Time.now.utc.to_f, created_subscriber.subscribed_at.to_f, 1.minute.to_f
   end
   
   test "subscribe supports absent offset, defaults to 0" do

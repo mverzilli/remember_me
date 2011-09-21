@@ -43,6 +43,6 @@ end
 
 Subscriber.blueprint do
   phone_number
-  subscribed_at { DateTime.now.utc }
+  subscribed_at { Time.now.utc }
   offset { 0 }
 end

@@ -54,15 +54,25 @@ class Schedule < ActiveRecord::Base
     self.user.build_message to, body 
   end
 
-  #toDo: remove default behavior
-  def send_if_should message, options = {}
-    if can_send_messages?
-      send_message options[:to].phone_number, message.text
+  def send_or_reschedule message, subscriber
+    if !paused?
+      if subscriber.can_receive_message
+        send_message subscriber.phone_number, message.text
+      else
+        #TODO build a better estimate for when to reschedule
+        try_to_send_it_at = Time.now.utc + 1.hour
+        #TODO log warning, that it is reschedule due to invalid contact time
+        schedule_message message, subscriber, try_to_send_it_at
+      end
+    else
+      #TODO log that since it is paused, it is not sent
     end
   end
-
-  def can_send_messages?
-    !paused? #and it's not 3am?
+  
+  # TODO remove all Delajed::Job.enqueue ReminderJob... for this method
+  def schedule_message message, subscriber, send_at
+    Delayed::Job.enqueue ReminderJob.new(subscriber.id, self.id, message.id), 
+      :message_id => message.id, :subscriber_id => subscriber.id, :run_at => send_at
   end
 
   def send_message to, body 
