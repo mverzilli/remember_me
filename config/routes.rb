@@ -10,7 +10,9 @@ RememberMe::Application.routes.draw do
   
   resources :channel, :only => [:new, :create, :destroy]
   
-  root :to => 'schedules#index'
+  root :to => 'home#index'
+  match 'tour/:page_number' => 'tour#show', :as => :tour
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
