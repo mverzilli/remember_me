@@ -23,7 +23,7 @@ gem 'kaminari'
 group :development, :test do
 	gem "rand", "~> 0.9.1"
 end
-
+gem 'breadcrumbs_on_rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'

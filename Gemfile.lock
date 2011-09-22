@@ -30,6 +30,7 @@ GEM
     activesupport (3.0.7)
     arel (2.0.10)
     bcrypt-ruby (3.0.1)
+    breadcrumbs_on_rails (2.1.0)
     builder (2.1.2)
     daemons (1.1.4)
     delayed_job (2.1.4)
@@ -107,6 +108,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  breadcrumbs_on_rails
   delayed_job
   devise
   ffaker
