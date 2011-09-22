@@ -35,18 +35,35 @@ class Message < ActiveRecord::Base
   end
   
   def remove_dj_messages
-    Delayed::Job.where("message_id = '#{self.id}'").map {|x| x.destroy} 
+    if self.schedule.class <= FixedSchedule then
+      Delayed::Job.where(:message_id => self.id).map {|x| x.destroy} 
+    elsif self.schedule.class <= RandomSchedule then
+      self.schedule.subscribers.each do |subscriber|
+        # for RandomSchedule we find the last job, and reschedule it to be sent at the time
+        # of the job we are deleting, which is the one assigned to the message that wants to
+        # be deleted. This way, we ensure no blanck in the timeline are left.
+        job = Delayed::Job.where(:message_id => self.id, :subscriber_id => subscriber.id).first
+        next if job.nil?
+        delivery_to_be_filled = job.run_at
+        last_job = schedule.last_job_for(subscriber)
+        last_job.run_at = delivery_to_be_filled
+        last_job.save!
+        job.destroy
+      end
+    end
   end
   
   def update_dj_messages
-    if self.offset_changed?
-      Delayed::Job.where("message_id = '#{self.id}'").each do |updatedJob|
-        subscriber = Subscriber.find(updatedJob.subscriber_id)
-        updatedJob.run_at = schedule.expected_delivery_time(self, subscriber)
-        if Time.now < updatedJob.run_at #if in future
-          updatedJob.save!
-        else #if in the past
-          updatedJob.destroy
+    if self.schedule.class <= FixedSchedule then
+      if self.offset_changed?
+        Delayed::Job.where(:message_id => self.id).each do |updatedJob|
+          subscriber = Subscriber.find(updatedJob.subscriber_id)
+          updatedJob.run_at = schedule.expected_delivery_time(self, subscriber)
+          if Time.now < updatedJob.run_at #if in future
+            updatedJob.save!
+          else #if in the past
+            updatedJob.destroy
+          end
         end
       end
     end
@@ -80,6 +97,7 @@ class Message < ActiveRecord::Base
       schedule.log_message_deleted self
     end
   end
+  
   def alert_schedule_from_message_update
     if schedule.class == CalendarBasedSchedule
       schedule.message_has_been_updated self

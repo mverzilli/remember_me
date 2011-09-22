@@ -14,11 +14,19 @@ class FixedScheduleTest < ActiveSupport::TestCase
     
   def subscribe(phone, offset = nil)
     Subscriber.subscribe :from => phone, :body => "#{@schedule.keyword} #{offset}", :'x-remindem-user' => @schedule.user.email
+    # reloads schedule of each message
+    @schedule.messages.each do |m|
+      m.schedule(true)
+    end
+  end
+
+  def create_message(attributes)
+    @schedule.messages.create! attributes
   end
   
   test "subscribers should receive messages at subscription time" do
-    @schedule.messages.create! :text => 'text at 1', :offset => 1
-    @schedule.messages.create! :text => 'text at 3', :offset => 3
+    create_message :text => 'text at 1', :offset => 1
+    create_message :text => 'text at 3', :offset => 3
     
     time_advance 2.hours
     subscribe @phone_1
@@ -38,8 +46,8 @@ class FixedScheduleTest < ActiveSupport::TestCase
   end
 
   test "subscribers should not receive messages far away of subscription time" do
-    @schedule.messages.create! :text => 'text at 1', :offset => 1
-    @schedule.messages.create! :text => 'text at 3', :offset => 3
+    create_message :text => 'text at 1', :offset => 1
+    create_message :text => 'text at 3', :offset => 3
     
     time_advance 2.hours
     subscribe @phone_1
@@ -72,7 +80,7 @@ class FixedScheduleTest < ActiveSupport::TestCase
   end
   
   test "message delivery time should use subscribers offset" do
-    @schedule.messages.create! :text => 'text at 3', :offset => 3
+    create_message :text => 'text at 3', :offset => 3
     
     time_advance 2.hours
     subscribe @phone_1, 1
@@ -85,7 +93,7 @@ class FixedScheduleTest < ActiveSupport::TestCase
   end
 
   test "messages should not be sent if schedule is paused" do
-    @schedule.messages.create! :text => 'text at 1', :offset => 1
+    create_message :text => 'text at 1', :offset => 1
   
     subscribe @phone_1
     time_advance 20.hours
@@ -99,7 +107,7 @@ class FixedScheduleTest < ActiveSupport::TestCase
   end
   
   test "subscribers should receive updated text" do
-    @message1 = @schedule.messages.create! :text => 'text at 1', :offset => 1
+    @message1 = create_message :text => 'text at 1', :offset => 1
     
     subscribe @phone_1
     time_advance 20.hours
@@ -111,8 +119,8 @@ class FixedScheduleTest < ActiveSupport::TestCase
   end
   
   test "subscribers should not receive deleted messages" do
-    @schedule.messages.create! :text => 'text at 1', :offset => 1
-    @message3 = @schedule.messages.create! :text => 'text at 3', :offset => 3
+    create_message :text => 'text at 1', :offset => 1
+    @message3 = create_message :text => 'text at 3', :offset => 3
     
     subscribe @phone_1
     time_advance 1.hour
@@ -121,14 +129,14 @@ class FixedScheduleTest < ActiveSupport::TestCase
     clear_messages
     
     time_advance 1.day
-    @message3.delete
+    @message3.destroy
     
     time_advance 1.day
     assert_no_message_sent @phone_1
   end
 
   test "subscribers should receive created messages after subscription" do
-    @schedule.messages.create! :text => 'text at 1', :offset => 1
+    create_message :text => 'text at 1', :offset => 1
     
     subscribe @phone_1
     time_advance 1.hour
@@ -137,14 +145,14 @@ class FixedScheduleTest < ActiveSupport::TestCase
     clear_messages
     
     time_advance 1.day
-    @schedule.messages.create! :text => 'text at 3', :offset => 3
+    create_message :text => 'text at 3', :offset => 3
     
     time_advance 1.day
     assert_message_sent @phone_1, 'text at 3'
   end
   
   test "subscribers should not receive created messages after subscription when they have pass that time" do
-    @schedule.messages.create! :text => 'text at 1', :offset => 1
+    create_message :text => 'text at 1', :offset => 1
     
     subscribe @phone_1
     time_advance 1.hour
@@ -153,14 +161,14 @@ class FixedScheduleTest < ActiveSupport::TestCase
     clear_messages
     
     time_advance 4.day
-    @schedule.messages.create! :text => 'text at 3', :offset => 3
+    create_message :text => 'text at 3', :offset => 3
     
     time_advance 1.day
     assert_no_message_sent @phone_1
   end
   
   test "subscribers should receive later the messages when they are pushed back" do
-    @schedule.messages.create! :text => 'text at 1', :offset => 1
+    create_message :text => 'text at 1', :offset => 1
     
     subscribe @phone_1
     time_advance 22.hours
@@ -177,7 +185,7 @@ class FixedScheduleTest < ActiveSupport::TestCase
   end
 
   test "subscribers should receive earlier the messages when they are brought forward" do
-    @schedule.messages.create! :text => 'text at 3', :offset => 3
+    create_message :text => 'text at 3', :offset => 3
     
     subscribe @phone_1
     time_advance 22.hours
