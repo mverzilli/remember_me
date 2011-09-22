@@ -1,4 +1,8 @@
 class SchedulesController < AuthenticatedController
+
+  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Reminders", :schedules_path
+
   # GET /schedules
   # GET /schedules.xml
   def index
@@ -14,7 +18,8 @@ class SchedulesController < AuthenticatedController
   # GET /schedules/1.xml
   def show
     @schedule = Schedule.find(params[:id])
-
+    add_breadcrumb @schedule.title, schedule_path(params[:id])
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @schedule }
@@ -24,6 +29,7 @@ class SchedulesController < AuthenticatedController
   # GET /schedules/new
   # GET /schedules/new.xml
   def new
+    add_breadcrumb "New schedule", :new_schedule_path
     @schedule = Schedule.new :timescale => "hours"
 
     respond_to do |format|
@@ -35,6 +41,8 @@ class SchedulesController < AuthenticatedController
   # GET /schedules/1/edit
   def edit
     @schedule = Schedule.find(params[:id])
+    add_breadcrumb @schedule.title, schedule_path(params[:id])
+    add_breadcrumb "Configuration", edit_schedule_path(params[:id])
     @schedule.sort_messages
   end
 

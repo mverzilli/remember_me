@@ -48,11 +48,17 @@
       </ul>
     </div>
     
-    <div id="header">
-      <div class="left">
-        <a href="/"><img src="http://theme.instedd.org/theme/images/header/logos/remindem.png"/></a>
-      </div>
-      
+	<div id="header">
+		<div class="left">
+			<a href="/"><img src="http://theme.instedd.org/theme/images/header/logos/remindem.png"/></a>
+		</div>
+     
+		<% if user_signed_in? %>
+			<div class="BreadCrumb">
+				<%= breadcrumb %>
+			</div><!-- #BreadCrumb -->
+		<% end %>
+
       <!-- <div class="BreadCrumb">
         <ul>
           <li><a href="#">Lorem ipsum</a></li>
@@ -60,8 +66,9 @@
           <li><a href="#">amet</a></li>
         </ul>
       </div> -->
-      
-    </div>
+
+		<div class="clear"></div><!-- #clear -->
+	</div><!-- #header -->
     
     <div id="container">
 

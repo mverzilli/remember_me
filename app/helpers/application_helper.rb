@@ -27,4 +27,8 @@ module ApplicationHelper
     
     content_tag(:button, body, default_options.merge(html_options.merge(:onclick => onclick)))
   end
+  
+  def breadcrumb
+    raw render_breadcrumbs :builder => BreadcrumbBuilder
+  end
 end
