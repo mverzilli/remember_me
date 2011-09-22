@@ -44,7 +44,7 @@
         <%= link_to 'Create Reminder', new_schedule_path %>
       </td>
       <td>
-        <%= link_to '', new_schedule_path, :class => 'cadd' %>
+        <%= link_button_to '', new_schedule_path, :class => 'cadd' %>
       </td>
     </tr>
   </table>
@@ -53,4 +53,4 @@
 
 <br />
 
-<%= render :partial => 'shared/user_channel' %>
+<%= render :partial => 'channel/user_channel' %>

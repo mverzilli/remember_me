@@ -12,15 +12,29 @@ class User < ActiveRecord::Base
   has_one :channel, :dependent => :destroy
   
   def register_channel(code)
-    @nuntium = Nuntium.new_from_config
+    raise NuntiumException.new("There were problems creating the channel", "Ticket code" => "Mustn't be blank") if code.blank?
+
+    remove_old_channel
     
-    old_channel = Channel.find_by_user_id(self.id)
-    unless old_channel.nil?
-      @nuntium.delete_channel old_channel.name
-      old_channel.destroy 
-    end
+    new_channel_info = create_nuntium_channel_for code
+
+    raise NuntiumException.new(new_channel_info.parsed_response["summary"], new_channel_info.parsed_response["properties"].first) unless new_channel_info.class <= ActiveSupport::HashWithIndifferentAccess
     
-    channel_info = @nuntium.create_channel({ 
+    channel = self.build_channel :name => new_channel_info[:name], :address => new_channel_info[:address]
+    channel.save!
+  end
+  
+  def build_message(to, body)
+    { :from => "remindem".with_protocol, :to => to, :body => body, :'x-remindem-user' => self.email }
+  end
+  
+  def remove_old_channel
+    channel = Channel.find_by_user_id(self.id)
+    channel.destroy unless channel.nil?
+  end
+  
+  def create_nuntium_channel_for code
+    Nuntium.new_from_config.create_channel({ 
       :name => self.email.to_channel_name, 
       :ticket_code => code, 
       :ticket_message => "This phone will be used for reminders written by #{self.email}",
@@ -35,12 +49,6 @@ class User < ActiveRecord::Base
       :configuration => { :password => SecureRandom.base64(6) },
       :enabled => true
     })
-    
-    channel = self.build_channel :name => channel_info[:name], :address => channel_info[:address]
-    channel.save!
   end
   
-  def build_message(to, body)
-    { :from => "remindem".with_protocol, :to => to, :body => body, :'x-remindem-user' => self.email }
-  end
 end
