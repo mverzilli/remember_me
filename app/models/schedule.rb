@@ -59,13 +59,14 @@ class Schedule < ActiveRecord::Base
       if subscriber.can_receive_message
         send_message subscriber.phone_number, message.text
       else
-        #TODO build a better estimate for when to reschedule
+        #TODO-LOW build a better estimate for when to reschedule, although thanks to the
+        # timewindow restriction, this will be pushed many times until it is able to go out
         try_to_send_it_at = Time.now.utc + 1.hour
-        #TODO log warning, that it is reschedule due to invalid contact time
         schedule_message message, subscriber, try_to_send_it_at
+        create_warning_log_described_by "The message '#{message.text}' was delayed due to #{subscriber.phone_number} localtime"
       end
     else
-      #TODO log that since it is paused, it is not sent
+      create_warning_log_described_by "The message '#{message.text}' was not sent to #{subscriber.phone_number} since schedule is paused"
     end
   end
   
@@ -86,11 +87,15 @@ class Schedule < ActiveRecord::Base
   end
   
   def log_message_sent body, recipient_number
-    create_information_log_described_by "Message sent: " + body + " - recipient: " + recipient_number
+    create_information_log_described_by "The message '#{body}' was sent to #{recipient_number}"
   end
   
   def log_new_subscription_of recipient_number
-    create_information_log_described_by "New subscriber: " + recipient_number + " - schedule: " + keyword
+    create_information_log_described_by "New subscriber: #{recipient_number}"
+  end
+
+  def create_warning_log_described_by description
+    Log.create! :schedule => self, :severity => :warning, :description => description
   end
   
   def create_information_log_described_by description
@@ -98,15 +103,15 @@ class Schedule < ActiveRecord::Base
   end
   
   def log_message_updated message
-    create_information_log_described_by "Message updated: " + message.text
+    create_information_log_described_by "Message updated: #{message.text}"
   end
   
   def log_message_deleted message
-    create_information_log_described_by "Message deleted: " + message.text
+    create_information_log_described_by "Message deleted: #{message.text}"
   end
   
   def log_message_created message
-    create_information_log_described_by "Message created: " + message.text
+    create_information_log_described_by "Message created: #{message.text}"
   end
   
   private

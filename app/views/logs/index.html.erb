@@ -11,7 +11,7 @@
 			</tr>
 			<% @logs.reverse.each do |log| %>
 			<tr>
-				<td><label class="<%= log.severity %>"><%= log.severity.to_s.capitalize %></td>
+				<td><label class="<%= log.severity %>"><%= log.severity.to_s.capitalize %></label></td>
 				<td><%= log.description %></td>
 				<td><%= time_ago_in_words log.created_at %></td>
 			</tr>

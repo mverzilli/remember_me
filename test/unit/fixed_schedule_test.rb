@@ -197,4 +197,29 @@ class FixedScheduleTest < ActiveSupport::TestCase
     time_advance 1.day
     assert_message_sent @phone_1, 'text at 3'
   end
+  
+  test "when messages are not sent due to paused, log warning" do
+    create_message :text => 'text at 1', :offset => 1
+    
+    subscribe @phone_1
+    time_advance 13.hours
+    
+    @schedule.update_attributes :paused => true
+    time_advance 12.hours
+    
+    assert_no_message_sent @phone_1
+    assert_not_nil Log.find_by_schedule_id_and_severity_and_description(@schedule.id, :warning, "The message 'text at 1' was not sent to #{@phone_1} since schedule is paused")
+  end
+
+  test "when messages are not sent due to timewindow, log warning" do
+    create_message :text => 'text at 1', :offset => 1
+    
+    subscribe @phone_1
+    time_advance 13.hours
+    time_advance 1.day    
+    
+    assert_no_message_sent @phone_1
+    assert_not_nil Log.find_by_schedule_id_and_severity_and_description(@schedule.id, :warning, "The message 'text at 1' was delayed due to #{@phone_1} localtime")
+  end
+
 end

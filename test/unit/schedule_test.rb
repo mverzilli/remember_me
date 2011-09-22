@@ -123,7 +123,7 @@ class ScheduleTest < ActiveSupport::TestCase
       log = Log.first
     
       assert_equal :information, log.severity
-      assert_equal "New subscriber: 1234 - schedule: pregnant", log.description
+      assert_equal "New subscriber: 1234", log.description
       assert_equal pregnant, log.schedule
     end
   
@@ -147,7 +147,7 @@ class ScheduleTest < ActiveSupport::TestCase
       log = Log.last
     
       assert_equal :information, log.severity
-      assert_equal "Message sent: pregnant1 - recipient: 1234", log.description
+      assert_equal "The message 'pregnant1' was sent to 1234", log.description
       assert_equal pregnant, log.schedule
     end
 
