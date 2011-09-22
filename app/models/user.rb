@@ -12,14 +12,10 @@ class User < ActiveRecord::Base
   has_one :channel, :dependent => :destroy
   
   def register_channel(code)
-    raise NuntiumException.new("There were problems creating the channel", "Ticket code" => "Mustn't be blank") if code.blank?
-
+    raise Nuntium::Exception.new("There were problems creating the channel", "Ticket code" => "Mustn't be blank") if code.blank?
     remove_old_channel
-    
     new_channel_info = create_nuntium_channel_for code
-
-    raise NuntiumException.new(new_channel_info.parsed_response["summary"], new_channel_info.parsed_response["properties"].first) unless new_channel_info.class <= ActiveSupport::HashWithIndifferentAccess
-    
+        
     channel = self.build_channel :name => new_channel_info[:name], :address => new_channel_info[:address]
     channel.save!
   end
@@ -30,7 +26,7 @@ class User < ActiveRecord::Base
   
   def remove_old_channel
     channel = Channel.find_by_user_id(self.id)
-    channel.destroy unless channel.nil?
+    channel.destroy  unless channel.nil?
   end
   
   def create_nuntium_channel_for code

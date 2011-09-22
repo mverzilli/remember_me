@@ -61,7 +61,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "channel registration with empty code is forbidden" do
-    assert_raises NuntiumException do
+    assert_raises Nuntium::Exception do
       @user1.register_channel ""
     end
   end
