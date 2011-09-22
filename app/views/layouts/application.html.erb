@@ -15,14 +15,15 @@
   <div id="wrapper">
     <div id="toolbar">
       <ul id="instedd-pulldown"></ul>
-      
-      <!-- <div id="NavMenu">
-          <ul>
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Volunteers</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-      </div> -->
+      	<div id="NavMenu">
+			<ul>
+				<%= section 'Home', root_path, :home %>
+				<%= section 'Reminders', root_path, :schedules %>
+				<%= section 'Tour', '#', :tour %>
+				<%= section 'Community', '#', :comunity %>
+				<%= section 'Help', '#', :help %>
+			</ul>
+		</div>
       
       <ul class="RightMenu">
         <%- if !current_user.nil? %>
