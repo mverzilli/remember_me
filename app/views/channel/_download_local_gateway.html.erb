@@ -1,6 +1,9 @@
 <div class="box w30">
 	Download Local Gateway for Android!
 	<br><br>
+	<%= image_tag 'android_screen_example.jpeg', :size => "120x200"%>
+	<%= image_tag 'android_local_gateway.png', :size => "170x170" %>
+	<br><br>
 	<%# I redraw the schedules index instead of rendering the initial partial because this way works without javascript enabled too %>
 	<%=link_to 'Back', schedules_path %>
 	<%=link_to 'Next', new_channel_path, :remote => true %>
