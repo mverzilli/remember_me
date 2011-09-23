@@ -64,7 +64,7 @@ GEM
     mocha (0.10.0)
       metaclass (~> 0.0.1)
     mysql2 (0.2.13)
-    nuntium_api (0.16)
+    nuntium_api (0.17)
       json
       rest-client
     orm_adapter (0.0.5)
