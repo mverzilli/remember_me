@@ -15,8 +15,7 @@ class User < ActiveRecord::Base
     raise Nuntium::Exception.new("There were problems creating the channel", "Ticket code" => "Mustn't be blank") if code.blank?
     remove_old_channel
     new_channel_info = create_nuntium_channel_for code
-        
-    channel = self.build_channel :name => new_channel_info[:name], :address => new_channel_info[:address]
+    channel = self.build_channel :name => new_channel_info["name"], :address => new_channel_info["address"]
     channel.save!
   end
   
