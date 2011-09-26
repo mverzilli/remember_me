@@ -13,7 +13,7 @@ class RandomScheduleTest < ActiveSupport::TestCase
   end
     
   def subscribe(phone, offset = nil)
-    Subscriber.subscribe :from => phone, :body => "#{@schedule.keyword} #{offset}", :'x-remindem-user' => @schedule.user.email
+    Subscriber.modify_subscription_according_to :from => phone, :body => "#{@schedule.keyword} #{offset}", :'x-remindem-user' => @schedule.user.email
     # reloads schedule of each message
     @schedule.messages.each do |m|
       m.schedule(true)

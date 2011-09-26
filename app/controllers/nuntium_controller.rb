@@ -2,7 +2,7 @@ class NuntiumController < ApplicationController
   before_filter :authenticate
 
   def receive_at
-    render :json => Subscriber.subscribe(params)
+    render :json => Subscriber.modify_subscription_according_to(params)
   end
   
   private
