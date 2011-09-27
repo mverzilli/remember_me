@@ -32,7 +32,7 @@ class SchedulesController < AuthenticatedController
   # GET /schedules/new.xml
   def new
     add_breadcrumb "New Reminder", :new_schedule_path
-    @schedule = Schedule.new :timescale => "hours"
+    @schedule = FixedSchedule.new :timescale => "hours"
 
     respond_to do |format|
       format.html # new.html.erb
