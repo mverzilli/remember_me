@@ -11,7 +11,7 @@ class Subscriber < ActiveRecord::Base
     user = User.find_by_email params[:'x-remindem-user']
     return reply(invalid_author(keyword), :to => sender_phone_number) unless user
     
-    unless keyword == 'off'
+    unless Schedule.is_opt_out_keyword? keyword
       schedule = user.schedules.find_by_keyword keyword
       return reply(no_schedule_message(keyword), :to => sender_phone_number) unless schedule
       
@@ -28,7 +28,7 @@ class Subscriber < ActiveRecord::Base
         subscriber = find_by_phone_number_and_schedule_id sender_phone_number, schedule
         if subscriber
           subscriber.destroy
-          reply goodbye_message(schedule.keyword), :to => sender_phone_number
+          reply goodbye_message(schedule), :to => sender_phone_number
         else
           reply unkwnown_subscriber_message(offset), :to => sender_phone_number
         end
@@ -36,7 +36,7 @@ class Subscriber < ActiveRecord::Base
         subscribers = find_all_by_phone_number sender_phone_number
         if subscribers.size == 1
           subscribers.first.destroy
-          reply goodbye_message(subscribers.first.schedule.keyword), :to => sender_phone_number
+          reply goodbye_message(subscribers.first.schedule), :to => sender_phone_number
         else
           reply please_specify_keyword_message(subscribers.collect {|a_subscriber| a_subscriber.schedule.keyword}), :to => sender_phone_number
         end
@@ -73,8 +73,8 @@ class Subscriber < ActiveRecord::Base
     "Sorry, you are not subscribed to reminder program named #{keyword} :(."
   end
   
-  def self.goodbye_message keyword
-    "You have succesfully unsubscribed from reminder program named #{keyword}."
+  def self.goodbye_message schedule
+    "You have successfully unsubscribed from the \"#{schedule.title}\" Reminder. To subscribe again send \"#{schedule.keyword}\" to this number"
   end
   
   private 

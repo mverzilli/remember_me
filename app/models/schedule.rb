@@ -2,7 +2,6 @@ class Schedule < ActiveRecord::Base
   validates_presence_of :keyword, :user_id, :welcome_message, :type, :title
   validates_presence_of :timescale, :unless => Proc.new {|schedule| schedule.type == "CalendarBasedSchedule"}
   validates_uniqueness_of :keyword
-  
   belongs_to :user
   
   has_many :messages, :dependent => :destroy
@@ -17,6 +16,14 @@ class Schedule < ActiveRecord::Base
   before_update :log_if_paused_or_resumed
   
   attr_accessor_with_default :notifySubscribers, true
+
+  def keyword_is_not_opt_out_keyword
+    if keyword && self.class.is_opt_out_keyword?(keyword)
+      errors.add(:keyword, "Must not be \"#{self.class.opt_out_keyword}\" as it will be used for subscribers to unsubscribe.")
+    end
+  end
+
+  validate :keyword_is_not_opt_out_keyword
 
   def self.inherited(child)
     # force all subclass to have :schedule as model name
@@ -114,8 +121,6 @@ class Schedule < ActiveRecord::Base
     create_information_log_described_by "Message created: #{message.text}"
   end
   
-  private
-  
   def initialize_messages
     messages.each { |m| m.schedule = self }
   end 
@@ -147,6 +152,14 @@ class Schedule < ActiveRecord::Base
   
   def mode_in_words
     raise NotImplementedError, 'Subclasses must redefine this message'
+  end
+
+  def self.is_opt_out_keyword? keyword
+    keyword.upcase == opt_out_keyword.upcase
+  end
+  
+  def self.opt_out_keyword
+    'stop'
   end
   
 end

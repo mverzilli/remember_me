@@ -204,5 +204,31 @@ class ScheduleTest < ActiveSupport::TestCase
       assert_equal "Schedule resumed", log.description
       assert_equal schedule, log.schedule
     end
+    test "#{Schedule.opt_out_keyword} can't be used as a keyword in #{klass}" do
+      assert_equal 'stop', Schedule.opt_out_keyword
+      schedule = klass.new :keyword => Schedule.opt_out_keyword
+      schedule.save
+
+      assert schedule.invalid?
+      assert !schedule.errors[:keyword].blank?, "The schedule keyword can't be the opt out keyword (#{Schedule.opt_out_keyword})"
+      
+      schedule = klass.new :keyword => 'STOP'
+      schedule.save
+
+      assert schedule.invalid?
+      assert !schedule.errors[:keyword].blank?, "The schedule keyword can't be the opt out keyword, not even uppercase (#{Schedule.opt_out_keyword.upcase})"
+      
+      schedule = klass.new :keyword => 'stop'
+      schedule.save
+
+      assert schedule.invalid?
+      assert !schedule.errors[:keyword].blank?, "The schedule keyword can't be the opt out keyword, not even lowercase (#{Schedule.opt_out_keyword.downcase})"
+      
+      schedule = klass.new :keyword => 'sTOp'
+      schedule.save
+
+      assert schedule.invalid?
+      assert !schedule.errors[:keyword].blank?, "The schedule keyword can't be the opt out keyword, not even in random case (sTOp)"
+    end
   end
 end

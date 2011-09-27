@@ -95,6 +95,8 @@ class SubscriberTest < ActiveSupport::TestCase
   
   test "unsubscribe from specific reminder" do
     pregnant_schedule = pregnant_make
+    pregnant_schedule.title= 'Pregnancy reminders'
+    pregnant_schedule.save!
     randweeks_schedule = randweeks_make
     subscribers_count = Subscriber.count
     result = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "pregnant 10", :'x-remindem-user' => pregnant_schedule.user.email
@@ -106,7 +108,7 @@ class SubscriberTest < ActiveSupport::TestCase
     randweeks_subscriber = Subscriber.find_by_phone_number_and_schedule_id "sms://8558190", randweeks_schedule
     assert_not_nil randweeks_subscriber
     
-    answer = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "off pregnant", :'x-remindem-user' => pregnant_schedule.user.email
+    answer = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "Stop pregnant", :'x-remindem-user' => pregnant_schedule.user.email
     
     schedule = Schedule.find_by_keyword "pregnant"
     pregnant_subscriber = Subscriber.find_by_phone_number_and_schedule_id "sms://8558190", pregnant_schedule
@@ -116,7 +118,7 @@ class SubscriberTest < ActiveSupport::TestCase
     randweeks_subscriber = Subscriber.find_by_phone_number_and_schedule_id "sms://8558190", randweeks_schedule
     assert_not_nil randweeks_subscriber
     assert_equal [:from=>"sms://remindem",
-      :body=> "You have succesfully unsubscribed from reminder program named pregnant.",
+      :body=> "You have successfully unsubscribed from the \"Pregnancy reminders\" Reminder. To subscribe again send \"pregnant\" to this number",
       :to=>"sms://8558190"], answer
   end
   
@@ -133,7 +135,7 @@ class SubscriberTest < ActiveSupport::TestCase
     created_subscriber = Subscriber.find_by_phone_number_and_schedule_id "sms://8558190", randweeks_schedule
     assert_not_nil created_subscriber
     
-    answer = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "off", :'x-remindem-user' => pregnant_schedule.user.email
+    answer = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "STOP", :'x-remindem-user' => pregnant_schedule.user.email
     
     created_subscribers = Subscriber.find_all_by_phone_number "sms://8558190"
     assert_not_empty created_subscribers
@@ -145,20 +147,22 @@ class SubscriberTest < ActiveSupport::TestCase
   
   test "unsubscribe from sole reminder" do
     schedule = pregnant_make
+    schedule.title= 'Pregnancy reminders'
+    schedule.save!
     subscribers_count = Subscriber.count
     result = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "pregnant 10", :'x-remindem-user' => schedule.user.email
     schedule = Schedule.find_by_keyword "pregnant"
     created_subscriber = Subscriber.find_by_phone_number "sms://8558190"
     assert_not_nil created_subscriber
     
-    answer = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "off", :'x-remindem-user' => schedule.user.email
+    answer = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "stop", :'x-remindem-user' => schedule.user.email
     
     schedule = Schedule.find_by_keyword "pregnant"
     created_subscriber = Subscriber.find_by_phone_number "sms://8558190"
     assert_nil created_subscriber
     assert_not_nil schedule
     assert_equal [:from=>"sms://remindem",
-      :body=> "You have succesfully unsubscribed from reminder program named pregnant.",
+      :body=> "You have successfully unsubscribed from the \"Pregnancy reminders\" Reminder. To subscribe again send \"pregnant\" to this number",
       :to=>"sms://8558190"], answer
   end
   
@@ -169,7 +173,7 @@ class SubscriberTest < ActiveSupport::TestCase
     created_subscriber = Subscriber.find_by_phone_number "sms://8558190"
     assert_nil created_subscriber
     
-    answer = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "off pregnant", :'x-remindem-user' => schedule.user.email
+    answer = Subscriber.modify_subscription_according_to :from => "sms://8558190", :body => "StOp pregnant", :'x-remindem-user' => schedule.user.email
     
     schedule = Schedule.find_by_keyword "pregnant"
     created_subscriber = Subscriber.find_by_phone_number "sms://8558190"
