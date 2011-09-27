@@ -9,8 +9,12 @@ RememberMe::Application.routes.draw do
   match :receive_at, :controller => "nuntium", :action => :receive_at
   
   resources :channel, :only => [:new, :create, :destroy]
-  
+
+  namespace :user do
+      root :to => "schedules#index"
+  end  
   root :to => 'home#index'
+
   match 'tour/:page_number' => 'tour#show', :as => :tour
   
   # The priority is based upon order of creation:

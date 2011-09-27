@@ -1,13 +1,15 @@
 class SchedulesController < AuthenticatedController
 
-  add_breadcrumb "Home", :root_path
-  add_breadcrumb "Reminders", :schedules_path
+  def initialize
+    super
+    @show_breadcrum = true
+    add_breadcrumb "Reminders", :schedules_path
+  end
 
   # GET /schedules
   # GET /schedules.xml
   def index
     @schedules = Schedule.where(:user_id => current_user.id).page(params[:page]).per(5)
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @schedules }
@@ -29,7 +31,7 @@ class SchedulesController < AuthenticatedController
   # GET /schedules/new
   # GET /schedules/new.xml
   def new
-    add_breadcrumb "New schedule", :new_schedule_path
+    add_breadcrumb "New Reminder", :new_schedule_path
     @schedule = Schedule.new :timescale => "hours"
 
     respond_to do |format|

@@ -18,7 +18,7 @@
       	<div id="NavMenu">
 			<ul>
 				<%= section 'Home', root_path, :home %>
-				<%= section 'Reminders', schedules_path, :schedules %>
+				<%= section 'Reminders', schedules_path, :schedules unless current_user.nil? %>
 				<%= section 'Tour', tour_path(1), :tour %>
 				<%= section 'Community', '#', :comunity %>
 				<%= section 'Help', '#', :help %>
@@ -53,8 +53,7 @@
 		<div class="left">
 			<a href="/"><img src="http://theme.instedd.org/theme/images/header/logos/remindem.png"/></a>
 		</div>
-     
-		<% if user_signed_in? %>
+		<% if @show_breadcrum %>
 			<div class="BreadCrumb">
 				<%= breadcrumb %>
 			</div>
