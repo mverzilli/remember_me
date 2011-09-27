@@ -23,6 +23,27 @@ class ScheduleTest < ActiveSupport::TestCase
       assert !schedule.errors[:timescale].blank?, "Timescale must be present for #{klass}"
       assert_equal klass.to_s, schedule.type
     end
+  
+    test "validate lenght of keyword in #{klass}" do
+      schedule = klass.new :keyword => ('*' * 16)
+      schedule.save
+    
+      assert schedule.invalid?
+      assert !schedule.errors[:keyword].blank?, "Keyword must be smaller than 15 characters"
+      
+      schedule = klass.make :keyword => ('*' * 15)
+      schedule.save!
+    end
+    
+    test "validate lenght of title in #{klass}" do
+      schedule = klass.new :title => '*' * 61
+      schedule.save
+    
+      assert schedule.invalid?
+      assert !schedule.errors[:keyword].blank?, "Keyword must be smaller than 15 characters"
+      schedule = klass.make :title => '*' * 60
+      schedule.save!
+    end
   end
   
   test "validate uniqueness of keyword" do

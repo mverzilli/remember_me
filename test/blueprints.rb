@@ -4,7 +4,7 @@ require 'ffaker'
 
 Sham.email { Faker::Internet.email }
 Sham.password { ActiveSupport::SecureRandom.base64(6) }
-Sham.keyword { Faker::Internet.user_name }
+Sham.keyword { Faker::Lorem.word }
 Sham.phone_number { rand(36**8).to_s.with_protocol }
 Sham.body { "Message" + rand(265**1).to_s }
 Sham.severity { [:information, :error, :warning].pick }
