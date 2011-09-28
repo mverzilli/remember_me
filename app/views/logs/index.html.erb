@@ -13,7 +13,7 @@
 			<tr>
 				<td><label class="<%= log.severity %>"><%= log.severity.to_s.capitalize %></label></td>
 				<td><%= log.description %></td>
-				<td><%= time_ago_in_words log.created_at %></td>
+				<td><%= "#{log.created_at.strftime "%a %b %d %Y, %H:%M:%S"} (#{time_ago_in_words log.created_at} ago)" %></td>
 			</tr>
 			<% end %>
 		</table>
