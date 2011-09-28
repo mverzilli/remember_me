@@ -9,7 +9,7 @@
 				<th>Text</th>
 				<th>Timestamp</th>
 			</tr>
-			<% @logs.reverse.each do |log| %>
+			<% @logs.each do |log| %>
 			<tr>
 				<td><label class="<%= log.severity %>"><%= log.severity.to_s.capitalize %></label></td>
 				<td><%= log.description %></td>
