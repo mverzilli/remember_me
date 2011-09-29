@@ -20,7 +20,11 @@
     <%= f.label :welcome_message, "Welcome message" %>
 	<p>This is the message users will get after they successfully registered</p>
     <div class="w60">
-      <%= f.text_area :welcome_message, :rows => 3, :class => "causesPendingSaveNoticeOnChange ux-wajbar", :placeholder => 'Write your welcome message here' , :maxlength => 140 %>
+      <%= f.text_area :welcome_message,
+			:rows => 3,
+			:class => "causesPendingSaveNoticeOnChange ux-wajbar",
+			:placeholder => 'Write your welcome message here',
+			:maxlength => 140 %>
     </div>
   </div>
   

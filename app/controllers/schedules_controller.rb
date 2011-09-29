@@ -90,6 +90,8 @@ class SchedulesController < AuthenticatedController
     @schedule = Schedule.find(params[:id])
     if params[:notify] == "true"
       @schedule.notifySubscribers = true
+    else
+      @schedule.notifySubscribers = false
     end
     @schedule.destroy
 

@@ -1,24 +1,3 @@
-<% content_for :head do %>
-	<script type="text/javascript">
-	$(function(){
-		$('.cremove').bind('confirm:complete', function(event, answer) {
-
-			if (answer == false) return;
-
-			send_notification = confirm('Send deletion notification to subscribers?');
-			$(this).attr('href', ($(this).attr('href').replace("NOTIFY_VALUE", send_notification)));
-
-			if (send_notification) {
-				alert('This will delete the schedule and notify all subscribers of its deletion.');
-			}
-			else {
-				alert('This will delete the schedule');	
-			}
-		});
-	});
-	</script>
-<% end %>
-
 <h1>Reminders</h1>
 
 <div class="tablewrapp w60">
@@ -35,8 +14,7 @@
           <%= schedule.title %>
         <% end %>
       </td>
-		<td><a href="<%= schedule_path(schedule, :notify => "NOTIFY_VALUE") %>" class="icon cremove"
-			data-confirm="Are you sure you want to delete the schedule <%= schedule.title %>?" data-method="delete"></td>
+		<td><%= link_to '', schedule_path(schedule), :class => 'farrow' %></td>
     </tr>
   <% end %>
     <tr>
@@ -50,7 +28,5 @@
   </table>
 <%= paginate @schedules %>
 </div>
-
-<br />
-
+<br>
 <%= render :partial => 'channel/user_channel' %>
