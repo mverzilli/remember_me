@@ -1,0 +1,19 @@
+<div class="box plain grey w60">
+	 <div class="steps-line">
+	     <div class="steps-container">
+	         <span class="circle first green"><span class="inner"><span class="step-name">Choose</span></span></span>
+	         <span class="line-fill green"></span><span class="circle green"><span class="inner"><span class="step-name">Install</span></span></span>
+	         <span class="line-fill"></span><span class="circle"><span class="inner"><span class="step-name">Connect</span></span></span>
+	         <span class="line-fill"></span><span class="circle last"><span class="inner"><span class="step-name">Finnish</span></span></span>
+	     </div><!-- #steps-container-->
+	</div><!-- #steps-line-->
+</div><!-- #box plain grey -->
+
+<div class="box w30">
+	Download Local Gateway for Desktop!
+	<br><br>
+	<br><br>
+	<%# I redraw the schedules index instead of rendering the initial partial because this way works without javascript enabled too %>
+	<%=link_to 'Back', new_channel_path(:choose_local_gateway => true), :remote => true, :class => 'button white'%>
+	<%=link_to 'Next', new_channel_path, :remote => true, :class => 'button grey' %>
+</div>

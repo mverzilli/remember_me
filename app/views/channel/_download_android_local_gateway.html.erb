@@ -1,0 +1,25 @@
+<div class="box plain grey w60">
+	 <div class="steps-line">
+	     <div class="steps-container">
+	         <span class="circle first green"><span class="inner"><span class="step-name">Choose</span></span></span>
+	         <span class="line-fill green"></span><span class="circle green"><span class="inner"><span class="step-name">Install</span></span></span>
+	         <span class="line-fill"></span><span class="circle"><span class="inner"><span class="step-name">Connect</span></span></span>
+	         <span class="line-fill"></span><span class="circle last"><span class="inner"><span class="step-name">Finnish</span></span></span>
+	     </div><!-- #steps-container-->
+	</div><!-- #steps-line-->
+</div><!-- #box plain grey -->
+
+<h1 class="orange">Go to Android Market and install Nuntium Local Gateway</h1>
+<p class="w30 grey">Use the following QR code to access the app or use the search engine with the keyword <b> Nuntium</b></p>
+<br>
+<div style="
+   	background: url(/images/android_local_gateway.png);
+    background-repeat: no-repeat;
+    width: 267px;
+    height: 267px;
+"></div><br>
+<a href="market.android.com/details?id=org.instedd.geochat.lgw" class="grey">market.android.com/details?id=org.instedd.geochat.lgw</a><br><br>
+<hr>
+<%# I redraw the schedules index instead of rendering the initial partial because this way works without javascript enabled too %>
+<%=link_to 'Back', new_channel_path(:choose_local_gateway => true), :remote => true, :class => 'button white'%>
+<%=link_to 'Next', new_channel_path, :remote => true, :class => 'button grey' %>

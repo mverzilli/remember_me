@@ -38,7 +38,7 @@
 	</p>
 
 	<%= link_to '', edit_schedule_path(@schedule), :class => 'farrow' %><%= link_to 'Edit', edit_schedule_path(@schedule) %>
-	<p><a href="#" class="icon cremove" onclick="toggle_visibility('deleteConfirmation'); return false;" ></a>Delete this schedule?</p>
+	<p><a href="#" class="icon fdelete" onclick="toggle_visibility('deleteConfirmation'); return false;" ></a>Delete this schedule?</p>
 	<div id="deleteConfirmation" style="display:none">
 		<input type="checkbox" checked="" name="notifySubscribers" id="notifySubscribers">
 		<%= label_tag :notifySubscribers, "Send deletion notification to subscribers?" %><br>

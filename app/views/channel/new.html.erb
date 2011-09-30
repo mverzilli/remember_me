@@ -1,10 +1,11 @@
-<% if params[:show_local_gateway]
-	partial = 'download_local_gateway'
-else if params[:show_current]
-		partial = 'user_channel'
-	else
-		partial = 'new_channel'
-	end 
-end %>
+<% partial = 'new_channel' %>
+
+<% partial = 'download_android_local_gateway' if params[:show_local_gateway_android]  %>
+
+<% partial = 'download_desktop_local_gateway' if params[:show_local_gateway_android] %>
+
+<% partial = 'choose_local_gateway' if params[:show_local_gateway]  %>
+
+<% partial = 'user_channel' if params[:show_current] %>
 
 <%= render :partial => partial %>
