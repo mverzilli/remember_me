@@ -1,6 +1,6 @@
 <%= render "shared/schedule_tabs_and_title", :schedule => Schedule.find(params[:schedule_id]) %>
 
-<div class="box tab">
+<div class="tabsline">
 	<h1>Subscribers</h1>
 	<div class="tablewrapp">
 		<table class="GralTable ButtonTable">
@@ -28,5 +28,4 @@
 		</table>
 		<%= paginate @subscribers %>
 	</div>
-	<br><br><br>
 </div>

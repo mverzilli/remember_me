@@ -2,25 +2,8 @@
 
 <div class="user_channel">
   <% if current_user.channel.nil? %>
-	<div class="box w30">
-		<p>You need to connect using Nuntium</p>
-		<%=link_to 'Start', new_channel_path(:show_local_gateway => true), :remote => true, :class => 'button white' %>
-	</div>
+	<%= render :partial => 'channel/no_channel' %>
   <% else %>
-	<div class="box w30">
-		<table>
-			<tr>
-				<td><img src="http://theme.instedd.org/theme/images/icons/large/mobile.png"></td>
-				<td>
-					<p>
-						Subscribers should register via<br>
-						<%=current_user.channel.address%><br>
-						<%= link_to 'Change channel', new_channel_path(:show_local_gateway => true), :remote => true %>
-					</p>
-				</td>
-				<td><%= link_to '', channel_path(current_user.channel), :method => :delete, :class => 'icon cremove' %></td>
-			</tr>
-		</table>
-	</div>
+	<%= render :partial => 'channel/show_current_channel' %>
   <% end %>
 </div>
