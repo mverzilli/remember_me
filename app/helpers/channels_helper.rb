@@ -31,6 +31,10 @@ module ChannelsHelper
     		partial = 'user_channel'
   	end
   	
+  	if params[:show_finish]
+    		partial = 'end_wizard'
+  	end
+  	
   	partial
 	end
 end

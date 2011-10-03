@@ -6,7 +6,7 @@ class ChannelController < AuthenticatedController
   def create
     unless params[:show_local_gateway]
       current_user.register_channel params[:channel][:code]
-      params[:show_current] = true
+      params[:show_finish] = true
       render :action => "new"
     end
   rescue Nuntium::Exception => exception

@@ -2,21 +2,20 @@
 	 <div class="steps-line">
 	     <div class="steps-container s4">
 	         <span class="circle first green"><span class="inner"><span class="step-name">Choose</span></span></span>
-	         <span class="line-fill green"></span><span class="circle green"><span class="inner"><span class="step-name">Install</span></span></span>
+	         <span class="line-fill"></span><span class="circle"><span class="inner"><span class="step-name">Install</span></span></span>
 	         <span class="line-fill"></span><span class="circle"><span class="inner"><span class="step-name">Connect</span></span></span>
 	         <span class="line-fill"></span><span class="circle last"><span class="inner"><span class="step-name">Finish</span></span></span>
 	     </div><!-- #steps-container-->
 	</div><!-- #steps-line-->
 </div><!-- #box plain grey -->
+
 <div class="ChannelWizard">
-	<h1 class="orange">Donwload and install Nuntium Local Gateway</h1>
+	<h1>Congratulations! you have successfully created a channel</h1>
 	<% require"ffaker" %>
 	<p class="w30"><%= Faker::Lorem.paragraph %></p>
-	<p class="w30"><%= Faker::Lorem.paragraph %></p>
-	<a href="http://instedd.org/technologies/nuntium/" class="fimport">Download Nuntium Local Gateway</a>
+	<div class="ChannelConfigured"></div>
 </div>
 <hr>
 <div class="ChannelWizardNavigation">
-	<%=link_to 'Back', new_channel_path(:choose_local_gateway => true), :remote => true, :class => 'button white'%>
-	<%=link_to 'Next', new_channel_path(:create_from_desktop => true), :remote => true, :class => 'button grey' %>
+	<%=link_to 'Finish', schedules_path, :class => 'button white' %>
 </div>

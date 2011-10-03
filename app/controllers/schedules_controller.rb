@@ -10,12 +10,13 @@ class SchedulesController < AuthenticatedController
   # GET /schedules.xml
   def index
     @schedules = Schedule.where(:user_id => current_user.id).page(params[:page]).per(5)
+
+    @last_log = Log.find(:all, :conditions => ["schedule_id in (?)", @schedules.collect(&:id)]).sort_by(&:created_at).reverse.first rescue nil
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @schedules }
     end
   end
-
   # GET /schedules/1
   # GET /schedules/1.xml
   def show

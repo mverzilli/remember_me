@@ -105,6 +105,12 @@ ul.vertical li { list-style: none; }
 	color: #555555;
 }
 
+.ChannelWizard .description {
+	margin-left: 26px;
+	padding-top: 4px;
+}
+
+
 .ChannelWizard > a.fimport {
 	color: #000000;
 }
@@ -190,4 +196,28 @@ ul.vertical li { list-style: none; }
 .ChannelWizardNavigation {
 	margin-top: 16px;
 	margin-bottom: 7px;
+}
+
+.ChannelWizard .ChannelConfigured{
+   	background: url(/images/finish.png);
+    background-repeat: no-repeat;
+    width: 461px;
+    height: 302px;
+}
+
+.CurrentChannelBox {
+	height: 44px;
+	margin-bottom: 20px;
+	height: 40px;
+	padding-top: 4px;
+	padding-left: 9px;
+	padding-right: 4px;
+	padding-bottom: 0px;
+}
+.CurrentChannelBox > div > p{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.CurrentChannelBox .black{
+	color:black;
 }

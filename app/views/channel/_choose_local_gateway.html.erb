@@ -25,12 +25,12 @@
 	
 	<input type="radio" checked="" name="localGateway" value="android" id="androidLocalGateway" class="left">
 	<div class="left AndroidLogo"></div>
-	<%= label_tag :androidLocalGateway, "Android mobile phone" , :class => "left" %><br>
-	<p class="w30 clear">If you have an Android powered mobile phone, you don't need a computer to set up your schedules. Just download the application, enter your text messages, and set your delivery schedule, Remindem handles the rest.</p><br>
+	<%= label_tag :androidLocalGateway, "Android mobile phone" , :class => "left" %>
+	<p class="w30 clear description">If you have an Android powered mobile phone, you don't need a computer to set up your schedules. Just download the application, enter your text messages, and set your delivery schedule, Remindem handles the rest.</p>
 	<input type="radio" name="localGateway" value="desktop" id="desktopLocalGateway" class="left">
 	<div class="left DesktopLogo"></div>
-	<%= label_tag :desktopLocalGateway, "Other mobile phone", :class => "left" %><br>
-	<p class="w30 clear">If you use another type of mobile phone all you need to do is plug your phone into your computer and bridge the gap between your text messages and the internet application that sends them out.</p>
+	<%= label_tag :desktopLocalGateway, "Other mobile phone", :class => "left" %>
+	<p class="w30 clear description">If you use another type of mobile phone all you need to do is plug your phone into your computer and bridge the gap between your text messages and the internet application that sends them out.</p>
 </div>
 <hr>
 <%# I redraw the schedules index instead of rendering the initial partial because this way works without javascript enabled too %>
