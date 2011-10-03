@@ -1,5 +1,4 @@
 <%= errors_for @invalid_channel %>
-
 <div class="user_channel">
   <% if current_user.channel.nil? %>
 	<%= render :partial => 'channel/no_channel' %>

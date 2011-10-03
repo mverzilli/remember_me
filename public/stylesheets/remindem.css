@@ -56,16 +56,11 @@ ul.vertical li { list-style: none; }
     padding-top: 0px;
     margin-top: 3px;
 }
+
 .LocalGatewayText {
-	color: #555555;	
 	padding-top: 14px;
-}
-.grey {
 	font-size:12px;
 	color: #555555;
-}
-h1.orange {
-	color: #ff6600;
 }
 
 .LocalGatewayText > a {
@@ -79,6 +74,7 @@ h1.orange {
     height: 40px;
     padding-top: 0px;
 }
+
 .LocalGatewayBox {
 	height:40px;
 	padding-left: 0px;
@@ -88,6 +84,110 @@ h1.orange {
 	border-top-width: 0px;
 	width: 615px;
 }
-.LocalGatewayBox > a.orange {
+
+.user_channel {
+	margin-top: 21px;
+}
+
+.LocalGatewayBox > a.button {
 	padding-left: 8px !important;
+	font-size: 14px;
+}
+
+.ChannelWizard > h1 {
+	color: #ff6600;
+	font-size: 20px;
+	margin-bottom: 34px;
+}
+
+.ChannelWizard > p , .ChannelWizard > div, .ChannelWizard > a {
+	font-size:12px;
+	color: #555555;
+}
+
+.ChannelWizard > a.fimport {
+	color: #000000;
+}
+
+.ChannelWizard > input {
+	left-margin: 0px;
+}
+
+.ChannelWizard > label {
+	font-size: 15px;
+}
+.ChannelWizard .AndroidLogo {
+   	background: url(/images/android.png);
+    background-repeat: no-repeat;
+    width: 37px;
+    height: 35px;
+	margin-left: 5px;
+	margin-top: -10px;
+}
+
+.ChannelWizard .DesktopLogo {
+   	background: url(/images/pc.png);
+    background-repeat: no-repeat;
+    width: 37px;
+    height: 30px;
+	margin-left: 5px;
+	margin-top: -4px;
+}
+
+.ChannelWizard {
+	margin-top: 27px;
+	height: 445px;
+}
+
+.ChannelWizard .AndroidQR{
+   	background: url(/images/android_local_gateway.png);
+    background-repeat: no-repeat;
+    width: 270px;
+    height: 270px;
+}
+
+.ChannelWizard .box {
+	padding: 1px 2px;
+	color: black;
+}
+
+.ChannelWizard .AndroidScreen{
+   	background: url(/images/androidPreview.png);
+    background-repeat: no-repeat;
+    width: 254px;
+    height: 375px;
+}
+
+.ChannelWizard .GreyArrow{
+   	background: url(/images/arrow.png);
+    background-repeat: no-repeat;
+    width: 46px;
+    height: 17px;
+}
+
+.ChannelWizard .DesktopScreen{
+   	background: url(/images/pcPreview.png);
+    background-repeat: no-repeat;
+    width: 258px;
+    height: 374px;
+}
+
+.ChannelWizard .AndroidArrow {
+	margin-top: 115px;
+}
+
+.ChannelWizard .DesktopArrow {
+	margin-top: 254px;
+}
+
+.ChannelWizard .DesktopChannelCreation {
+	margin-top: 160px;
+}
+
+.ChannelWizard .AndroidChannelCreation {
+	margin-top: 22px;
+}
+.ChannelWizardNavigation {
+	margin-top: 16px;
+	margin-bottom: 7px;
 }

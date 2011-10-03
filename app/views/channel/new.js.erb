@@ -1,20 +1,3 @@
-<% partial = 'new_channel' %>
-<% p params %>
-<% 	if params[:show_android_local_gateway]
-		partial = 'download_android_local_gateway'
-	end %>
+<% partial = partial_from params %>
 
-<%	if params[:show_desktop_local_gateway]
-		partial = 'download_desktop_local_gateway'
-	end %>
-
-<%	if params[:choose_local_gateway]
-		partial = 'choose_local_gateway'
-	end %>
-
-<%	if params[:show_current]
-		partial = 'user_channel'
-	end %>
-	
-<% p partial %>
 $('.user_channel').html("<%= escape_javascript(render(:partial => partial))%>")
