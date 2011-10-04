@@ -1,11 +1,11 @@
 <script type="text/javascript">
 	function updateLocalGatewaySelectionPath(){
 		if ($('input[name=localGateway]:radio:checked').val() == 'android') {
-			gateway = 'show_android_local_gateway';
+			gateway = 'download_android_local_gateway';
 		} else {
-			gateway = 'show_desktop_local_gateway';
+			gateway = 'download_desktop_local_gateway';
 		}
-		$('#next').attr('href', ($('#next').attr('href').replace("show_local_gateway", gateway)));
+		$('#next').attr('href', ($('#next').attr('href').replace("download_local_gateway", gateway)));
 	};
 </script>
 
@@ -36,5 +36,5 @@
 <%# I redraw the schedules index instead of rendering the initial partial because this way works without javascript enabled too %>
 <div class="ChannelWizardNavigation">
 	<%=link_to 'Back', schedules_path, :class => 'button white' %>
-	<%=link_to 'Next', new_channel_path(:show_local_gateway => true), :remote => true, :class => 'button grey', :onclick => "updateLocalGatewaySelectionPath();", :id => "next" %>
+	<%=link_to 'Next', new_channel_path(:download_local_gateway), :remote => true, :class => 'button grey', :onclick => "updateLocalGatewaySelectionPath();", :id => "next" %>
 </div>

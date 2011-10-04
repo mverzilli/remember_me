@@ -8,7 +8,8 @@ RememberMe::Application.routes.draw do
 
   match :receive_at, :controller => "nuntium", :action => :receive_at
   
-  resources :channel, :only => [:new, :create, :destroy]
+  resources :channel, :only => [:create, :destroy]
+  get "new_channel/:step", :action => :new, :controller => :channel, :as => "new_channel", :defaults => {:step => :user_channel}
 
   namespace :user do
       root :to => "schedules#index"

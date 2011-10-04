@@ -29,9 +29,9 @@ module ApplicationHelper
   end
   
   def section title, url, name, active_controllers = [name]
-      active = active_controllers.any?{|controller| controller_name == controller.to_s }
-      raw "<li class=\"#{active ? "active" : ""}\">#{link_to title, url}</li>"
-    end
+    active = active_controllers.any?{|controller| controller_name == controller.to_s }
+    raw "<li class=\"#{active ? "active" : ""}\">#{link_to title, url}</li>"
+  end
   
   def breadcrumb
     raw render_breadcrumbs :builder => BreadcrumbBuilder

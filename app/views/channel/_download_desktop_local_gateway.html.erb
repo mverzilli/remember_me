@@ -17,6 +17,6 @@
 </div>
 <hr>
 <div class="ChannelWizardNavigation">
-	<%=link_to 'Back', new_channel_path(:choose_local_gateway => true), :remote => true, :class => 'button white'%>
-	<%=link_to 'Next', new_channel_path(:create_from_desktop => true), :remote => true, :class => 'button grey' %>
+	<%=link_to 'Back', new_channel_path(:choose_local_gateway), :remote => true, :class => 'button white'%>
+	<%=link_to 'Next', new_channel_path(:new_desktop_channel), :remote => true, :class => 'button grey' %>
 </div>
