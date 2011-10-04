@@ -97,12 +97,16 @@ ul.vertical li { list-style: none; }
 .ChannelWizard > h1 {
 	color: #ff6600;
 	font-size: 20px;
-	margin-bottom: 34px;
+	margin-bottom: 20px;
 }
 
 .ChannelWizard > p , .ChannelWizard > div, .ChannelWizard > a {
 	font-size:12px;
 	color: #555555;
+}
+
+.ChannelWizard > p {
+	margin-top: 15px !important;
 }
 
 .ChannelWizard .description {
@@ -142,7 +146,7 @@ ul.vertical li { list-style: none; }
 
 .ChannelWizard {
 	margin-top: 27px;
-	height: 445px;
+	height: 430px;
 }
 
 .ChannelWizard .AndroidQR{
@@ -188,10 +192,12 @@ ul.vertical li { list-style: none; }
 
 .ChannelWizard .DesktopChannelCreation {
 	margin-top: 160px;
+	margin-left: 5px;
 }
 
 .ChannelWizard .AndroidChannelCreation {
-	margin-top: 22px;
+	margin-left: 5px;
+	margin-top: 21px;
 }
 .ChannelWizardNavigation {
 	margin-top: 16px;
@@ -214,10 +220,12 @@ ul.vertical li { list-style: none; }
 	padding-right: 4px;
 	padding-bottom: 0px;
 }
+
 .CurrentChannelBox > div > p{
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
+
 .CurrentChannelBox .black{
 	color:black;
 }

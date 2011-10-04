@@ -28,9 +28,10 @@ module ApplicationHelper
     content_tag(:button, body, default_options.merge(html_options.merge(:onclick => onclick)))
   end
   
-  def section title, url, name
-    raw "<li class=\"#{controller_name == name.to_s ? "active" : ""}\">#{link_to title, url}</li>"
-  end
+  def section title, url, name, active_controllers = [name]
+      active = active_controllers.any?{|controller| controller_name == controller.to_s }
+      raw "<li class=\"#{active ? "active" : ""}\">#{link_to title, url}</li>"
+    end
   
   def breadcrumb
     raw render_breadcrumbs :builder => BreadcrumbBuilder

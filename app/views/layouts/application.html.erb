@@ -18,7 +18,7 @@
       	<div id="NavMenu">
 			<ul>
 				<%= section 'Home', root_path, :home %>
-				<%= section 'Reminders', schedules_path, :schedules unless current_user.nil? %>
+				<%= section 'Reminders', schedules_path, :schedules, [:schedules, :subscribers, :logs] unless current_user.nil? %>
 				<%= section 'Tour', tour_path(1), :tour %>
 				<%= section 'Community', '#', :comunity %>
 				<%= section 'Help', '#', :help %>
