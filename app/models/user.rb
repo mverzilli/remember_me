@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     Nuntium.new_from_config.create_channel({ 
       :name => self.email.to_channel_name, 
       :ticket_code => code, 
-      :ticket_message => "This phone will be used for reminders written by #{self.email}",
+      :ticket_message => "This gateway will be used for reminders written by #{self.email}",
       :at_rules => [{
         'matchings' => [], 
         'actions' => [{ 'property' => 'x-remindem-user', 'value' => self.email }], 

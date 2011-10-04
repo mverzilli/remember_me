@@ -12,19 +12,7 @@ class ChannelController < AuthenticatedController
   rescue Nuntium::Exception => exception
     create_invalid_model_from exception
     render :action => "new"
-  end
-
-  # # GET /channels/1
-  # # GET /channels/1.xml
-  #   def show
-  #     @channel = Channel.find(params[:id])
-  # 
-  #     respond_to do |format|
-  #       format.html # show.html.erb
-  #       format.xml  { render :xml => @channel }
-  #     end
-  #   end
-   
+  end   
    
    # DELETE /channels/1
    # DELETE /channels/1.xml
