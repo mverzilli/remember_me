@@ -5,12 +5,13 @@ class ChannelController < AuthenticatedController
 
   def create
     unless params[:show_local_gateway]
-      current_user.register_channel params[:channel][:code]
+      @channel = current_user.register_channel params[:channel][:code]
       params[:step] = "end_wizard"
       render :action => "new"
     end
   rescue Nuntium::Exception => exception
     create_invalid_model_from exception
+    params[:step] = "user_channel"
     render :action => "new"
   end   
    
@@ -26,16 +27,17 @@ class ChannelController < AuthenticatedController
      end
   rescue Nuntium::Exception => exception
     create_invalid_model_from exception
+    params[:step] = "user_channel"
     render :action => "new"
   end
   
   def create_invalid_model_from exception
-    @invalid_channel = Channel.new
+    @channel = Channel.new
     if exception.properties.empty?
-      @invalid_channel.errors.add('Unexpected Error: ', "\"#{exception.message}\"")
+      @channel.errors.add('Unexpected Error: ', "\"#{exception.message}\"")
     end
     exception.properties.map do |value, msg|
-      @invalid_channel.errors.add(("#{value.humanize}: "), msg)
+      @channel.errors.add(("#{value.humanize}: "), msg)
     end
   end
   

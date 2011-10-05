@@ -8,7 +8,7 @@
 	     </div><!-- #steps-container-->
 	</div><!-- #steps-line-->
 </div><!-- #box plain grey -->
-<%= errors_for @invalid_channel %>
+<%= errors_for @channel %>
 <% form_for :channel, :url => { :action => :create }, :remote => true do |f| %>
 <div class="ChannelWizard">
 	<h1 class="orange">Enter the gateway code from your mobile phone</h1>
