@@ -1,30 +1,40 @@
 <%= render "shared/schedule_tabs_and_title", :schedule => Schedule.find(params[:schedule_id]) %>
 
 <div class="tabsline">
-	<h1>Subscribers</h1>
-	<div class="tablewrapp">
-		<table class="GralTable ButtonTable">
-			<tr>
-				<th>Phone number</th>
-				<th colspan="2">Subscribed</th>
-			</tr>
-
-			<% @subscribers.each do |subscriber| %>
-			<tr>
-				<td><%= subscriber.phone_number %></td>
-				<td><%= time_ago_in_words subscriber.subscribed_at %></td>
-				<td>
-					<%=
-						link_to '',
-						schedule_subscriber_path(Schedule.find(params[:schedule_id]), subscriber),
-						:class => "cremove",
-						:confirm => 'Are you sure?',
-						:method => :delete
-					%>
-				</td>
-			</tr>
-			<% end %>	
-		</table>
-		<%= paginate @subscribers %>
-	</div>
+  <h1>Subscribers</h1>
+  <div class="tablewrapp w90">
+    <table class="GralTable ButtonTable">
+      <tr>
+        <th>Subscribed</th>
+        <th colspan="2">Phone number</th>
+      </tr>
+      <% if @subscribers.empty? %>
+          <tr>
+            <td colspan="3">
+              <div class="EmptySubscribersTable">
+                <div class="EmptySubscribersImage"></div>
+                <p class="EmptyMessage">You have no Subscribers yet</p>
+              </div>
+            </td>
+          </tr>
+          <% else %>
+        <% @subscribers.each do |subscriber| %>
+        <tr>
+          <td><%= time_ago_in_words subscriber.subscribed_at %></td>
+          <td><%= subscriber.phone_number %></td>
+          <td>
+            <%=
+              link_to '',
+              schedule_subscriber_path(Schedule.find(params[:schedule_id]), subscriber),
+              :class => "cremove",
+              :confirm => 'Are you sure?',
+              :method => :delete
+            %>
+          </td>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <%= paginate @subscribers %>
+  </div>
 </div>

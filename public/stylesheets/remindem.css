@@ -219,6 +219,7 @@ ul.vertical li { list-style: none; }
 	padding-left: 9px;
 	padding-right: 4px;
 	padding-bottom: 0px;
+	width: 605px !important;
 }
 
 .CurrentChannelBox > div > p{
@@ -228,4 +229,76 @@ ul.vertical li { list-style: none; }
 
 .CurrentChannelBox .black{
 	color:black;
+}
+
+.EmptyRemindersImage {
+	background: url(http://theme.instedd.org/theme/images/icons/72/grey/reminder.png);
+    background-repeat: no-repeat;
+    width: 72px;
+    height: 72px;
+    margin-left: 48px;
+    margin-top: 52px;
+}
+
+.EmptySubscribersImage {
+	background: url(http://theme.instedd.org/theme/images/icons/72/grey/information.png);
+    background-repeat: no-repeat;
+    width: 72px;
+    height: 72px;
+    margin-left: 51px;
+    margin-top: 111px;
+}
+
+.EmptyLogsImage {
+	background: url(http://theme.instedd.org/theme/images/icons/72/grey/information.png);
+    background-repeat: no-repeat;
+    width: 72px;
+    height: 72px;
+    margin-left: 30px;
+    margin-top: 111px;
+}
+
+.EmptyRemindersTable {
+	padding-left: 216px;
+	height: 163px;
+}
+
+.EmptyLogsTable {
+	padding-left: 394px;
+	height: 233px;
+}
+
+.EmptySubscribersTable {
+	padding-left: 373px;
+	height: 233px;
+}
+
+.EmptyMessage {
+	color: grey;
+	margin-top: 10px;
+	margin-bottom: 1px;
+	text-align: left;
+	font-style: italic;
+}
+
+.VersionNumber {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin-left: 6px;
+	font-size: 11px;
+}
+
+.w618 {
+	width: 618px !important;
+}
+
+.EmptyAddButton {
+	margin-top: 3px;
+	margin-bottom: 0px;
+}
+.EmptyAddLink {
+	margin-left: 18px;
+}
+.w90 {
+	width: 940px !important;
 }

@@ -2,19 +2,30 @@
 
 <div class="tabsline">
 	<h1>Logs</h1>
-	<div class="tablewrapp">
+	<div class="tablewrapp w90">
 		<table class="GralTable ButtonTable">
 			<tr>
 				<th>Severity</th>
 				<th>Text</th>
 				<th>Timestamp</th>
 			</tr>
-			<% @logs.each do |log| %>
-			<tr>
-				<td><label class="<%= log.severity %>"><%= log.severity.to_s.capitalize %></label></td>
-				<td><%= log.description %></td>
-				<td><%= "#{log.created_at.strftime "%a %b %d %Y, %H:%M:%S"} (#{time_ago_in_words log.created_at} ago)" %></td>
-			</tr>
+		    <% if @logs.empty? %>
+		      <tr>
+		        <td colspan="3">
+		          <div class="EmptyLogsTable">
+		            <div class="EmptyLogsImage"></div>
+		            <p class="EmptyMessage">You have no Logs yet</p>
+		          </div>
+		        </td>
+		      </tr>
+		    <% else %>
+				<% @logs.each do |log| %>
+				<tr>
+					<td><label class="<%= log.severity %>"><%= log.severity.to_s.capitalize %></label></td>
+					<td><%= log.description %></td>
+					<td><%= "#{log.created_at.strftime "%a %b %d %Y, %H:%M:%S"} (#{time_ago_in_words log.created_at} ago)" %></td>
+				</tr>
+				<% end %>
 			<% end %>
 		</table>
 		<%= paginate @logs %>

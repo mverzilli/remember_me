@@ -11,7 +11,6 @@ class Message < ActiveRecord::Base
   before_destroy :alert_schedule_from_message_destroy
   after_update :alert_schedule_from_message_update
   after_create :alert_schedule_from_message_creation
-  # serialize :occurrence_rule, IceCube::Rule
 
   #toDo: move this behavior to the schedule and remove the if's after merge
   

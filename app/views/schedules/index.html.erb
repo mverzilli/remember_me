@@ -1,29 +1,41 @@
 <h1>Reminders</h1>
 
-<div class="tablewrapp w60">
+<div class="tablewrapp w618">
   <table class="GralTable TwoColumn CleanTable ItemsTable">
     <tr>
       <th colspan="2">My Reminders</th>
     </tr>
-
-  <% @schedules.each.with_index do |schedule,index| %>
-    <tr>
-      <td>
-        <%= link_to schedule_path(schedule) do %>
-          <%= schedule.title %>
-        <% end %>
-      </td>
-		<td><%= link_to '', schedule_path(schedule), :class => 'farrow' %></td>
-    </tr>
-  <% end %>
-    <tr>
-      <td>
-        <%= link_to 'Create Reminder', new_schedule_path %>
-      </td>
-      <td>
-        <%= link_button_to '', new_schedule_path, :class => 'cadd' %>
-      </td>
-    </tr>
+    <% if @schedules.empty? %>
+      <tr>
+        <td colspan="2">
+          <div class="EmptyRemindersTable">
+            <div class="EmptyRemindersImage"></div>
+            <p class="EmptyMessage">You have no Reminders yet</p>
+            <%= link_to 'Create Reminder', new_schedule_path, :class => 'EmptyAddLink' %>
+            <%= link_to '', new_schedule_path, :class => 'EmptyAddButton button cadd' %>
+          </div>
+        </td>
+      </tr>
+    <% else %>
+      <% @schedules.each.with_index do |schedule,index| %>
+        <tr>
+          <td>
+            <%= link_to schedule_path(schedule) do %>
+              <%= schedule.title %>
+            <% end %>
+          </td>
+    		<td><%= link_to '', schedule_path(schedule), :class => 'farrow' %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>
+          <%= link_to 'Create Reminder', new_schedule_path %>
+        </td>
+        <td>
+          <%= link_button_to '', new_schedule_path, :class => 'cadd' %>
+        </td>
+      </tr>
+    <% end %>
   </table>
 <%= paginate @schedules %>
 </div>
