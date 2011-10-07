@@ -10,7 +10,8 @@ class ChannelController < AuthenticatedController
       render :action => "new"
     end
   rescue Nuntium::Exception => exception
-    create_invalid_model_from exception
+    @channel = Channel.new
+    load_errors_from exception
     params[:step] = "user_channel"
     render :action => "new"
   end   
@@ -22,17 +23,16 @@ class ChannelController < AuthenticatedController
      @channel.destroy
 
      respond_to do |format|
-       format.html { redirect_to(schedules_url) }
+       format.html { redirect_to(schedules_url, :notice => 'Channel was successfully deleted.') }
        format.xml  { head :ok }
      end
   rescue Nuntium::Exception => exception
-    create_invalid_model_from exception
+    load_errors_from exception
     params[:step] = "user_channel"
     render :action => "new"
   end
   
-  def create_invalid_model_from exception
-    @channel = Channel.new
+  def load_errors_from exception
     if exception.properties.empty?
       @channel.errors.add('Unexpected Error: ', "\"#{exception.message}\"")
     end

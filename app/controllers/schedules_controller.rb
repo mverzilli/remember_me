@@ -97,7 +97,7 @@ class SchedulesController < AuthenticatedController
     @schedule.destroy
 
    respond_to do |format|
-     format.html { redirect_to(schedules_url) }
+     format.html { redirect_to(schedules_url, :notice => 'Schedule was successfully deleted.') }
      format.xml  { head :ok }
    end
   end
