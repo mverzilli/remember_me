@@ -6,8 +6,7 @@ class FixedSchedule < Schedule
   end
   
   def expected_delivery_time message, subscriber
-    # subscriber.reference_time + message.offset.send(self.timescale.to_sym) toDo: rollback this before commit
-    subscriber.reference_time + message.offset.minutes
+    subscriber.reference_time + message.offset.send(self.timescale.to_sym)
   end
   
   protected

@@ -45,8 +45,7 @@ class Subscriber < ActiveRecord::Base
   end
 
   def reference_time
-    # self.subscribed_at - self.offset.send(self.schedule.timescale.to_sym) toDo: rollback this before commit
-    self.subscribed_at - self.offset.minutes
+    self.subscribed_at - self.offset.send(self.schedule.timescale.to_sym)
   end
 
   def can_receive_message
