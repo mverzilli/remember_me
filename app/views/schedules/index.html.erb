@@ -19,7 +19,8 @@
     <% else %>
       <% @schedules.each.with_index do |schedule,index| %>
         <tr>
-          <td>
+          <td class="<%= schedule.paused? ? 'spaused' : 'sactive' %>">
+            <span></span>
             <%= link_to schedule_path(schedule) do %>
               <%= schedule.title %>
             <% end %>

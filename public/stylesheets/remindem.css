@@ -301,3 +301,6 @@ ul.vertical li { list-style: none; }
 .w90 {
 	width: 940px !important;
 }
+
+.sactive span { background:#9fc643; margin-right:5px; width:10px; height:10px; display:inline-block; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px }
+.spaused span { background:#d0d0d0; margin-right:5px; width:10px; height:9px; border-top:1px solid #9c9c9c; display:inline-block; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px }
