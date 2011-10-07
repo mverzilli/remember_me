@@ -2,7 +2,9 @@ require 'test_helper'
 
 class SchedulesControllerTest < ActionController::TestCase
   setup do
-    sign_in users(:user1) 
+    user = users(:user1)
+    user.confirm!
+    sign_in user
     
     @schedule = one_make
   end

@@ -2,7 +2,9 @@ require 'test_helper'
 
 class SubscribersControllerTest < ActionController::TestCase
   setup do
-    sign_in users(:user1)
+    user = users(:user1)
+    user.confirm!
+    sign_in user
     @randweeks = randweeks_make
     @subscriber = @randweeks.subscribers.first
   end

@@ -7,4 +7,4 @@
 user1:
     id: 1
     email: user1@users.com
-    encrypted_password: secret 
+    encrypted_password: secret

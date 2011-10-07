@@ -3,7 +3,9 @@ require 'test_helper'
 class LogsControllerTest < ActionController::TestCase
 
   setup do
-    sign_in users(:user1)    
+    user = users(:user1)
+    user.confirm!
+    sign_in user
   end
   
   test "should get index" do
