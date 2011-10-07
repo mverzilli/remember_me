@@ -11,9 +11,7 @@ RememberMe::Application.routes.draw do
   resources :channel, :only => [:create, :destroy]
   get "new_channel/:step", :action => :new, :controller => :channel, :as => "new_channel"
 
-  namespace :user do
-      root :to => "schedules#index"
-  end  
+  
   root :to => 'home#index'
 
   match 'tour/:page_number' => 'tour#show', :as => :tour
