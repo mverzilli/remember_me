@@ -23,7 +23,8 @@ class Message < ActiveRecord::Base
         if last_job.nil?
           expected_delivery_time = Time.now.utc # TODO should snap no subscription_time 
         else
-          expected_delivery_time = last_job.run_at + 1.send(schedule.timescale.to_sym)
+          # expected_delivery_time = last_job.run_at + 1.send(schedule.timescale.to_sym) toDo: rollback this before commit
+          expected_delivery_time = last_job.run_at + 1.minute
         end
       end
 
