@@ -9,7 +9,7 @@ class SchedulesController < AuthenticatedController
   # GET /schedules
   # GET /schedules.xml
   def index
-    @schedules = Schedule.where(:user_id => current_user.id).page(params[:page]).per(5)
+    @schedules = Schedule.where(:user_id => current_user.id)
 
     @last_log = Log.find(:all, :conditions => ["schedule_id in (?)", @schedules.collect(&:id)]).sort_by(&:created_at).reverse.first rescue nil
     respond_to do |format|

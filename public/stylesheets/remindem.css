@@ -231,56 +231,6 @@ ul.vertical li { list-style: none; }
 	color:black;
 }
 
-.EmptyRemindersImage {
-	background: url(http://theme.instedd.org/theme/images/icons/72/grey/reminder.png);
-    background-repeat: no-repeat;
-    width: 72px;
-    height: 72px;
-    margin-left: 48px;
-    margin-top: 52px;
-}
-
-.EmptySubscribersImage {
-	background: url(http://theme.instedd.org/theme/images/icons/72/grey/information.png);
-    background-repeat: no-repeat;
-    width: 72px;
-    height: 72px;
-    margin-left: 51px;
-    margin-top: 111px;
-}
-
-.EmptyLogsImage {
-	background: url(http://theme.instedd.org/theme/images/icons/72/grey/information.png);
-    background-repeat: no-repeat;
-    width: 72px;
-    height: 72px;
-    margin-left: 30px;
-    margin-top: 111px;
-}
-
-.EmptyRemindersTable {
-	padding-left: 216px;
-	height: 163px;
-}
-
-.EmptyLogsTable {
-	padding-left: 394px;
-	height: 233px;
-}
-
-.EmptySubscribersTable {
-	padding-left: 373px;
-	height: 233px;
-}
-
-.EmptyMessage {
-	color: grey;
-	margin-top: 10px;
-	margin-bottom: 1px;
-	text-align: left;
-	font-style: italic;
-}
-
 .VersionNumber {
 	padding-top: 3px;
 	padding-bottom: 3px;
@@ -304,3 +254,77 @@ ul.vertical li { list-style: none; }
 
 .sactive span { background:#9fc643; margin-right:5px; width:10px; height:10px; display:inline-block; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px }
 .spaused span { background:#d0d0d0; margin-right:5px; width:10px; height:9px; border-top:1px solid #9c9c9c; display:inline-block; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px }
+
+.RemindersTable {
+  min-height: 248px;
+}
+
+.EmptyRemindersTable {
+  text-align: center;
+  color: grey;
+  font-style: italic;
+  background: url(http://theme.instedd.org/theme/images/icons/72/grey/reminder.png) center top;
+  background-repeat: no-repeat;
+  margin-top: 52px;
+  padding-top: 82px;
+}
+
+.EmptyRemindersTable a {
+  color: #1F86C8;
+  font-style: normal;
+}
+
+.EmptyTable {
+  background: url(http://theme.instedd.org/theme/images/icons/72/grey/information.png) center top;
+  background-repeat: no-repeat;
+  margin-top: 111px;
+  padding-top: 81px;
+  text-align: center;
+  color: grey;
+  font-style: italic;
+}
+
+.deleteScheduleBox {
+  margin-top: 12px !important;
+  color: black !important;
+  height: 89px;
+  padding: 0px 4px 0px 4px !important;
+  margin-left:-10px;
+}
+
+.ux-collapsible.box > span:first-child > .fdelete {
+  display: none;
+}
+
+.ux-collapsible > span:first-child > .fdelete {
+  margin-bottom: 13px !important;
+  margin-top: 0px !important;
+}
+
+.ux-content > a.grey {
+  margin-top: 12px;
+  margin-right: 12px;
+}
+
+.ux-content > input[type="checkbox"] {
+  margin-top: 14px;
+}
+
+.ux-content > a.button.white {
+  margin-top: 5px;
+  margin-right: 3px;
+}
+
+.ux-content > .fdelete {
+  background-position: 0px -60px;
+  margin-bottom: 13px !important;
+  margin-top: 0px !important;
+}
+ 
+a.black {
+  color: black !important;
+}
+
+a.grey {
+  color: grey !important;
+}

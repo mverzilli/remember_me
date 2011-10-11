@@ -37,12 +37,19 @@
 		Messages: <%= @schedule.messages.count %>
 	</p>
 
-	<%= link_to '', edit_schedule_path(@schedule), :class => 'farrow' %><%= link_to 'Edit', edit_schedule_path(@schedule) %>
-	<p><a href="#" class="icon fdelete" onclick="toggle_visibility('deleteConfirmation'); return false;" ></a>Delete this schedule?</p>
-	<div id="deleteConfirmation" style="display:none">
-		<input type="checkbox" checked="" name="notifySubscribers" id="notifySubscribers">
-		<%= label_tag :notifySubscribers, "Send deletion notification to subscribers?" %><br>
-		<%= link_to 'Delete', schedule_path(@schedule, :notify => "NOTIFY_VALUE"), :method => :delete , :class => "button white", :id => "delete", :onclick => "updateNotifyValue();" %>
-		<a href="#" onclick="toggle_visibility('deleteConfirmation'); return false;" >Cancel</a>
-	</div>
+	<%= link_to '', edit_schedule_path(@schedule), :class => 'farrow' %><%= link_to 'Edit settings', edit_schedule_path(@schedule) %>
+
+  <hr>
+
+  <div class="ux-collapsible collapsed w618 deleteScheduleBox" data-on-expanded="box grey plain">
+    <span><a href="#" class="icon fdelete ux-collapse-trigger black">Delete this reminder</a></span>
+    <div class="ux-content">
+      <a href="#" class="icon fdelete ux-collapse-trigger">Are you sure you want to delete this reminder? <br> All your subscribers will stop receiving the scheduled messages</a>
+      <hr>
+		  <input type="checkbox" checked="" name="notifySubscribers" id="notifySubscribers">
+		  <%= label_tag :notifySubscribers, "Notify the subscribers that this reminder is no longer active?" %>
+		  <%= link_to 'Confirm', schedule_path(@schedule, :notify => "NOTIFY_VALUE"), :method => :delete , :class => "button white right", :id => "delete", :onclick => "updateNotifyValue();" %>
+      <a href="#" class="ux-collapse-trigger grey right">Cancel</a>
+    </div>
+  </div>
 </div>

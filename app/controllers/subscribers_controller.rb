@@ -12,7 +12,7 @@ class SubscribersController < AuthenticatedController
   def index
     add_breadcrumb Schedule.find(params[:schedule_id]).title, schedule_path(params[:schedule_id])
     add_breadcrumb "Subscribers", schedule_subscribers_path(params[:schedule_id])
-    @subscribers = Subscriber.where(:schedule_id => params[:schedule_id]).page(params[:page]).per(5)
+    @subscribers = Subscriber.where(:schedule_id => params[:schedule_id]).page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb

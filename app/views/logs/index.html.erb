@@ -3,7 +3,7 @@
 <div class="tabsline">
 	<h1>Logs</h1>
 	<div class="tablewrapp w90">
-		<table class="GralTable ButtonTable">
+		<table class="GralTable ButtonTable  w-pagination <%= 'empty' if @logs.empty? %>">
 			<tr>
 				<th>Severity</th>
 				<th>Text</th>
@@ -12,10 +12,7 @@
 		    <% if @logs.empty? %>
 		      <tr>
 		        <td colspan="3">
-		          <div class="EmptyLogsTable">
-		            <div class="EmptyLogsImage"></div>
-		            <p class="EmptyMessage">You have no Logs yet</p>
-		          </div>
+		          <div class="EmptyTable">You have no Logs yet</div>
 		        </td>
 		      </tr>
 		    <% else %>

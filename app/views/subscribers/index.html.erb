@@ -3,7 +3,7 @@
 <div class="tabsline">
   <h1>Subscribers</h1>
   <div class="tablewrapp w90">
-    <table class="GralTable ButtonTable">
+    <table class="GralTable ButtonTable  w-pagination <%= 'empty' if @subscribers.empty? %>">
       <tr>
         <th>Subscribed</th>
         <th colspan="2">Phone number</th>
@@ -11,10 +11,7 @@
       <% if @subscribers.empty? %>
           <tr>
             <td colspan="3">
-              <div class="EmptySubscribersTable">
-                <div class="EmptySubscribersImage"></div>
-                <p class="EmptyMessage">You have no Subscribers yet</p>
-              </div>
+              <div class="EmptyTable">You have no Subscribers yet</div>
             </td>
           </tr>
           <% else %>
