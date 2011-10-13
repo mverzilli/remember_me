@@ -1,10 +1,14 @@
-class String 
+class String
   def with_protocol
     "sms://#{self}"
   end
+
+  def without_protocol
+    self.from(self.rindex('/')+1)
+  end
   
   def looks_as_an_int?
-    Integer(self) 
+    Integer(self)
     true
   rescue
     false
@@ -28,6 +32,6 @@ class String
   end
   
   def to_channel_name
-    self.gsub(/@/, '_at_').gsub(/\./, '_dot_')
+    self.gsub(/@/, '_at_').gsub(/\./, '_dot_').gsub(/\+/, '_plus_')
   end
 end

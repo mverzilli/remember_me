@@ -7,7 +7,7 @@ ul.vertical li { list-style: none; }
 .fields hr { margin: 9px 0px 5px 0px; }
 .fields .aleft { clear: left; float: left; }
 
-.fields .farrow { height: 18px;  left: -4px; position: relative; margin-bottom: 0px; }
+.fields .farrow { height: 18px;  left: -4px; position: relative; margin-bottom: 0px; margin-top: 3px; }
 
 .fields .fdelete, .fields .cadd { position: absolute; top: 0; right: 0; }
 
@@ -16,12 +16,29 @@ ul.vertical li { list-style: none; }
 
 .fields pre { font-family: Arial, Helvetica, sans-serif; margin: 0; white-space: pre-wrap; }
 
-.fields .actions { padding: 0px 0px; }
+.fields .actions { padding: 0px 0px; color: #555555;}
 
-.subscribersBox { width: 283px; height: 38px; padding: 0px 1px 0px 3px; }
-.csvDownload { height: 32px !important; width: 134px; margin-top: 3px; }
-.subscribersCount { font-size: 23px; height: 23px; }
-.subscribersBox > div { font-size: 11px; text-align: center;}
+.subscribersBox {
+  height: 37px;
+  padding-top: 1px !important;
+  padding-right: 0px !important;
+  padding-bottom: 1px !important;
+  padding-left: 0px !important;
+  font-size: 12px;
+  margin-bottom: 13px !important;
+}
+
+.subscribersDescription {
+  margin-left: 5px;
+}
+
+.csvDownload {
+  margin: 3px 5px !important;
+}
+.subscribersCount {
+  font-size: 23px;
+  height: 20px;
+}
 
 .CleanTable th {
   padding-bottom: 7px;
@@ -237,10 +254,6 @@ ul.vertical li { list-style: none; }
 	margin-left: 6px;
 }
 
-.w618 {
-	width: 618px !important;
-}
-
 .EmptyAddButton {
 	margin-top: 3px;
 	margin-bottom: 0px;
@@ -256,7 +269,7 @@ ul.vertical li { list-style: none; }
 .spaused span { background:#d0d0d0; margin-right:5px; width:10px; height:9px; border-top:1px solid #9c9c9c; display:inline-block; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px }
 
 .RemindersTable {
-  min-height: 248px;
+  width: 618px !important;
 }
 
 .EmptyRemindersTable {
@@ -290,9 +303,10 @@ ul.vertical li { list-style: none; }
   height: 89px;
   padding: 0px 4px 0px 4px !important;
   margin-left:-10px;
+  width: 618px !important;
 }
 
-.ux-collapsible.box > span:first-child > .fdelete {
+.ux-collapsible.switch.expanded > span {
   display: none;
 }
 
@@ -327,4 +341,65 @@ a.black {
 
 a.grey {
   color: grey !important;
+}
+
+.ItemsTable tr:hover td {
+  cursor: default;
+}
+
+th.small {
+  width: 35%;
+}
+
+.reminderMessageBox {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-right: 14px !important;
+  padding-top: 4px;
+}
+
+.reminderMessageBox.grey {
+  padding-top: 3px !important;
+}
+
+.reminderMessageBox:not(.grey)  .timescale {
+  color: #555555;
+}
+
+.reminderMessageBox .ux-wajbar {
+  margin-top: 4px;
+}
+
+.pausedDescription {
+  color: #555555;
+  margin-top: 5px;
+  margin-bottom: 4px;
+}
+
+.box.plain.white{
+  border: 1px solid #D0D0D0;
+}
+
+.overviewBox {
+  width: 200px;
+  margin-right: 11px !important;
+  padding: 4px 1px !important;
+}
+
+.overviewText {
+  margin-top: 7px;
+}
+
+.overviewButton {
+  margin-left: -4px;
+  margin-bottom: 10px;
+  margin-top: 2px;
+}
+
+.tiny {
+	font-size: 11px;
+}
+
+th.severity {
+  width: 10%;
 }

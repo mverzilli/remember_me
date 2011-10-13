@@ -5,8 +5,6 @@ class RandomSchedule < Schedule
     messages.sort_by!( &:created_at)
   end
 
-  protected
-  
   def reminders
     self.messages.all.shuffle!
   end
@@ -19,4 +17,9 @@ class RandomSchedule < Schedule
   def self.mode_in_words
     "Random"
   end
+  
+  def duration
+    self.messages.size
+  end
+  
 end

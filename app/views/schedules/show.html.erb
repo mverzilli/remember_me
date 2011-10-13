@@ -17,31 +17,37 @@
 	<h2>Status</h2>
 	<p>Here you can see the overall status of your schedule</p>
 
-	<div class="box grey subscribersBox">
-		<div class="left">
-			<div class="subscribersCount"><%= @schedule.subscribers.count %></div>
-			<div>subscribers</div>
-		</div>
-		<div class="right">
-			<%= link_button_to 'Download as CSV', schedule_subscribers_path(@schedule.id)+'.csv', :class => "csvDownload white" %>
-		</div>
-		<div class="clear"></div>
-	</div>
-	<br>
+	<%= render 'subscribers/download_as_csv', :schedule => @schedule %>
+
 	<hr>
 	<h2>Properties</h2>
 	<p>This is a summary of the properties of your schedule</p>
-	<p>
-		Keyword: <%= @schedule.keyword %><br>
-		Mode: <%= @schedule.class.mode_in_words %><br>
-		Messages: <%= @schedule.messages.count %>
-	</p>
+	
+	<div class="left box plain white overviewBox"><div class="i48grad-key left"></div><div class="overviewText">Keyword <br><%= @schedule.keyword %></div></div>
+	<div class="left box plain white overviewBox"><div class="i48grad-time left"></div><div class="overviewText"><%= "#{@schedule.duration} #{@schedule.timescale}" %><br><%= @schedule.class.mode_in_words %></div></div>
+	<div class="left box plain white overviewBox"><div class="i48grad-reminder left"></div><div class="overviewText"><%= @schedule.messages.count %> messages<br>queued</div></div>
+	<div class="clear"></div>
 
-	<%= link_to '', edit_schedule_path(@schedule), :class => 'farrow' %><%= link_to 'Edit settings', edit_schedule_path(@schedule) %>
-
+	<%= link_to 'Edit settings', edit_schedule_path(@schedule), :class => 'farrow overviewButton' %>
+<%= form_for(@schedule) do |f| %>
+  <p class="pausedDescription">
+    <%= "This Reminder is #{
+      if @schedule.paused?
+        'paused and won\'t send messages'
+      else
+        'active and will be sending messages to registered users'
+      end
+    }." %>
+  </p>
+  <%= f.hidden_field :paused?, :value => !@schedule.paused? %>
+  <% if @schedule.paused? %>
+    <button type="submit" class="fplay overviewButton"></button>Start this reminder
+  <% else %>
+    <button type="submit" class="fpause overviewButton"></button>Pause this reminder
+  <% end %>
+ <% end %>
   <hr>
-
-  <div class="ux-collapsible collapsed w618 deleteScheduleBox" data-on-expanded="box grey plain">
+  <div class="ux-collapsible collapsed deleteScheduleBox switch" data-on-expanded="box grey plain expanded">
     <span><a href="#" class="icon fdelete ux-collapse-trigger black">Delete this reminder</a></span>
     <div class="ux-content">
       <a href="#" class="icon fdelete ux-collapse-trigger">Are you sure you want to delete this reminder? <br> All your subscribers will stop receiving the scheduled messages</a>

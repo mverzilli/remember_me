@@ -45,7 +45,7 @@ class SchedulesController < AuthenticatedController
   def edit
     @schedule = Schedule.find(params[:id])
     add_breadcrumb @schedule.title, schedule_path(params[:id])
-    add_breadcrumb "Configuration", edit_schedule_path(params[:id])
+    add_breadcrumb "Settings", edit_schedule_path(params[:id])
     @schedule.sort_messages
   end
 
@@ -72,7 +72,7 @@ class SchedulesController < AuthenticatedController
     @schedule = Schedule.find(params[:id])
     
     #Type needs to be manually set because it's protected, thus update_attributes doesn't affect it
-    @schedule.type = params[:schedule][:type]
+    @schedule.type = params[:schedule][:type] unless params[:schedule][:type].blank?
     
     respond_to do |format|
       if @schedule.update_attributes(params[:schedule])

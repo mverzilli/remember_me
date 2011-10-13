@@ -203,4 +203,14 @@ class RandomScheduleTest < ActiveSupport::TestCase
     assert_message_sent @phone_1, 'b'
   end
   
+  test "reminder duration" do
+    schedule = randweeks_make
+    assert_equal 5, schedule.duration
+
+    schedule.messages.create! :text => 'ble'
+    schedule.messages.create! :text => 'ble'
+    
+    assert_equal 7, schedule.duration
+  end
+  
 end

@@ -15,6 +15,8 @@ class Subscriber < ActiveRecord::Base
       schedule = user.schedules.find_by_keyword keyword
       return reply(no_schedule_message(keyword), :to => sender_phone_number) unless schedule
       
+      return reply(already_registered_message(keyword), :to => sender_phone_number) if self.find_by_phone_number_and_schedule_id sender_phone_number, schedule.id
+      
       return reply(invalid_offset_message(params[:body], offset), :to => sender_phone_number) unless offset.nil? || offset.looks_as_an_int?
       
       new_subscriber = create! :phone_number => sender_phone_number, 
@@ -75,6 +77,9 @@ class Subscriber < ActiveRecord::Base
   
   def self.goodbye_message schedule
     "You have successfully unsubscribed from the \"#{schedule.title}\" Reminder. To subscribe again send \"#{schedule.keyword}\" to this number"
+  end
+  def self.already_registered_message keyword
+    "Sorry, you are already subscribed to reminder program named #{keyword}. To unsubscribe please send 'stop #{keyword}'."
   end
   
   private 

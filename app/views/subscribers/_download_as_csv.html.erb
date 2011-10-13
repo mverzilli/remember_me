@@ -1,0 +1,7 @@
+<div class="box grey plain subscribersBox w30">
+		<div class="left subscribersDescription">
+			<div class="subscribersCount"><%= schedule.subscribers.count %></div>
+			subscribers registered
+		</div>
+		<%= link_button_to 'Download as CSV', schedule_subscribers_path(schedule.id)+'.csv', :class => "csvDownload white right" %>
+	</div>

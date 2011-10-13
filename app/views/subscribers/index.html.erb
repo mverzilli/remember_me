@@ -1,11 +1,20 @@
-<%= render "shared/schedule_tabs_and_title", :schedule => Schedule.find(params[:schedule_id]) %>
+<% schedule = Schedule.find(params[:schedule_id]) %>
+
+<%= render "shared/schedule_tabs_and_title", :schedule => schedule %>
 
 <div class="tabsline">
   <h1>Subscribers</h1>
+  <%= render 'download_as_csv', :schedule => schedule %>
+
   <div class="tablewrapp w90">
-    <table class="GralTable ButtonTable  w-pagination <%= 'empty' if @subscribers.empty? %>">
+    <table class="GralTable ButtonTable <%=
+    if @subscribers.empty?
+      'empty'
+    else
+      'w-pagination'
+    end %>">
       <tr>
-        <th>Subscribed</th>
+        <th class="small">Subscribed</th>
         <th colspan="2">Phone number</th>
       </tr>
       <% if @subscribers.empty? %>
@@ -17,13 +26,13 @@
           <% else %>
         <% @subscribers.each do |subscriber| %>
         <tr>
-          <td><%= time_ago_in_words subscriber.subscribed_at %></td>
-          <td><%= subscriber.phone_number %></td>
+          <td><%= "#{subscriber.subscribed_at.strftime "%a %b %d %Y, %H:%M:%S"} (#{time_ago_in_words subscriber.subscribed_at} ago)" %></td>
+          <td><%= subscriber.phone_number.without_protocol %></td>
           <td>
             <%=
               link_to '',
               schedule_subscriber_path(Schedule.find(params[:schedule_id]), subscriber),
-              :class => "cremove",
+              :class => "button fdelete",
               :confirm => 'Are you sure?',
               :method => :delete
             %>

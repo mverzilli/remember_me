@@ -3,9 +3,14 @@
 <div class="tabsline">
 	<h1>Logs</h1>
 	<div class="tablewrapp w90">
-		<table class="GralTable ButtonTable  w-pagination <%= 'empty' if @logs.empty? %>">
+		<table class="GralTable ButtonTable <%=
+    if @logs.empty?
+      'empty'
+    else
+      'w-pagination'
+    end %>">
 			<tr>
-				<th>Severity</th>
+				<th class="severity">Severity</th>
 				<th>Text</th>
 				<th>Timestamp</th>
 			</tr>
@@ -19,7 +24,19 @@
 				<% @logs.each do |log| %>
 				<tr>
 					<td><label class="<%= log.severity %>"><%= log.severity.to_s.capitalize %></label></td>
-					<td><%= log.description %></td>
+					<td><% if log.description.size > 55 %>
+  					  <div class="ux-collapsible switch collapsed" data-on-expanded="expanded">
+                <span><%= log.description.first 55 %>...
+                  <a href="#" class="ux-collapse-trigger grey right tiny">more</a></span>
+                <div class="ux-content">
+                  <span><%= log.description %>
+                    <a href="#" class="ux-collapse-trigger grey right tiny">less</a></span>
+                </div>
+              </div>
+  				  <% else %>
+  				    <%= log.description %>
+  				  <% end %>
+					</td>
 					<td><%= "#{log.created_at.strftime "%a %b %d %Y, %H:%M:%S"} (#{time_ago_in_words log.created_at} ago)" %></td>
 				</tr>
 				<% end %>

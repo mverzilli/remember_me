@@ -9,8 +9,6 @@ class FixedSchedule < Schedule
     subscriber.reference_time + message.offset.send(self.timescale.to_sym)
   end
   
-  protected
-  
   def reminders
     self.messages.all
   end
@@ -21,6 +19,10 @@ class FixedSchedule < Schedule
   
   def self.mode_in_words
     "Timeline"
+  end
+  
+  def duration
+    sort_messages.last.offset
   end
   
 end

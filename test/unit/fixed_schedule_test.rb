@@ -208,7 +208,7 @@ class FixedScheduleTest < ActiveSupport::TestCase
     time_advance 12.hours
     
     assert_no_message_sent @phone_1
-    assert_not_nil Log.find_by_schedule_id_and_severity_and_description(@schedule.id, :warning, "The message 'text at 1' was not sent to #{@phone_1} since schedule is paused")
+    assert_not_nil Log.find_by_schedule_id_and_severity_and_description(@schedule.id, :warning, "The message 'text at 1' was not sent to 4001 since schedule is paused")
   end
 
   test "when messages are not sent due to timewindow, log warning" do
@@ -219,7 +219,15 @@ class FixedScheduleTest < ActiveSupport::TestCase
     time_advance 1.day    
     
     assert_no_message_sent @phone_1
-    assert_not_nil Log.find_by_schedule_id_and_severity_and_description(@schedule.id, :warning, "The message 'text at 1' was delayed due to #{@phone_1} localtime")
+    assert_not_nil Log.find_by_schedule_id_and_severity_and_description(@schedule.id, :warning, "The message 'text at 1' was delayed due to 4001 localtime")
   end
-
+  
+  test "reminder duration" do
+    schedule = pregnant_make
+    assert_equal 36, schedule.duration
+    
+    schedule.messages.create! :text => 'ble', :offset => 60
+    assert_equal 60, schedule.duration
+  end
+  
 end

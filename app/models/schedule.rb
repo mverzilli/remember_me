@@ -72,10 +72,10 @@ class Schedule < ActiveRecord::Base
         # timewindow restriction, this will be pushed many times until it is able to go out
         try_to_send_it_at = Time.now.utc + 1.hour
         schedule_message message, subscriber, try_to_send_it_at
-        create_warning_log_described_by "The message '#{message.text}' was delayed due to #{subscriber.phone_number} localtime"
+        create_warning_log_described_by "The message '#{message.text}' was delayed due to #{subscriber.phone_number.without_protocol} localtime"
       end
     else
-      create_warning_log_described_by "The message '#{message.text}' was not sent to #{subscriber.phone_number} since schedule is paused"
+      create_warning_log_described_by "The message '#{message.text}' was not sent to #{subscriber.phone_number.without_protocol} since schedule is paused"
     end
   end
   
@@ -96,11 +96,11 @@ class Schedule < ActiveRecord::Base
   end
   
   def log_message_sent body, recipient_number
-    create_information_log_described_by "The message '#{body}' was sent to #{recipient_number}"
+    create_information_log_described_by "The message '#{body}' was sent to #{recipient_number.without_protocol}"
   end
   
   def log_new_subscription_of recipient_number
-    create_information_log_described_by "New subscriber: #{recipient_number}"
+    create_information_log_described_by "New subscriber: #{recipient_number.without_protocol}"
   end
 
   def create_warning_log_described_by description
@@ -162,6 +162,10 @@ class Schedule < ActiveRecord::Base
   
   def self.opt_out_keyword
     'stop'
+  end
+
+  def duration
+    raise NotImplementedError, 'Subclasses must redefine this message'
   end
   
 end

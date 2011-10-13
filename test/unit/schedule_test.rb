@@ -12,7 +12,7 @@ class ScheduleTest < ActiveSupport::TestCase
     assert !schedule.errors[:welcome_message].blank?, "Welcome Message must be present for all Schedules"
     assert !schedule.errors[:type].blank?, "Type must be present for all Schedules"
     assert !schedule.errors[:title].blank?, "Type must be present for all Schedules"
-    end
+  end
   
   [FixedSchedule, RandomSchedule].each do |klass|
     test "validate presence of required fields in #{klass}" do
@@ -135,7 +135,7 @@ class ScheduleTest < ActiveSupport::TestCase
     
       pregnant = klass.make :keyword => 'pregnant'
     
-      subscriber = Subscriber.make :schedule => pregnant, :phone_number => 1234
+      subscriber = Subscriber.make :schedule => pregnant, :phone_number => 'sms://1234'
 
       pregnant.subscribe subscriber
 
@@ -152,7 +152,7 @@ class ScheduleTest < ActiveSupport::TestCase
     
       pregnant = klass.make
       pregnant.messages.create! :text => 'pregnant1', :offset => 0
-      subscriber = Subscriber.make :schedule => pregnant, :phone_number => 1234
+      subscriber = Subscriber.make :schedule => pregnant, :phone_number => 'sms://1234'
 
       pregnant.subscribe subscriber
 

@@ -1,4 +1,4 @@
 Phone number,Subscribed
 <% @subscribers.each do |subscriber| %>
-<%=subscriber.phone_number.to_s + ',' + time_ago_in_words(subscriber.subscribed_at)%>
+<%="#{subscriber.phone_number.without_protocol}, #{subscriber.subscribed_at.strftime "%a %b %d %Y, %H:%M:%S"}, (#{time_ago_in_words subscriber.subscribed_at} ago)"%>
 <% end %>

@@ -1,7 +1,7 @@
 <li class="fields">
   <%= errors_for f.object, :as => :message %>
   
-  <div class="box grey w60">
+  <div class="box grey w60 reminderMessageBox closed">
 
     <%= link_to_remove_fields '', f, :class => "fdelete causesPendingSaveNoticeOnClick" %>
 
@@ -12,7 +12,7 @@
     <span class="timescale"><%= @schedule.timescale %></span>
   </div>
   <%= f.hidden_field :text, :class => "hidden text" %>
-  <pre class="aleft text"><%= f.object.text %></pre>
+  <pre class="aleft text w55"><%= f.object.text %></pre>
   <span class="aleft">
     <%= link_to_edit_fields "Edit", f, :messages %>
   </span>
