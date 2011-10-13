@@ -10,9 +10,9 @@
       'w-pagination'
     end %>">
 			<tr>
-				<th class="severity">Severity</th>
-				<th>Text</th>
-				<th>Timestamp</th>
+				<th class="severity<%= css_sort_class_for 'severity' %>"><%= sortable "severity" %></th>
+				<th class="<%= css_sort_class_for 'description' %>"><%= sortable "description", "Text" %></th>
+				<th class="<%= css_sort_class_for 'created_at' %>"><%= sortable "created_at", "Timestamp" %></th>
 			</tr>
 		    <% if @logs.empty? %>
 		      <tr>

@@ -14,8 +14,8 @@
       'w-pagination'
     end %>">
       <tr>
-        <th class="small">Subscribed</th>
-        <th colspan="2">Phone number</th>
+        <th class="small <%= css_sort_class_for 'subscribed_at' %>"><%= sortable 'subscribed_at', 'Subscribed' %></th>
+        <th colspan="2" class="<%= css_sort_class_for 'phone_number' %>"><%= sortable 'phone_number' %></th>
       </tr>
       <% if @subscribers.empty? %>
           <tr>
