@@ -10,7 +10,7 @@ class Schedule < ActiveRecord::Base
   has_many :subscribers, :dependent => :destroy
   has_many :logs, :dependent => :destroy
   
-  accepts_nested_attributes_for :messages, :allow_destroy => true, :reject_if => lambda { |message| message[:text].blank?}
+  accepts_nested_attributes_for :messages, :allow_destroy => true
   validates_associated :messages
   before_validation :initialize_messages
   

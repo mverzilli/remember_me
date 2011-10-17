@@ -10,20 +10,20 @@
   
   <div class="offset left">
     <div class="ux-nstep">
-      <%= tag :input, :name => "edit_offset", :size => "2", :type => "text", :value => f.object.offset %>
+      <%= tag :input, :name => "edit_offset", :size => "2", :type => "text", :value => f.object.offset, :onblur => "validate_onblur(this);" %>
     </div>
     <span class="timescale"><%= @schedule.timescale %></span>
   </div>
   
   <div class="text">
     <%= content_tag :textarea, f.object.text, :rows => 4, :class => "ux-wajbar w60", :placeholder => 'Add message here',
-      :name => "edit_text" , :maxlength => 160 %>
+      :name => "edit_text" , :maxlength => 160, :onblur => "validate_onblur(this);" %>
   </div>
   
   <hr/>
   
   <div class="actions">
-    <button type="button" class="white" onclick="<%=save_onclick%>">Save</button>
+    <button type="button" class="white" onclick="return <%=save_onclick%>">Save</button>
     <a href="#" onclick="<%=cancel_onclick%>; return false;">Cancel</a>
   </div>
 

@@ -403,3 +403,7 @@ th.small {
 th.severity {
   width: 10%;
 }
+
+.w60 > .field_with_errors {
+	width: 600px;
+}

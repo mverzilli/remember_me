@@ -1,13 +1,13 @@
 class Message < ActiveRecord::Base
   belongs_to :schedule
-  
-  validates_presence_of :schedule
+
+  validates_presence_of :schedule, :text
   validates_presence_of :offset,
     :if => lambda { !marked_for_destruction? && schedule.type == "FixedSchedule" },
     :message => "is required for schedules with a fixed timeline"
   validates_numericality_of :offset, :only_integer => true, :greater_than_or_equal_to => 0,
     :if => lambda { !marked_for_destruction? && schedule.type == "FixedSchedule" }
-  
+
   before_destroy :alert_schedule_from_message_destroy
   after_update :alert_schedule_from_message_update
   after_create :alert_schedule_from_message_creation

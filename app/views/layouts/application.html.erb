@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag 'http://theme.instedd.org/theme/stylesheets/theme.css' %>
   <%= stylesheet_link_tag '/stylesheets/remindem.css' %>
 
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag :defaults, "rails.validations" %>
   <%= javascript_include_tag 'http://theme.instedd.org/theme/javascripts/theme.js' %>
   <%= csrf_meta_tag %>
   <%= yield(:head) %>

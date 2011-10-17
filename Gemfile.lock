@@ -32,6 +32,7 @@ GEM
     bcrypt-ruby (3.0.1)
     breadcrumbs_on_rails (2.1.0)
     builder (2.1.2)
+    client_side_validations (3.1.0)
     daemons (1.1.4)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -106,6 +107,7 @@ PLATFORMS
 
 DEPENDENCIES
   breadcrumbs_on_rails
+  client_side_validations
   delayed_job
   devise
   ffaker

@@ -41,6 +41,6 @@ module RememberMe
     
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-    config.version_name = 1.4
+    config.version_name = '1.4'
   end
 end

@@ -11,7 +11,8 @@ gem 'mysql2', '< 0.3'
 gem 'devise'
 gem 'delayed_job'
 gem 'nuntium_api', '>=0.12'
-gem "jquery-rails"
+gem 'jquery-rails'
+gem 'client_side_validations'
 
 gem 'mocha'
 #gem 'ParseTree'

@@ -2,7 +2,7 @@
   <%= javascript_include_tag 'schedules' %>
 <% end %>
 
-<%= form_for(@schedule) do |f| %>
+<%= form_for @schedule, :validate => true do |f| %>
   <%= errors_for @schedule, :as => :schedule %>
 
   <div class="field w60">
@@ -62,7 +62,7 @@
   <p>Write your schedule's messages</p>
   
   <ul class="vertical">
-    <%= f.fields_for :messages do |message_form| %>
+    <%= f.fields_for :messages, :validate => false do |message_form| %>
       <%= render "message_fields", :f => message_form %>
     <% end %>
    <li class="fields">
