@@ -407,3 +407,8 @@ th.severity {
 .w60 > .field_with_errors {
 	width: 600px;
 }
+
+.error_description {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
