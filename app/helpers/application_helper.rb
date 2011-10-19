@@ -43,6 +43,7 @@ module ApplicationHelper
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
     (link_to title, :sort => column, :direction => direction, :page => params[:page]) + '<span></span>'.html_safe
   end
+  
   def css_sort_class_for column
     column == sort_column ? "sort #{css_sort_direction}" : "sort"
   end

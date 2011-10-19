@@ -22,7 +22,11 @@ class FixedSchedule < Schedule
   end
   
   def duration
-    sort_messages.last.offset
+    if messages.empty?
+      0
+    else
+      sort_messages.last.offset
+    end
   end
   
 end

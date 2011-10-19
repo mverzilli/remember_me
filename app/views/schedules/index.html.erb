@@ -1,14 +1,50 @@
+<% content_for :head do %>
+	<script type="text/javascript">
+	$(function() {
+    $(".filterSchedules").change(function () {
+      var url = ""
+      $(".filterSchedules option:selected").each(function () {
+        switch($(this).text()){
+          case "Paused":
+            url += "?show=paused";
+            break;
+          case "Running":
+            url += "?show=running";
+            break;
+          case "Show All":
+          default:
+            url += "?show=all"
+            break;
+        }
+        window.location=url;
+      });
+    });
+  })
+	</script>
+<% end %>
+
 <h1>Reminders</h1>
 
 <div class="tablewrapp RemindersTable">
   <table class="GralTable TwoColumn CleanTable ItemsTable <%= 'empty' if @schedules.empty? %>">
     <tr>
-      <th colspan="2">My Reminders</th>
+      <th>My Reminders</th>
+      <th>
+        <select name="status" class="filterSchedules" <%= 'disabled=true' unless @at_least_one_schedule_is_paused %>>
+            <option <%= 'selected=true' if params[:show] == 'all' %>>Show All</option>
+            <option <%= 'selected=true' if params[:show] == 'paused' %>>Paused</option>
+            <option <%= 'selected=true' if params[:show] == 'running' %>>Running</option>
+          </select>
+      </th>
     </tr>
     <% if @schedules.empty? %>
       <tr>
         <td colspan="2">
-          <div class="EmptyRemindersTable">You have no Reminders yet<br>
+          <div class="EmptyRemindersTable"><%= if params[:show] == 'running'
+              "You have no running Reminders"
+            else
+              "You have no Reminders yet"
+            end %><br>
             <%= link_to 'Create Reminder', new_schedule_path, :class => 'EmptyAddLink' %>
             <%= link_to '', new_schedule_path, :class => 'EmptyAddButton button cadd' %>
           </div>

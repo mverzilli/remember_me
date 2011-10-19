@@ -9,7 +9,13 @@ class SchedulesController < AuthenticatedController
   # GET /schedules
   # GET /schedules.xml
   def index
-    @schedules = Schedule.where(:user_id => current_user.id)
+    @at_least_one_schedule_is_paused = !Schedule.where(:user_id => current_user.id, :paused => true).empty?
+    
+    @schedules = if params[:show] == 'all' || params[:show].nil?
+        Schedule.where(:user_id => current_user.id)
+      else
+        Schedule.where(:user_id => current_user.id, :paused => params[:show] == 'paused')
+      end
 
     @last_log = Log.find(:all, :conditions => ["schedule_id in (?)", @schedules.collect(&:id)]).sort_by(&:created_at).reverse.first rescue nil
     respond_to do |format|
@@ -17,6 +23,7 @@ class SchedulesController < AuthenticatedController
       format.xml  { render :xml => @schedules }
     end
   end
+  
   # GET /schedules/1
   # GET /schedules/1.xml
   def show
