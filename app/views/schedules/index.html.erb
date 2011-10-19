@@ -56,7 +56,7 @@
           <td class="<%= schedule.paused? ? 'spaused' : 'sactive' %>">
             <span></span>
             <%= link_to schedule_path(schedule) do %>
-              <%= schedule.title %>
+              <%= schedule.title %> <div class="indexKeyword"> &#x2192; <%= schedule.keyword %></div>
             <% end %>
           </td>
     		<td><%= link_to '', schedule_path(schedule), :class => 'farrow' %></td>

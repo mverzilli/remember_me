@@ -412,3 +412,8 @@ th.severity {
   margin-bottom: 15px;
   margin-top: 15px;
 }
+
+.indexKeyword {
+  color: #777777 !important;
+  display: inline;
+}
