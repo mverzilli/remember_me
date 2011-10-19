@@ -35,24 +35,22 @@
       <%= f.select :timescale, Schedule.time_scales, {}, :class => "causesPendingSaveNoticeOnChange" %>
     </div>
   </div>
-  
   <div class="field">
     <label>Mode</label>
-    <p>Choose whether you want to set up a timeline for your messages or send them randomly</p>
-
+    <p>Choose whether you want to set up a timeline for your messages or send them randomly <%= " (Only available if there are no subscribers)" unless @schedule.subscribers.empty? %></p>
     <%= f.radio_button :type,
       "FixedSchedule",
       :id => "fixed_schedule_option",
-      :class => "causesPendingSaveNoticeOnChange styled"
+      :class => "causesPendingSaveNoticeOnChange styled", 
+      :disabled => !@schedule.subscribers.empty?
     %>
     <%= f.label :type, FixedSchedule.mode_in_words, :class => 'radio' %>
     <br/>
-    
-    
     <%= f.radio_button :type,
       "RandomSchedule",
       :id => "random_schedule_option",
-      :class => "causesPendingSaveNoticeOnChange styled"
+      :class => "causesPendingSaveNoticeOnChange styled", 
+      :disabled => !@schedule.subscribers.empty?
     %>
     <%= f.label :type, RandomSchedule.mode_in_words, :class => 'radio' %>
   </div>
