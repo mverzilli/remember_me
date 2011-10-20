@@ -1,7 +1,7 @@
 RememberMe::Application.routes.draw do
   devise_for :users
 
-  resources :schedules do
+  resources :schedules, :path => '/reminders' do
     resources :logs, :only => :index
     resources :subscribers, :only => [:index, :destroy]
   end
