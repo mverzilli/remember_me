@@ -1,6 +1,13 @@
 <% content_for :head do %>
 	<script type="text/javascript">
 	$(function() {
+	  $('.ItemsTable tr').live('click', function() {
+	    var anchor = $('a', $(this));
+	    if (anchor.length > 0) {
+        window.location = anchor.attr('href');
+      }
+    });
+      
     $(".filterSchedules").change(function () {
       var url = ""
       $(".filterSchedules option:selected").each(function () {

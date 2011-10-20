@@ -343,10 +343,6 @@ a.grey {
   color: grey !important;
 }
 
-.ItemsTable tr:hover td {
-  cursor: default;
-}
-
 th.small {
   width: 35%;
 }
