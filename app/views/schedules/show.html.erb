@@ -41,9 +41,9 @@
   </p>
   <%= f.hidden_field :paused?, :value => !@schedule.paused? %>
   <% if @schedule.paused? %>
-    <button type="submit" class="fplay overviewButton"></button>Start this reminder
+    <button type="submit" class="fplay overviewButton">Start this reminder</button>
   <% else %>
-    <button type="submit" class="fpause overviewButton"></button>Pause this reminder
+    <button type="submit" class="fpause overviewButton">Pause this reminder</button>
   <% end %>
  <% end %>
   <hr>

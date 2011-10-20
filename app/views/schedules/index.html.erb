@@ -9,21 +9,8 @@
     });
       
     $(".filterSchedules").change(function () {
-      var url = ""
       $(".filterSchedules option:selected").each(function () {
-        switch($(this).text()){
-          case "Paused":
-            url += "?show=paused";
-            break;
-          case "Running":
-            url += "?show=running";
-            break;
-          case "Show All":
-          default:
-            url += "?show=all"
-            break;
-        }
-        window.location=url;
+        window.location = $(this).val();
       });
     });
   })
@@ -37,11 +24,13 @@
     <tr>
       <th>My Reminders</th>
       <th>
-        <select name="status" class="filterSchedules" <%= 'disabled=true' unless @at_least_one_schedule_is_paused %>>
-            <option <%= 'selected=true' if params[:show] == 'all' %>>Show All</option>
-            <option <%= 'selected=true' if params[:show] == 'paused' %>>Paused</option>
-            <option <%= 'selected=true' if params[:show] == 'running' %>>Running</option>
-          </select>
+        <%= content_tag :select, :class => 'filterSchedules', :disabled => !@at_least_one_schedule_is_paused do %>
+          <%= options_for_select([
+            ['Show All','all'],
+            ['Paused','paused'],
+            ['Running','running']
+          ].map { |text,show| [text, schedules_path(:show => show)] }, schedules_path(:show => params[:show]) ) %>
+        <% end %>
       </th>
     </tr>
     <% if @schedules.empty? %>
