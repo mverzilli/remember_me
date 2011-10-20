@@ -1,5 +1,7 @@
 RememberMe::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => 'users/registrations' } do
+    get 'users/registrations/success', :to => 'users/registrations#success' 
+  end
 
   resources :schedules, :path => '/reminders' do
     resources :logs, :only => :index
