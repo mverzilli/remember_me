@@ -5,12 +5,4 @@
 	To verify your account and complete the registration process please click in the link below or copy paste the URL into your browser
 <% end  %>
 <br/>
-<%= link confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) do %>
-	<%= orange_button do %>
-		Confirm my account
-	<% end %>
-<% end %>
-<br/>
-<%= small_orange_link confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) do %>
-	<%= confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
-<% end %>
+<%= advertised_link 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>

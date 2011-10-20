@@ -1,5 +1,17 @@
 module MailerHelper
   
+  def advertised_link name, url
+    (link url do
+    	orange_button do
+    		name
+    	end
+    end) +
+    (tag :br) +
+    (small_orange_link url do
+    	url
+    end)
+  end
+  
   def body
     content_tag :div, :style => style_for(body_style) do
       yield
