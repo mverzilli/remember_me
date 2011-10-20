@@ -1,0 +1,18 @@
+<%= body do %>
+	<%=  header do %>
+		<img src="http://theme.instedd.org/theme/images/header/logos/remindem.png"/>
+		<img src="http://theme.instedd.org/theme/images/header/shadow_small.png"/>
+	<% end %>
+	<%= content do %>
+		<%= yield %>
+	<% end %>
+  <%= footer do %>
+		<hr/>
+		<p>
+			Do you have questions or need help? Contact us at
+			<%= link "mailto:remindem.support@instedd.org" do %>
+				remindem.support@instedd.org
+			<% end %>
+		</p>
+	<% end %>
+<% end %>
